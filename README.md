@@ -8,13 +8,6 @@ WareHub is a centralized platform designed to streamline warehouse management an
 - [Usage](#usage)
 - [Features](#features)
 - [Architecture and Technologies](#architecture-and-technologies)
-- [API Documentation](#api-documentation)
-- [Contributing](#contributing)
-- [Testing](#testing)
-- [Deployment](#deployment)
-- [License](#license)
-- [Acknowledgments](#acknowledgments)
-- [Contact](#contact)
 
 ## Installation
 
