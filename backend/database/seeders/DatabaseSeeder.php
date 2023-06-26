@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,7 +15,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+         User::factory()->create([
+             'name'=>'Warehub Admin',
+             'email'=>'admin@warehub.com',
+             'role'=>'1'
+         ]);
+        User::factory(10)->create([
+            'role'=>'0'
+        ]);
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
