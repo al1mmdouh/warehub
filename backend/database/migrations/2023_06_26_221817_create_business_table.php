@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('business_name', 255);
             $table->string('business_address', 255);
-            $table->string('business_type', 255);
+            $table->enum('business_type', ['warehouse', 'product']);
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
