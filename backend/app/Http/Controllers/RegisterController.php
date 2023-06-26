@@ -16,9 +16,9 @@ class RegisterController extends Controller
             'phone_number' => 'required|max:255',
             'address' => 'required|max:255',
         ]);
-        
-        User::create($attributes);
 
-        return redirect('/'); //redirect to home page
+        $user = User::create($attributes);
+
+        return response()->json($user,201); //redirect to home page
     }
 }
