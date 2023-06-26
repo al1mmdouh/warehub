@@ -19,4 +19,4 @@ Route::get('/', function () {
 });
 
 
-Route::post('register',[RegisterController::class,'store']);
+//Route::post('register',[RegisterController::class,'store'])->middleware('guest');
