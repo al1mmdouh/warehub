@@ -21,4 +21,10 @@ class SessionController extends Controller
         session()->regenerate(); // prevent session fixation
         return response()->json("Success, Welcome Back!",200) ;
     }
+
+    public function destroy()
+    {
+        auth()->logout();
+        return redirect('/')->with('success',"Goodbye!");
+    }
 }
