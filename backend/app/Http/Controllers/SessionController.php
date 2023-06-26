@@ -14,7 +14,7 @@ class SessionController extends Controller
         ]);
 
         if(!auth()->attempt($attributes)) {
-            throw ValidationException::class::withMessage([
+            throw ValidationException::withMessages([
                 'email'=>'Not verified'
             ]);
         }
