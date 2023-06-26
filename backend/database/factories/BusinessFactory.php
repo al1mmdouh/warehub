@@ -19,9 +19,9 @@ class BusinessFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'business_name' => $this->fake()->company(),
-            'business_address' => $this->fake()->address(),
-            'business_type' => $this->fake()->randomElement(['Warehouse', 'Product']),
+            'businesses_name' => fake()->company(),
+            'businesses_address' => fake()->address(),
+            'businesses_type' => fake()->randomElement(['Warehouse', 'Product']),
         ];
     }
 }

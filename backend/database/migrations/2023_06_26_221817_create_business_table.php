@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('business', function (Blueprint $table) {
+        Schema::create('businesses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('business_name', 255);
-            $table->string('business_address', 255);
-            $table->enum('business_type', ['warehouse', 'product']);
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('businesses_name', 255);
+            $table->string('businesses_address', 255);
+            $table->enum('businesses_type', ['warehouse', 'product']);
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('business');
+        Schema::dropIfExists('businesses');
     }
 };
