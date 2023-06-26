@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
          User::factory()->create([
              'name'=>'Warehub Admin',
              'email'=>'admin@warehub.com',
-             'role'=>'1'
+             'role'=>'1',
+             'password'=>"password"
          ]);
         User::factory(10)->create([
             'role'=>'0'
