@@ -29,4 +29,4 @@ Route::post('logout',[SessionController::class,'destroy'])->middleware('auth');
 
 Route::post('logout',[SessionController::class,'destroy'])->middleware('auth');
 
-Route::post('business',[BusinessController::class,'store'])->middleware('auth');
+Route::post('business',[BusinessController::class,'store']);//->middleware('auth')
