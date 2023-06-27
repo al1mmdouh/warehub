@@ -11,7 +11,6 @@ class BusinessController extends Controller
     {
 
         $attributes = request()->validate([
-            'user_id' => 'required|exists:user,id',
             'business_name' => 'required|min:3|max:255',
             'business_address' => 'required',
             'business_type' => 'required|in:product,warehouse',
