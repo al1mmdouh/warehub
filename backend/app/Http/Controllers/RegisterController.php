@@ -3,22 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class RegisterController extends Controller
 {
-    public function store() {
+    public function store()
+    {
+        try {
+            $attributes = request()->validate([
+                'name' => 'required|max:255',
+                'email' => 'required|email|max:255|unique:users,email',
+                'password' => 'required|min:7|max:255',
+                'phone_number' => 'required|max:255',
+                'address' => 'required|max:255',
+            ]);
 
-        $attributes = request()->validate([
-            'name'=>'required|max:255',
-            'email'=>'required|email|max:255|unique:users,email',
-            'password'=>'required|min:7|max:255',
-            'phone_number' => 'required|max:255',
-            'address' => 'required|max:255',
-        ]);
+            $user = User::create($attributes);
 
-        $user = User::create($attributes);
+            return response()->json($user, 201);
 
-        return response()->json($user,201); //redirect to home page
+        } catch (ValidationException $e) {
+            return response()->json(['error' => $e->errors()], 400);
+        }
     }
 }
