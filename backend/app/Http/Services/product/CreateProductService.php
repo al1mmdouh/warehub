@@ -16,7 +16,7 @@ class CreateProductService
             $image = $request->file('image');
             $name_gen =  hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             Image::make($image)->save('upload/product/' . $name_gen);
-            $save_url = 'upload/product/' . $name_gen;
+            $save_url = '/upload/product/' . $name_gen;
 
             $product = Product::create([
                 'name'=>$request->name,
