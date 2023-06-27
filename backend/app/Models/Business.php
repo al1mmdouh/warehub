@@ -11,16 +11,17 @@ class Business extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'business_name',
         'business_address',
         'business_type',
     ];
 
 
-    public function setUserIdAttribute($user_id)
-    {
-        $this->attributes['user_id'] = Auth::id();
-    }
+    // public function setUserIdAttribute($user_id)
+    // {
+    //     $this->attributes['user_id'] = Auth::id();
+    // }
 
     public function user()
     {
