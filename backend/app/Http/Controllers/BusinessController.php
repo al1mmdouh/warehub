@@ -13,7 +13,7 @@ class BusinessController extends Controller
         try {
             $attributes = request()->validate([
                 'user_id' => 'required|exists:users,id',
-                'business_name' => 'required|min:3|max:255',
+                'business_name' => 'required|unique:businesses,business_name|min:3|max:255',
                 'business_address' => 'required',
                 'business_type' => 'required|in:product,warehouse',
             ]);
