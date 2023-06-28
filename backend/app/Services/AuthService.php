@@ -3,11 +3,26 @@
 namespace App\Services;
 
 use App\Models\User;
+use Illuminate\Validation\ValidationException;
 
-class UserService
+class AuthService
 {
-    public function createUser(array $validated): User
+    public function register(array $validated): User
     {
         return User::create($validated);
     }
+
+    public function authenticate(array $credentials): bool
+    {
+        if(!auth()->attempt($credentials)) {
+            throw ValidationException::withMessages([
+                'email'=>'Not verified'
+            ]);
+        }
+        session()->regenerate(); // prevent session fixation
+
+        return true;
+    }
+
+
 }
