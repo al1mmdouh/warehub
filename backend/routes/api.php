@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Product\CreateProductController;
+use App\Http\Controllers\Product\DeleteProductController;
 use App\Http\Controllers\Product\IndexProductController;
 use App\Http\Controllers\Product\ShowProductController;
 use App\Http\Controllers\Product\UpdateProductController;
@@ -28,5 +29,5 @@ Route::prefix('products')->group(function(){
     Route::get('/',IndexProductController::class)->name('product.index');
     Route::post('/',CreateProductController::class)->name('product.store');
     Route::get('/{product}',ShowProductController::class)->name('product.show');
-
+    Route::delete('/{product}',DeleteProductController::class)->name('product.destroy');
 });
