@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Product\CreateProductController;
 use App\Http\Controllers\Product\IndexProductController;
+use App\Http\Controllers\Product\ShowProductController;
+use App\Http\Controllers\Product\UpdateProductController;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +25,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('products')->group(function(){
-    Route::get('/',IndexProductController::class)->name('products.index');
-    Route::post('/',CreateProductController::class)->name('products.store');
+    Route::get('/',IndexProductController::class)->name('product.index');
+    Route::post('/',CreateProductController::class)->name('product.store');
+    Route::get('/{product}',ShowProductController::class)->name('product.show');
+
 });

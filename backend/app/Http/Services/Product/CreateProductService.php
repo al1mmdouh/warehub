@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Services\product;
+namespace App\Http\Services\Product;
 
 use App\Http\Requests\StoreProductRequest;
 use App\Models\Product;
@@ -10,8 +10,6 @@ class CreateProductService
 {
     public function handle(StoreProductRequest $request)
     {
-        try{
-
             
             $image = $request->file('image');
             $name_gen =  hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
@@ -28,11 +26,6 @@ class CreateProductService
             ]);  
             
             return response()->json(['message'=>'success','data'=>$product]);
-        }
-        catch(\Exception $e){
-            return response()->json(['message'=>'error']);
-         
-        }   
     
         
     }
