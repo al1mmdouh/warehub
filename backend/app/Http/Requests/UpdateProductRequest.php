@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreProductRequest extends FormRequest
+class UpdateProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class StoreProductRequest extends FormRequest
         return [
                 'name'=>['required','alpha_num:ascii','min:3'],
                 'description'=>['min:8','max:255'],
-                'sku'=>['required','unique:products'],
+                'sku'=>['required','unique:products,sku,'.request()->route('product')->id],
                 'price'=>['required','numeric'],
                 'weight'=>['numeric'],
                 'image' => ['required','file','max:15360', 'mimes:png,jpg,jpeg,gif'],

@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('order_product', function (Blueprint $table) {
-            $table->foreignIdFor(product::class);
-            $table->foreignIdFor(order::class);
-            $table->decimal('price',10,2);
-            $table->integer('quantity');
-        });
+        // Schema::create('order_product', function (Blueprint $table) {
+        //     $table->foreignIdFor(product::class);
+        //     $table->foreignIdFor(order::class);
+        //     $table->decimal('price',10,2);
+        //     $table->integer('quantity');
+        // });
     }
 
     /**

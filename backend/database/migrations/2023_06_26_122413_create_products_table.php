@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('sku');
             $table->decimal('price',10,2);
             $table->double('weight',10,3)->default(0);
-            $table->text('image')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

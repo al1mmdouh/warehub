@@ -2,7 +2,7 @@
 
 namespace App\Http\Services\product;
 
-use App\Http\Resources\ProductResourse;
+use App\Http\Resources\ProductResource;
 use App\Models\Product;
 
 class IndexProductService
@@ -10,6 +10,6 @@ class IndexProductService
 
     public function handle()
     {
-       return ProductResourse::collection(Product::all());
+       return ProductResource::collection(Product::all());
     }
 }   

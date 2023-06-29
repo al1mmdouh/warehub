@@ -30,4 +30,5 @@ Route::prefix('products')->group(function(){
     Route::post('/',CreateProductController::class)->name('product.store');
     Route::get('/{product}',ShowProductController::class)->name('product.show');
     Route::delete('/{product}',DeleteProductController::class)->name('product.destroy');
+    Route::post('/{product}',UpdateProductController::class)->name('product.update');
 });

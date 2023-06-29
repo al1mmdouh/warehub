@@ -19,8 +19,8 @@ class DeleteProductController extends Controller
     public function __invoke(Product $product)
     {
         try {
-           $this->service->handle($product);
-            return response()->json(['message'=>'success']);
+            $this->service->handle($product);
+            return response()->json(['message' => 'success']);
         } catch (ValidationException $e) {
             return response()->json(['message' => $e->getMessage()]);
         }
