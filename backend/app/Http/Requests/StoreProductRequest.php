@@ -30,6 +30,7 @@ class StoreProductRequest extends FormRequest
                 'price'=>['required','numeric'],
                 'weight'=>['numeric'],
                 'image' => ['required','file','max:15360', 'mimes:png,jpg,jpeg,gif'],
+                'business_id'=>['required'],
         ];
     }
 }
