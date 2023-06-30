@@ -6,6 +6,8 @@ use App\Http\Controllers\Product\IndexProductController;
 use App\Http\Controllers\Product\ShowProductController;
 use App\Http\Controllers\Product\UpdateProductController;
 use App\Models\Product;
+use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\TextUI\XmlConfiguration\Group;
@@ -32,3 +34,10 @@ Route::prefix('products')->group(function(){
     Route::delete('/{product}',DeleteProductController::class)->name('product.destroy');
     Route::post('/{product}',UpdateProductController::class)->name('product.update');
 });
+Route::post('register',[AuthController::class, 'register'])->middleware('guest');
+
+Route::post('login',[AuthController::class, 'login'])->middleware('guest');
+
+Route::post('logout',[AuthController::class, 'logout'])->middleware('auth');
+
+Route::post('business',[BusinessController::class,'store']);//->middleware('auth')
