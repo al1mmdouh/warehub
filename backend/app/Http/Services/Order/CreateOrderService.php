@@ -11,7 +11,7 @@ class CreateOrderService
 {
     public function handle(StoreOrderRequest $request)
     {
-       
+
         $order = Order::create([
             'payment_token' => $request->payment_token,
             'shipping_data' => $request->shipping_data,
@@ -29,7 +29,6 @@ class CreateOrderService
                 ]
             );
         }
-
-        
+        return OrderResource::make($order);
     }
 }

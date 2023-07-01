@@ -17,4 +17,24 @@ class Order extends Model
     {
         return $this->belongsToMany(Product::class)->withPivot(['price', 'quantity']);
     }
+
+    // get total products price before tax and discount
+
+    public function getPriceAttribute()
+    {
+        $total_products_price = 0;
+        foreach($this->products as $product){
+            $total_products_price += $product->pivot->price * $product->pivot->quantity;
+        }
+        
+        return $total_products_price;
+
+    }
+    // get total orders price after tax and discount  
+
+    public function getTotalAttribute()
+    {
+       return $this->price - $this->tax + $this->discount;
+
+    }
 }

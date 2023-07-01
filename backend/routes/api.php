@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\Order\CreateOrderController;
+use App\Http\Controllers\Order\IndexOrderController;
 use App\Http\Controllers\Product\CreateProductController;
 use App\Http\Controllers\Product\DeleteProductController;
 use App\Http\Controllers\Product\IndexProductController;
@@ -36,7 +37,7 @@ Route::prefix('products')->group(function () {
 });
 
 Route::prefix('orders')->group(function () {
-
+    Route::get('/', IndexOrderController::class)->name('order.index');
     Route::post('/', CreateOrderController::class)->name('order.store');
 });
 Route::post('register', [AuthController::class, 'register'])->middleware('guest');
