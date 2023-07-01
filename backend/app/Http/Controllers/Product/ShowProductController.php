@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
 use App\Http\Services\Product\ShowProductService;
 use App\Models\Product;
 use Illuminate\Validation\ValidationException;
@@ -12,6 +10,7 @@ use Illuminate\Validation\ValidationException;
 class ShowProductController extends Controller
 {
     protected $service;
+
     public function __construct(ShowProductService $service)
     {
         return $this->service = $service;

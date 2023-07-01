@@ -16,14 +16,14 @@ return new class extends Migration
         Schema::create('last_mile_company', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->double('standerd_weight',10,2);
-            $table->double('order_rate',10,2);
-            $table->double('extra_weight_rate',10,2);
+            $table->double('standerd_weight', 10, 2);
+            $table->double('order_rate', 10, 2);
+            $table->double('extra_weight_rate', 10, 2);
             $table->timestamps();
             $table->softDeletes();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *

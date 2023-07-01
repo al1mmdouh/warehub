@@ -20,10 +20,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Warehub Admin',
             'email' => 'admin@warehub.com',
             'role' => '1',
-            'password' => "password"
+            'password' => 'password',
         ]);
         User::factory(10)->create([
-            'role' => '0'
+            'role' => '0',
         ]);
         Business::factory()
             ->count(5)

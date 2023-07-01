@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('sku');
-            $table->decimal('price',10,2);
-            $table->double('weight',10,3)->default(0);
+            $table->decimal('price', 10, 2);
+            $table->double('weight', 10, 3)->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
