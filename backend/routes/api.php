@@ -2,15 +2,18 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\Order\BusinessOrderController;
 use App\Http\Controllers\Order\CreateOrderController;
 use App\Http\Controllers\Order\DeleteOrderController;
 use App\Http\Controllers\Order\IndexOrderController;
 use App\Http\Controllers\Order\ShowOrderController;
+use App\Http\Controllers\Order\UpdateOrderController;
 use App\Http\Controllers\Product\CreateProductController;
 use App\Http\Controllers\Product\DeleteProductController;
 use App\Http\Controllers\Product\IndexProductController;
 use App\Http\Controllers\Product\ShowProductController;
 use App\Http\Controllers\Product\UpdateProductController;
+use App\Http\Services\Order\UpdateOrderService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\TextUI\XmlConfiguration\Group;
@@ -42,9 +45,14 @@ Route::prefix('orders')->group(function () {
     Route::get('/', IndexOrderController::class)->name('order.index');
     Route::post('/', CreateOrderController::class)->name('order.store');
     Route::get('/{order}',ShowOrderController::class)->name('order.show');
+    Route::post('/{order}',UpdateOrderController::class)->name('order.update');
     Route::delete('/{order}',DeleteOrderController::class)->name('order.destroy');
+  
 
-});
+}); 
+ Route::get('/{business}',BusinessOrderController::class)->name('business.show');
+
+
 Route::post('register', [AuthController::class, 'register'])->middleware('guest');
 
 Route::post('login', [AuthController::class, 'login'])->middleware('guest');

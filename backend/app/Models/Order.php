@@ -37,4 +37,14 @@ class Order extends Model
        return $this->price - $this->tax + $this->discount;
 
     }
+
+
+    public function business(): BelongsToMany
+    {
+       return $this->belongsToMany(Business::class);
+    }
+
+    
+
+
 }

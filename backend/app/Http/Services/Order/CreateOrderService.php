@@ -17,6 +17,7 @@ class CreateOrderService
             'shipping_data' => $request->shipping_data,
             'tax' => $request->tax,
             'discount' => $request->discount,
+            'business_id'=>$request->business_id
         ]);
 
         foreach ($request->get('products') as $product) {

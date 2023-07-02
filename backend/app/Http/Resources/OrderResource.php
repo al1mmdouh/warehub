@@ -15,14 +15,17 @@ class OrderResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'=>$this->id,
+            'business_id'=>$this->business_id,
+            'order_id'=>$this->id,
             'payment_token'=>$this->payment_token,
             'tax'=>$this->tax,
             'discount'=>$this->discount,
             'price'=>$this->price,
             'total'=>$this->total,
+            'status'=>$this->status,
             'shipping_data'=>$this->shipping_data,
-            'products' => ProductResource::collection($this->products)
+            'products' => ProductResource::collection($this->products),
+           
         ];
     }
 }
