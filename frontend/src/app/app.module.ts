@@ -12,7 +12,7 @@ import { WarehouseModule } from './warehouse/warehouse.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    WarehouseModule,
+    //WarehouseModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

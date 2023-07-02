@@ -6,7 +6,7 @@ import { WarehouseRegisterComponent } from './warehouse-register/warehouse-regis
 
 const routes: Routes = [
 
-  {path: 'warehouse', component: WarehouseHomeComponent},
+  {path: '', component: WarehouseHomeComponent},
   {path: 'circle', component: CircleProgressComponent},
   {path: 'register', component: WarehouseRegisterComponent}
 ];
