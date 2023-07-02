@@ -1,24 +1,51 @@
 <p>warehouse-register works!</p>
-<form [formGroup]="myForm" class="form-group">
-    <div class="form-group">
-        <input type="text" class="form-control" id="name" formControlName="name" placeholder="Name">
-        
-    </div>
-    <div class="form-group">
-        
-        <input type="text" class="form-control" id="warehouse-type" formControlName="warehouseType" placeholder="Warehouse type">
-    </div>
-    <div class="form-group">
-        
-        <input type="text" class="form-control" formControlName="wrahouseAddress" placeholder="Name">
-    </div>
-    <div class="form-group">
-        
-        <input type="text" class="form-control" id="name" formControlName="capacity" placeholder="Name">
-    </div>
-    <div class="form-group">
-        
-        <input type="text" class="form-control" id="name" formControlName="serviceFeePerVolume" placeholder="Name">
+<div class="container">
+    <div class="card my-3">
+        <h3 class="m-2" style="text-align: center;">Add warhouses</h3>
+        <div class="m-3">
+            <div class="form-outline">
+                <form [formGroup]="countForm" (ngSubmit)="onSubmitCount()" action="">
+
+                    <input type="number" formControlName="count" id="typeNumber" class="form-control" min="1" max="5" (value)="warehouseNumber"/>
+                    <br>
+                    <button class="btn btn-primary" >Submit</button>
+
+                </form>
+            </div>
+    
+        </div>
     </div>
 
-</form>
+    <div *ngFor="let warehouse of [].constructor(warehouseNumber)"  class="card my-3 p-3">
+
+      
+    
+        <form  [formGroup]="myForm" (ngSubmit)="onSubmitForm(); "   class="form-group m-3">
+            <div class="form-group">
+                <input type="text" class="form-control my-3" id="name" formControlName="name" placeholder="Name">
+                
+            </div>
+            <div class="form-group">
+                
+                <input type="text" class="form-control my-3" id="warehouse-type" formControlName="warehouseType" placeholder="Warehouse type">
+            </div>
+            <div class="form-group">
+                
+                <input type="text" class="form-control my-3" formControlName="warehouseAddress" placeholder="warehouse address">
+            </div>
+            <div class="form-group">
+                
+                <input type="text" class="form-control my-3" id="name" formControlName="capacity" placeholder="capacity">
+            </div>
+            <div class="form-group">
+                
+                <input type="text" class="form-control my-3" id="name" formControlName="serviceFeePerVolume" placeholder="service fee per volume">
+            </div>
+            <div class="form-check">
+                <label for="shipment">shipment</label>
+                <input type="checkbox"  id="name" formControlName="shipments" placeholder="service fee per volume">
+            </div>
+        <button class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
