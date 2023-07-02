@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class WarehouseRegisterComponent {
   myForm !: FormGroup;
   countForm !: FormGroup;
+  countFormArr : Array<number> =[0] ;
 
 
   warehouseNumber: number = 1;
@@ -35,12 +36,16 @@ export class WarehouseRegisterComponent {
   }
 
   onSubmitCount(){
+
     if(this.countForm.valid){
+      this.countFormArr =  [...Array(this.countForm.value.count).keys()]
+      console.log(this.countFormArr);
       this.warehouseNumber= parseInt(this.countForm.value.count)
     }
 
   }
-  onSubmitForm(){
+  onSubmitForm(index: number){
+    this.countFormArr.splice(index, 1)
     console.log(this.myForm.value.shipments);
   }
 }

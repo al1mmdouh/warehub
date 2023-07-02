@@ -16,11 +16,11 @@
         </div>
     </div>
 
-    <div *ngFor="let warehouse of [].constructor(warehouseNumber)"  class="card my-3 p-3">
+    <div *ngFor="let warehouse of countFormArr; let i = index;"  class="card my-3 p-3">
 
       
     
-        <form  [formGroup]="myForm" (ngSubmit)="onSubmitForm(); "   class="form-group m-3">
+        <form  [formGroup]="myForm" (ngSubmit)="onSubmitForm(i); "   class="form-group m-3">
             <div class="form-group">
                 <input type="text" class="form-control my-3" id="name" formControlName="name" placeholder="Name">
                 
