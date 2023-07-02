@@ -1,0 +1,80 @@
+<div style="display: flex; ">
+  <div class="container">
+
+    <div class="list-group">
+    
+      <button *ngFor="let warehouse of warehouses; let i = index;" (click)="selectWarehouse(i)"
+       type="button" class="list-group-item list-group-item-action">{{warehouse.warehouseName}}</button>
+    
+    </div>
+  </div>
+
+  
+    <div class="container">
+      <div class="row">
+        
+          <div class="col-lg" style="text-align: center;">
+              <h1>{{warehouses[selectedWarehouseId].warehouseName}}</h1>
+          </div>
+  
+  
+      </div>
+      <div class="row" style="border-style: solid;">
+          <div class="col-12">
+              <div class="card" style="width: 100rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">INFO</h5>
+                    <p class="card-text"><b>Name:</b> {{warehouses[selectedWarehouseId].ownerName}}</p>
+                    <p class="card-text"><b>Email:</b> {{warehouses[selectedWarehouseId].ownerEmail}}</p>
+                    <p class="card-text"><b>Warehouse Address:</b> {{warehouses[selectedWarehouseId].address}}</p>
+  
+                    <button class="btn btn-primary">test</button>
+  
+                  </div>
+                </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col">
+              <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Capacity</h5>
+                <circle-progress [percent]="capacityPerecent(warehouses[selectedWarehouseId].availableCapacity,warehouses[selectedWarehouseId].capacity)"  [space]="-10" [radius]="100" [outerStrokeWidth]="10"
+        [innerStrokeWidth]="10" [outerStrokeColor]="'#4882c2'" [innerStrokeColor]="'#e7e8ea'" [animation]="true"
+        [animationDuration]="1000"></circle-progress>
+                <p class="card-text"><b>Available Capacity:</b> {{warehouses[selectedWarehouseId].availableCapacity}} unit</p>
+                <p class="card-text"><b>Capacity:</b>{{warehouses[selectedWarehouseId].capacity}} Unit</p>
+  
+                <button class="btn btn-primary">test</button>
+  
+              </div>
+            </div></div>
+          <div class="col">
+              <div class="card" style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Earning</h5>
+                    <p class="card-text"><b>Earning:</b> {{warehouses[selectedWarehouseId].earning}}</p>
+                    <p class="card-text"><b>Service fee:</b> {{warehouses[selectedWarehouseId].serviceFee}}</p>
+                    <button class="btn btn-primary">test</button>
+  
+                  </div>
+                </div>
+          </div>
+          <div class="col">
+              <div class="card" style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Last Miles</h5>
+                    <p class="card-text"><b>Company Name:</b> {{warehouses[selectedWarehouseId].lastMileName}}</p>
+                    <p class="card-text"><b>Tax:</b> {{warehouses[selectedWarehouseId].lastMileTax}}%</p>
+  
+                    <button class="btn btn-primary">test</button>
+  
+                  </div>
+                </div>
+          </div>
+  
+      </div>
+  
+    </div>
+    
+</div>

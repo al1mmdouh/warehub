@@ -1,0 +1,17 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.d-flex{
+    height: 100%;
+}
+body{height: 100%;}
+.border{
+    height:100px;
+    width:100px;
+    border:2px solid black;
+}
+.border-name{
+    width:30px;
+    margin-top:-10px;
+    margin-left:5px;
+    background:white;
+}
