@@ -8,7 +8,7 @@
 
                     <input type="number" formControlName="count" id="typeNumber" class="form-control" min="1" max="5" (value)="warehouseNumber"/>
                     <br>
-                    <button class="btn btn-primary" >Submit</button>
+                    <button class="btn btn-dark" >Submit</button>
 
                 </form>
             </div>
@@ -18,34 +18,48 @@
 
     <div *ngFor="let warehouse of countFormArr; let i = index;"  class="card my-3 p-3">
 
-      
-    
-        <form  [formGroup]="myForm" (ngSubmit)="onSubmitForm(i); "   class="form-group m-3">
+        
+   
+        <form  [formGroup]="myForm" (ngSubmit)="onSubmitForm(i);"   class="form-group m-3">
             <div class="form-group">
                 <input type="text" class="form-control my-3" id="name" formControlName="name" placeholder="Name">
-                
+                <div *ngIf="(myForm.get('name')?.errors)&&myForm.get('name')?.touched" class="text-danger">
+                    Warehouse name is required must be between 3 and 30 characters.
+                </div>
             </div>
             <div class="form-group">
                 
                 <input type="text" class="form-control my-3" id="warehouse-type" formControlName="warehouseType" placeholder="Warehouse type">
+                <div *ngIf="(myForm.get('warehouseType')?.errors)&&myForm.get('warehouseType')?.touched" class="text-danger">
+                    Choose valid Warehouse type.
+                </div>
             </div>
             <div class="form-group">
                 
                 <input type="text" class="form-control my-3" formControlName="warehouseAddress" placeholder="warehouse address">
+                <div *ngIf="(myForm.get('warehouseAddress')?.errors)&&myForm.get('warehouseAddress')?.touched" class="text-danger">
+                    address is required and must be between 5 and 200 characters.
+                </div>
             </div>
             <div class="form-group">
                 
                 <input type="text" class="form-control my-3" id="name" formControlName="capacity" placeholder="capacity">
+                <div *ngIf="(myForm.get('capacity')?.errors)&&myForm.get('capacity')?.touched" class="text-danger">
+                    Capacity is required and must be between 10 and 50000.
+                </div>
             </div>
             <div class="form-group">
                 
                 <input type="text" class="form-control my-3" id="name" formControlName="serviceFeePerVolume" placeholder="service fee per volume">
+                <div *ngIf="(myForm.get('serviceFeePerVolume')?.errors)&&myForm.get('serviceFeePerVolume')?.touched" class="text-danger">
+                    Fee is required and must be between 1 and 50000.
+                </div>
             </div>
             <div class="form-check">
                 <label for="shipment">shipment</label>
                 <input type="checkbox"  id="name" formControlName="shipments" placeholder="service fee per volume">
             </div>
-        <button class="btn btn-primary">Submit</button>
+        <button class="btn btn-dark">Submit</button>
         </form>
     </div>
 </div>

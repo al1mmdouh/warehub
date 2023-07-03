@@ -167,3 +167,72 @@
     
     
 </div>
+
+<!-- Button trigger modal -->
+<button type="button" (click)="createTicket()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label for="test"> test</label>
+        <input type="radio" name="test" value="update" [(ngModel)]="selectedRadio">
+        <input type="radio" name="test" value="delete" [(ngModel)]="selectedRadio">
+        <form *ngIf="selectedRadio === 'update'" [formGroup]="ticketForm"  action="">
+
+          <div class="form-group">
+            <input type="text" class="form-control my-3" id="name" formControlName="name" placeholder="Name">
+            <div *ngIf="(ticketForm.get('name')?.errors)&&ticketForm.get('name')?.touched" class="text-danger">
+                Warehouse name is required must be between 3 and 30 characters.
+            </div>
+        </div>
+        <div class="form-group">
+            
+
+        </div>
+        <div class="form-group">
+            
+            <input type="text" class="form-control my-3" formControlName="warehouseAddress" placeholder="warehouse address">
+            <div *ngIf="(ticketForm.get('warehouseAddress')?.errors)&&ticketForm.get('warehouseAddress')?.touched" class="text-danger">
+                address is required and must be between 5 and 200 characters.
+            </div>
+        </div>
+        <div class="form-group">
+            
+            <input type="text" class="form-control my-3" id="name" formControlName="capacity" placeholder="capacity">
+            <div *ngIf="(ticketForm.get('capacity')?.errors)&&ticketForm.get('capacity')?.touched" class="text-danger">
+                Capacity is required and must be between 10 and 50000.
+            </div>
+        </div>
+        <div class="form-group">
+                
+          <input type="text" class="form-control my-3" id="name" formControlName="serviceFeePerVolume" placeholder="service fee per volume">
+          <div *ngIf="(ticketForm.get('serviceFeePerVolume')?.errors)&&ticketForm.get('serviceFeePerVolume')?.touched" class="text-danger">
+              Fee is required and must be between 1 and 50000.
+          </div>
+      </div>
+          <br>
+          <button class="btn btn-dark" >Submit</button>
+
+      </form>
+      <div id="delete" *ngIf="selectedRadio === 'delete'">
+        <h5>Are you sure to delete <b>{{warehouses[selectedWarehouseId].warehouseName}}?</b></h5>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Yes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

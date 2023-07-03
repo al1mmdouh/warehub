@@ -17,11 +17,11 @@ export class WarehouseRegisterComponent {
 
   ngOnInit(){
     this.myForm = this.fb.group({
-      name: ['',[Validators.minLength(3),  Validators.required]],
-      warehouseType: ['',[ Validators.minLength(5), Validators.required ]],
-      warehouseAddress: ['',[Validators.minLength(5), Validators.required ]],
-      capacity: ['',[ Validators.min(1), Validators.required ]],
-      serviceFeePerVolume: ['',[Validators.min(1), Validators.required ]],
+      name: ['',[Validators.minLength(3), Validators.maxLength(30), Validators.required]],
+      warehouseType: ['',[ Validators.minLength(5),  Validators.required ]],
+      warehouseAddress: ['',[Validators.minLength(5),Validators.maxLength(200), Validators.required ]],
+      capacity: ['',[ Validators.min(10), Validators.max(50000), Validators.required ]],
+      serviceFeePerVolume: ['',[Validators.min(1), Validators.max(50000), Validators.required ]],
       shipments: [true]
     })
 
@@ -45,7 +45,10 @@ export class WarehouseRegisterComponent {
 
   }
   onSubmitForm(index: number){
-    this.countFormArr.splice(index, 1)
-    console.log(this.myForm.value.shipments);
+    if(this.myForm.valid){
+      
+      this.countFormArr.splice(index, 1)
+      console.log(this.myForm.value.shipments);
+    }
   }
 }

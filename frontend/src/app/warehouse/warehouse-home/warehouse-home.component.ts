@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Warehouse } from 'src/app/interfaces/warehouse';
 
 @Component({
@@ -8,6 +9,10 @@ import { Warehouse } from 'src/app/interfaces/warehouse';
 })
 export class WarehouseHomeComponent {
   selectedWarehouseId =0;
+
+  selectedRadio: string = "update";
+
+  ticketForm!: FormGroup;
   warehouses: Array<Warehouse> = 
   [
     {
@@ -35,6 +40,33 @@ export class WarehouseHomeComponent {
       serviceFee: 10
     }
   ]
+  constructor(private fb: FormBuilder){}
+  ngOnInit(){
+    this.ticketForm = this.fb.group({
+      warehouseAddress : this.warehouses[this.selectedWarehouseId].address,
+      capacity : this.warehouses[this.selectedWarehouseId].capacity,
+      availableCapacity : this.warehouses[this.selectedWarehouseId].availableCapacity,
+      name : this.warehouses[this.selectedWarehouseId].warehouseName,
+      earning : this.warehouses[this.selectedWarehouseId].earning,
+      serviceFeePerVolume : this.warehouses[this.selectedWarehouseId].serviceFee,
+
+
+
+    })
+  }
+  createTicket(){
+    this.ticketForm = this.fb.group({
+      name : this.warehouses[this.selectedWarehouseId].warehouseName,
+      warehouseAddress : this.warehouses[this.selectedWarehouseId].address,
+      capacity : this.warehouses[this.selectedWarehouseId].capacity,
+      availableCapacity : this.warehouses[this.selectedWarehouseId].availableCapacity,
+      earning : this.warehouses[this.selectedWarehouseId].earning,
+      serviceFeePerVolume : this.warehouses[this.selectedWarehouseId].serviceFee,
+
+
+
+    })
+  }
   capacityPerecent(availableCapacity: number, capacity: number): number{
 
     return (availableCapacity/capacity)*100
