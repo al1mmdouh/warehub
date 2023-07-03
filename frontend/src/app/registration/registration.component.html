@@ -1,1 +1,90 @@
-<p>registration works!</p>
+<h4 style="text-align: center;">Registration</h4>
+<br>
+<form  [formGroup]="registeration" (ngSubmit)="submitregisteration()">
+  <!------------------------------------------------------------------------------------------------------------------------------>
+    <div class="input-group">
+        <label for="firstname" class="input-group-text" >Name</label>
+        <input type="text" aria-label="First name" class="form-control" formControlName="name">
+      </div>
+      <div 
+        class="form-text text-danger"
+        *ngIf="registeration.controls['name'].touched &&
+         registeration.controls['name'].invalid">
+         <span *ngIf= "registeration.controls['name'].errors?.['required']" >this fild is required</span>
+        </div>
+      <br>
+      <!-- ------------------------------------------------------------------------------------------------------ -->
+      <div class="input-group">
+        <label for="email" class="input-group-text"> Email Address </label>
+        <input  type="email" aria-label="Email" class="form-control" formControlName="email">
+      </div>
+      
+      <div 
+        class="form-text text-danger"
+        *ngIf="registeration.controls['email'].touched &&
+         registeration.controls['email'].invalid">
+         <span *ngIf= "registeration.controls['email'].errors?.['required']" >this fild is required</span>
+         <span *ngIf= "registeration.controls['email'].errors?.['minlength']" >This Feild has a Min Liegth</span>
+
+      </div>
+      <!-- ---------------------------------------------------------------------------------------------------------- -->
+      <br>
+      <div class="input-group">
+        <label for="number" class="input-group-text"> phone Number </label>
+        <input type="text" aria-label="number" class="form-control" formControlName="number">
+      </div>
+      <div 
+      class="form-text text-danger"
+      *ngIf="registeration.controls['number'].touched &&
+       registeration.controls['number'].invalid">
+       <span *ngIf= "registeration.controls['number'].errors?.['required']" >this fild is required</span>
+       <span *ngIf= "registeration.controls['number'].errors?.['minlength']">This Fild has a Min Liegth</span>
+
+    </div>
+    <!-- ------------------------------------------------------------------------------------- -->
+      <br>
+      <div class="input-group">
+        <label for="password" class="input-group-text"> password </label>
+        <input type="password" aria-label="password" class="form-control" formControlName="password">
+      </div>
+      <div 
+      class="form-text text-danger"
+      *ngIf="registeration.controls['password'].touched &&
+       registeration.controls['password'].invalid">
+       <span *ngIf= "registeration.controls['password'].errors?.['required']" >this fild is required</span>
+       <span *ngIf= "registeration.controls['password'].errors?.['minlength']" >This Fild has a Min Liegth</span>
+
+    </div>
+    <!-- ------------------------------------------------------------------------------------------ -->
+      <br>
+      <div class="input-group">
+        <label for="address" class="input-group-text"> Address </label>
+        <input type="text" aria-label="address" class="form-control" formControlName="address">
+      </div>
+      <div 
+       class="form-text text-danger"
+      *ngIf="registeration.controls['address'].touched &&
+       registeration.controls['address'].invalid">
+       <span *ngIf= "registeration.controls['address'].errors?.['required']" >this fild is required</span>
+       <span *ngIf= "registeration.controls['address'].errors?.['minlength']" >This Fild has a Min Liegth</span>
+    </div>
+    <!-- ----------------------------------------------------------------------------------- -->
+      <br>
+      <span class="px-4 fw-bold">Choose Your Role :</span>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+        <label class="form-check-label" for="inlineRadio1">User</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+        <label class="form-check-label" for="inlineRadio2">Warehouse Owner</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" >
+        <label class="form-check-label" for="inlineRadio3">Product Owner</label>
+      </div>
+      <br>
+      <br>
+      <button  type="submit" class="btn btn-primary" [disabled]="registeration.invalid">Submit</button>
+
+</form>
