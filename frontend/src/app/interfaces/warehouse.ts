@@ -5,8 +5,8 @@ export interface Warehouse {
     address: string,
     availableCapacity: number,
     capacity: number,
-    lastMileName: string,
-    lastMileTax: number,
+    lastMileName?: string,
+    lastMileTax?: number,
     earning: number,
     serviceFee: number
 }

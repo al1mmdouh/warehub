@@ -21,6 +21,7 @@ export class WarehouseRegisterComponent {
       warehouseType: ['',[ Validators.minLength(5),  Validators.required ]],
       warehouseAddress: ['',[Validators.minLength(5),Validators.maxLength(200), Validators.required ]],
       capacity: ['',[ Validators.min(10), Validators.max(50000), Validators.required ]],
+      availableCapacity: ['',[ Validators.min(10), Validators.max(50000), Validators.required ]],
       serviceFeePerVolume: ['',[Validators.min(1), Validators.max(50000), Validators.required ]],
       shipments: [true]
     })
