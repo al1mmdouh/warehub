@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Warehouse } from 'src/app/interfaces/warehouse';
+import { WarehouseService } from 'src/app/services/warehouse.service';
 
 @Component({
   selector: 'app-warehouse-home',
@@ -51,7 +52,7 @@ export class WarehouseHomeComponent {
       serviceFee: 10
     }
   ]
-  constructor(private fb: FormBuilder){}
+  constructor(private fb: FormBuilder, private warehouseService: WarehouseService){}
   ngOnInit(){
     this.ticketForm = this.fb.group({
       warehouseAddress : this.warehouses[this.selectedWarehouseId].address,
@@ -62,8 +63,14 @@ export class WarehouseHomeComponent {
       serviceFeePerVolume : this.warehouses[this.selectedWarehouseId].serviceFee,
       shipments: this.warehouses[this.selectedWarehouseId].lastMileName
 
-
+      
     })
+    this.warehouseService.getWarehouses().subscribe(
+      (data)=>{
+        this.warehouses = data;
+        console.log(this.warehouses);
+      }
+    )
   }
   createTicket(){
     this.ticketForm = this.fb.group({
@@ -82,7 +89,6 @@ export class WarehouseHomeComponent {
     })
   }
   capacityPerecent(availableCapacity: number, capacity: number): number{
-
     return (availableCapacity/capacity)*100
   }
   

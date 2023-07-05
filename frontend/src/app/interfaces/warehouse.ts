@@ -8,5 +8,6 @@ export interface Warehouse {
     lastMileName?: string,
     lastMileTax?: number,
     earning: number,
-    serviceFee: number
+    serviceFee: number,
+    warhouseType?: string
 }

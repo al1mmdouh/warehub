@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { WarehouseService } from 'src/app/services/warehouse.service';
 
 @Component({
   selector: 'app-warehouse-register',
@@ -13,7 +14,7 @@ export class WarehouseRegisterComponent {
 
 
   warehouseNumber: number = 1;
-  constructor(private fb: FormBuilder){}
+  constructor(private fb: FormBuilder, private warehouseService: WarehouseService){}
 
   ngOnInit(){
     this.myForm = this.fb.group({
@@ -48,8 +49,9 @@ export class WarehouseRegisterComponent {
   onSubmitForm(index: number){
     if(this.myForm.valid){
       
+      this.warehouseService.createWarehouse(this.myForm.value).subscribe()
       this.countFormArr.splice(index, 1)
-      console.log(this.myForm.value.shipments);
+      console.log(this.myForm.value);
     }
   }
 }
