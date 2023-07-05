@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TicketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +28,11 @@ Route::post('login',[AuthController::class, 'login'])->middleware('guest');
 Route::post('logout',[AuthController::class, 'logout'])->middleware('auth');
 
 Route::post('business',[BusinessController::class,'store']);//->middleware('auth')
+
+Route::prefix('tickets')->group(function () {
+    Route::get('/', [TicketController::class, 'index']);
+    Route::post('/', [TicketController::class, 'store']);
+    Route::get('/{id}', [TicketController::class, 'show']);
+    Route::put('/{id}', [TicketController::class, 'update']);
+    Route::delete('/{id}', [TicketController::class, 'destroy']);
+});
