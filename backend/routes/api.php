@@ -29,7 +29,11 @@ Route::post('logout',[AuthController::class, 'logout'])->middleware('auth');
 
 Route::post('business',[BusinessController::class,'store']);//->middleware('auth')
 
+
+
+
 Route::prefix('warehouse')->group(function () {
+    Route::get('/users/{userId}', [WarehouseController::class, 'getUserWarehouses']);
     Route::get('/', [WarehouseController::class, 'index']);
     Route::post('/', [WarehouseController::class, 'store']);
     Route::get('/{id}', [WarehouseController::class, 'show']);
