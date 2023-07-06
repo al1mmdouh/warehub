@@ -14,6 +14,7 @@ export class WarehouseService {
   getWarehouses(): Observable<any[]>{
     return  this.http.get<any[]>("http://127.0.0.1:8000/api/warehouse")
     //parsing data
+    //owner name and email static must be changed
     .pipe(
       map(
         (data)=> data.map(
@@ -39,7 +40,7 @@ export class WarehouseService {
 
   createWarehouse(data:any){
     //parsing input
-    //buisness id and earnings are, static must be changed 
+    //buisness id and earnings are static must be changed 
     let warehouse = {
       name: data.name,
       business_id: 1,
