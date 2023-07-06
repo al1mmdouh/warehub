@@ -11,6 +11,8 @@ import { WarehouseService } from 'src/app/services/warehouse.service';
 export class WarehouseHomeComponent {
   isLoading = true;
 
+  apiError !: string;
+
   selectedWarehouseId =0;
 
   selectedRadio: string = "update";
@@ -71,7 +73,13 @@ export class WarehouseHomeComponent {
       (data)=>{
         this.warehouses = data;
         this.isLoading = false;
-        console.log(this.warehouses);
+        //console.log(this.warehouses);
+      },
+      (error)=>{
+        //console.log(error.statusText);
+        this.apiError = error.statusText;
+        this.isLoading = false;
+
       }
     )
   }
