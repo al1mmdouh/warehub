@@ -18,7 +18,6 @@ export class WarehouseService {
       map(
         (data)=> data.map(
           raw =>{
-            console.log(raw.address);
             let warehouse: Warehouse =
             {
               address: raw.address,
@@ -31,7 +30,6 @@ export class WarehouseService {
               warehouseName: raw.name,
               capacity: raw.capacity
             }
-            //console.log(warehouse);
             return warehouse;
           }
         )
@@ -41,7 +39,7 @@ export class WarehouseService {
 
   createWarehouse(data:any){
     //parsing input
-    //buisness id and earnings are static must be changed 
+    //buisness id and earnings are, static must be changed 
     let warehouse = {
       name: data.name,
       business_id: 1,

@@ -18,42 +18,20 @@ export class WarehouseHomeComponent {
   selectedRadio: string = "update";
 
   ticketForm!: FormGroup;
+  
   warehouses: Array<Warehouse> = 
   [
     {
-      warehouseName: "warehouso",
-      ownerName: "Owner",
-      ownerEmail: "owner@email.com",
-      address: "tttttt",
-      availableCapacity: 100,
-      capacity: 1000,
-      lastMileName: "aramex",
-      lastMileTax: 10,
-      earning: 999,
-      serviceFee: 99
-    },
-    {
-      warehouseName: "warehouso2",
-      ownerName: "adminown",
-      ownerEmail: "admin@email.com",
-      address: "new one",
-      availableCapacity: 100,
-      capacity: 500,
-      lastMileName: "aramex",
-      lastMileTax: 10,
-      earning: 89,
-      serviceFee: 10
-    },
-    {
-      warehouseName: "big warehouse",
-      ownerName: "admssinown",
-      ownerEmail: "n@email.com",
-      address: "new york",
-      availableCapacity: 100,
-      capacity: 589,
-      
-      earning: 89,
-      serviceFee: 10
+      warehouseName: "warehouseName",
+      ownerName: "ownerName",
+      ownerEmail: "ownerEmail",
+      address: "address",
+      availableCapacity: 0,
+      capacity: 0,
+      lastMileName: "lastMileName",
+      lastMileTax: 0,
+      earning: 0,
+      serviceFee: 0
     }
   ]
   constructor(private fb: FormBuilder, private warehouseService: WarehouseService){}
@@ -65,22 +43,21 @@ export class WarehouseHomeComponent {
       name : this.warehouses[this.selectedWarehouseId].warehouseName,
       earning : this.warehouses[this.selectedWarehouseId].earning,
       serviceFeePerVolume : this.warehouses[this.selectedWarehouseId].serviceFee,
-      shipments: this.warehouses[this.selectedWarehouseId].lastMileName
+      shipments: this.warehouses[this.selectedWarehouseId].lastMileName,
 
       
     })
     this.warehouseService.getWarehouses().subscribe(
-      (data)=>{
+    {
+        next:  (data)=>{
         this.warehouses = data;
         this.isLoading = false;
-        //console.log(this.warehouses);
       },
-      (error)=>{
-        //console.log(error.statusText);
+        error: (error)=>{
         this.apiError = error.statusText;
         this.isLoading = false;
 
-      }
+      }}
     )
   }
   createTicket(){
@@ -96,7 +73,8 @@ export class WarehouseHomeComponent {
       earning : this.warehouses[this.selectedWarehouseId].earning,
       serviceFeePerVolume : [this.warehouses[this.selectedWarehouseId].serviceFee,
       [Validators.min(1), Validators.pattern("^[0-9]*$"), Validators.max(50000), Validators.required ]],
-      shipments: this.warehouses[this.selectedWarehouseId].lastMileName
+      shipments: this.warehouses[this.selectedWarehouseId].lastMileName,
+      
     })
   }
   capacityPerecent(availableCapacity: number, capacity: number): number{

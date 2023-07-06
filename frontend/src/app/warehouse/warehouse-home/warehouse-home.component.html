@@ -33,7 +33,7 @@
            <div class="col-12">
                <div class="card" style="width: 70rem;">
                    <div class="card-body">
-                     <h5 class="card-title">INFO</h5>
+                     <h5 class="card-title">My Info</h5>
                      <p class="card-text"><b>Name:</b> {{warehouses[selectedWarehouseId].ownerName}}</p>
                      <p class="card-text"><b>Email:</b> {{warehouses[selectedWarehouseId].ownerEmail}}</p>
                      <p class="card-text"><b>Warehouse Address:</b> {{warehouses[selectedWarehouseId].address}}</p>
@@ -150,6 +150,15 @@
             <label for="shipment">shipment</label>
             <input type="checkbox"  id="name" formControlName="shipments" placeholder="service fee per volume">
           </div>
+          <hr/>
+
+          <div class="form-group">
+            <label  class="form-label">Ticket Reason</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <div *ngIf="(ticketForm.get('name')?.errors)&&ticketForm.get('name')?.touched" class="text-danger">
+                Warehouse name is required must be between 3 and 30 characters.
+            </div>
+        </div>
       </div>
           <br>
           <button class="btn btn-dark" >Submit</button>
@@ -159,6 +168,15 @@
         <h5>Are you sure to delete <b>"{{warehouses[selectedWarehouseId].warehouseName}}"</b>?</h5>
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Yes</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <hr/>
+
+        <!-- <div class="form-group">
+          <label  class="form-label">Ticket Reason</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          <div *ngIf="(ticketForm.get('name')?.errors)&&ticketForm.get('name')?.touched" class="text-danger">
+              Warehouse name is required must be between 3 and 30 characters.
+          </div>
+      </div> -->
 
       </div>
       </div>
