@@ -12,7 +12,10 @@ class Order extends Model
     use HasFactory,SoftDeletes;
 
     protected $guarded = [];
-
+    
+    protected $casts = [
+        'shipping_data'=>'array',
+    ];
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class)->withPivot(['price', 'quantity']);
@@ -30,11 +33,25 @@ class Order extends Model
         return $total_products_price;
 
     }
-    // get total orders price after tax and discount  
+    // get total orders shipping fees
+    function getFeesAttribute()
+    {
+       
+       if($this->weight <=  $this->shipping_data['standerd_weight']){
+        return $this->shipping_data['order_rate'];
+       }
+       $extra_weight = ceil($this->weight - $this->shipping_data['standerd_weight']);
+       $fees = $this->shipping_data['order_rate'] + ($extra_weight*$this->shipping_data['extra_weight_rate']);
+        return $fees;
+
+      
+    }
+
+    // get total orders price after tax and discount and shipping fees  
 
     public function getTotalAttribute()
     {
-       return $this->price - $this->tax + $this->discount;
+       return $this->price - $this->tax + $this->discount -$this->fees;
 
     }
 
@@ -44,7 +61,17 @@ class Order extends Model
        return $this->belongsToMany(Business::class);
     }
 
-    
-
+    // get all order weight
+    public function getWeightAttribute()
+    {
+        $total_products_weight = 0;
+        foreach($this->products as $product){
+            $total_products_weight += $product->weight * $product->pivot->quantity;
+        }
+          return $total_products_weight/1000;
+    }
+   
 
 }
+
+

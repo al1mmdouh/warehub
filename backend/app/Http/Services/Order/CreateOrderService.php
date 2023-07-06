@@ -6,6 +6,7 @@ use App\Http\Requests\StoreOrderRequest;
 use App\Http\Resources\OrderResource;
 use App\Models\Order;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 class CreateOrderService
 {
@@ -14,9 +15,10 @@ class CreateOrderService
 
         $order = Order::create([
             'payment_token' => $request->payment_token,
-            'shipping_data' => $request->shipping_data,
+            'shipping_data' => DB::table('last_mile_company')->first(),
             'tax' => $request->tax,
             'discount' => $request->discount,
+            'distanation'=>$request->distanation,
             'business_id'=>$request->business_id
         ]);
 
@@ -29,7 +31,9 @@ class CreateOrderService
                     'price' => $productObj->price,
                 ]
             );
-        }
+        }  
         return OrderResource::make($order);
     }
+
+  
 }
