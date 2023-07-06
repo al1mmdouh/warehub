@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Warehouse;
+use App\Models\User;
 use App\Http\Requests\StoreWarehouseRequest;
 use App\Http\Requests\UpdateWarehouseRequest;
+use App\Http\Resources\WarehouseResource;
 
 
 class WarehouseController extends Controller
@@ -15,10 +17,26 @@ class WarehouseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function getUserWarehouses($userId)
+    {
+        $user = User::findOrFail($userId);
+        $warehouses = $user->Business()->with('warehouse')->get()->pluck('warehouse')->flatten();
+        return WarehouseResource::collection($warehouses);
+    }
+    
     public function index()
     {
-        $warehouse = Warehouse::all();
-        return response()->json($warehouse);
+        // $warehouse = Warehouse::all();
+        // return response()->json($warehouse);
+        // $warehouses = Warehouse::all();
+        // return WarehouseResource::collection($warehouses);
+        // $warehouse = Warehouse::with('Business')->get();
+        // return new WarehouseResource($warehouse);
+
+        $warehouses = Warehouse::with('Business')->get();
+        return WarehouseResource::collection($warehouses);
+        
     }
 
     /**
@@ -48,6 +66,7 @@ class WarehouseController extends Controller
        $warehouse->service_fee= $request->service_fee;
        $warehouse->earnings= $request->earnings;
        $warehouse->warehouse_type= $request->warehouse_type;
+       $warehouse->business_id = $request->business_id;
         $warehouse->save();
         return response()->json($warehouse);
     }
@@ -60,8 +79,10 @@ class WarehouseController extends Controller
      */
     public function show($id)
     {
-        $warehouse = Warehouse::findorfail($id);
-        return  response()->json($warehouse);
+        // $warehouse = Warehouse::findorfail($id);
+        // return  response()->json($warehouse);
+        $warehouse = Warehouse::with('Business')->find($id);
+        return new WarehouseResource($warehouse);
     }
 
     /**
