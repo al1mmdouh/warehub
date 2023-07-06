@@ -9,6 +9,8 @@ import { WarehouseService } from 'src/app/services/warehouse.service';
   styleUrls: ['./warehouse-home.component.scss']
 })
 export class WarehouseHomeComponent {
+  isLoading = true;
+
   selectedWarehouseId =0;
 
   selectedRadio: string = "update";
@@ -68,6 +70,7 @@ export class WarehouseHomeComponent {
     this.warehouseService.getWarehouses().subscribe(
       (data)=>{
         this.warehouses = data;
+        this.isLoading = false;
         console.log(this.warehouses);
       }
     )

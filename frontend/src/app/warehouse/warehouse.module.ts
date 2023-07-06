@@ -6,6 +6,7 @@ import { WarehouseRegisterComponent } from './warehouse-register/warehouse-regis
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { WarehouseRoutingModule } from './warehouse-routing.module';
+import { LoadingSpinnerComponent } from '../shared/loading-spinner/loading-spinner.component';
 
 
 
@@ -13,7 +14,9 @@ import { WarehouseRoutingModule } from './warehouse-routing.module';
   declarations: [
     WarehouseHomeComponent,
     CircleProgressComponent,
-    WarehouseRegisterComponent
+    WarehouseRegisterComponent,
+    LoadingSpinnerComponent,
+
   ],
   imports: [
     CommonModule,
