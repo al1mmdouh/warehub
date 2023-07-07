@@ -14,16 +14,20 @@ class CreateOrderService
     {
 
         $order = Order::create([
-            'payment_token' => $request->payment_token,
             'shipping_data' => DB::table('last_mile_company')->first(),
-            'tax' => $request->tax,
-            'discount' => $request->discount,
+            'tax' => $request->tax/100,
+            'discount' => $request->discount/100,
             'distanation'=>$request->distanation,
             'business_id'=>$request->business_id
         ]);
 
         foreach ($request->get('products') as $product) {
             $productObj = Product::find($product['id']);
+            // update product quantity after make order 
+            $product_quantity = DB::table('products')->select('quantity')->where('id',$product['id'])->first();
+            $value =  $product_quantity->quantity;
+            DB::table('products')->where('id',$product['id'])->update(['quantity'=>($value-$product['quantity'])]);
+
             $order->products()->attach(
                 $productObj->id,
                 [

@@ -51,7 +51,7 @@ class Order extends Model
 
     public function getTotalAttribute()
     {
-       return $this->price - $this->tax + $this->discount -$this->fees;
+       return $this->price + ($this->tax * $this->price) - ($this->discount * $this->price) + $this->fees;
 
     }
 
@@ -59,7 +59,7 @@ class Order extends Model
     public function business(): BelongsToMany
     {
        return $this->belongsToMany(Business::class);
-    }
+    }   
 
     // get all order weight
     public function getWeightAttribute()

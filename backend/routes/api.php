@@ -41,15 +41,15 @@ Route::prefix('products')->group(function () {
 });
 
 Route::prefix('orders')->group(function () {
-    Route::get('/', IndexOrderController::class)->name('order.index');
-    Route::post('/', CreateOrderController::class)->name('order.store');
-    Route::get('/{order}',ShowOrderController::class)->name('order.show');
-    Route::post('/{order}',UpdateOrderController::class)->name('order.update');
-    Route::delete('/{order}',DeleteOrderController::class)->name('order.destroy');
+    Route::get('/', IndexOrderController::class);
+    Route::post('/', CreateOrderController::class);
+    Route::get('/{order}',ShowOrderController::class);
+    Route::post('/{order}',UpdateOrderController::class);
+    Route::delete('/{order}',DeleteOrderController::class);
 
 }); 
 
- Route::get('/{business}',BusinessOrderController::class)->name('business.show');
+Route::get('/{business}',BusinessOrderController::class)->name('business.show');
 
 Route::post('register', [AuthController::class, 'register'])->middleware('guest');
 

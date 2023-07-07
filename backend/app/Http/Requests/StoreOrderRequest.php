@@ -24,7 +24,6 @@ class StoreOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'payment_token' => 'string|nullable',
             'tax' => 'required|numeric',
             'discount' => 'required|numeric',
             'products' => 'array|required',
