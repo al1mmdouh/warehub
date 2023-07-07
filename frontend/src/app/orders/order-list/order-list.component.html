@@ -1,6 +1,11 @@
-<app-header></app-header>
+<div class="alert alert-danger" role="alert" *ngIf="alertSubject | async">
+  Item removed Successfully!
+</div>
 
-<div class="card card-flush px-4">
+<div
+  class="card card-flush px-4"
+  *ngIf="this.products && this.products.length > 0"
+>
   <table class="table table-row-dashed align-middle cutter">
     <thead class="p-3">
       <!--begin::Table row-->
@@ -8,6 +13,7 @@
         <th [colSpan]="1" class="text-start px-4">Product</th>
         <th class="text-center">SKU</th>
         <th class="text-center">Quantity</th>
+        <th class="text-center">Weight</th>
         <th class="text-center">Unit Price</th>
         <th class="text-center">Total</th>
 
@@ -18,18 +24,25 @@
 
     <tbody class="fw-semibold p-3">
       <!--begin::Table row-->
-      <tr>
+      <tr *ngFor="let product of products">
         <!-- start product -->
         <td class="text-center">
           <div class="d-flex align-items-center justify-center text-center">
             <!--begin::Thumbnail-->
             <a href="/" class="image-container">
-              <img src="/assets/crepe.jpeg" alt="" width="50px" height="50px" />
+              <img
+                src="{{ product.image }}"
+                alt=""
+                width="50px"
+                height="50px"
+              />
             </a>
             <!--end::Thumbnail-->
             <div class="m-3">
               <!--begin::Title-->
-              <a href="/" class="fs-5 fw-bold product-name">Crepe</a>
+              <a href="/" class="fs-5 fw-bold product-name">{{
+                product.name
+              }}</a>
               <!--end::Title-->
             </div>
           </div>
@@ -38,35 +51,42 @@
 
         <!--begin::SKU=-->
         <td class="text-center">
-          <span class="fw-bold">02246001</span>
+          <span class="fw-bold">{{ product.sku }}</span>
         </td>
         <!--end::SKU=-->
         <!-- Quantity -->
 
         <td class="text-center">
-          <button class="button mx-2">
+          <button class="button mx-2" (click)="decreaseQuantity(product)">
             <fa-icon [icon]="faMinus"></fa-icon>
           </button>
-          <span class="px-2">2</span>
-          <button class="button mx-2">
+          <span class="px-2">{{ product.orderedQuantity }}</span>
+          <button class="button mx-2" (click)="increaseQuantity(product)">
             <fa-icon [icon]="faPlus" size="xs"></fa-icon>
           </button>
         </td>
         <!-- End quantity -->
+
+        <!-- Start Weight -->
+
+        <td class="text-center">{{ product.weight }}</td>
+
+        <!-- End weight -->
+
         <!--begin::Price=-->
-        <td class="text-center">50$</td>
+        <td class="text-center">{{ product.price }}</td>
         <!--end::Price=-->
 
         <!--begin::Total Price=-->
-        <td class="text-center">100</td>
+        <td class="text-center">
+          {{ product.price * product.orderedQuantity }}
+        </td>
         <!--end::total Price=-->
 
         <!-- Remove icon -->
 
-        <td
-          class="text-center d-flex g-2 justify-content-center align-items-center"
-        >
-          <button class="btn btn-danger">
+        <td class="text-center">
+          <button class="btn btn-danger" (click)="removeItem(product)">
             <fa-icon [icon]="faTrash"></fa-icon>
           </button>
         </td>
@@ -75,21 +95,45 @@
       </tr>
 
       <tr class="">
-        <td [colSpan]="5" class="text-end">Subtotal</td>
-        <td class="text-end mx-2">$264.00</td>
+        <td [colSpan]="6" class="text-end">Subtotal</td>
+        <td class="text-end mx-2">{{ prices.subTotalPrice }}$</td>
       </tr>
       <tr>
-        <td [colSpan]="5" class="text-end">VAT (0%)</td>
-        <td class="text-end mx-2">0</td>
+        <td [colSpan]="7" class="text-end">VAT (14%)</td>
       </tr>
       <tr>
-        <td [colSpan]="5" class="text-end">Shipping rate</td>
-        <td class="text-end mx-2">$5.00</td>
+        <td [colSpan]="7" class="text-end">Shipping fees (10%)</td>
       </tr>
       <tr>
-        <td [colSpan]="5" class="fs-3 text-dark text-end">Order Total</td>
-        <td class="text-end mx-2">$269.00</td>
+        <td [colSpan]="7" class="text-end">Discount (20%)</td>
+      </tr>
+
+      <tr>
+        <td [colSpan]="6" class="fs-5 mx-3 text-dark text-end">Order Total</td>
+        <td class="text-end mx-2">{{ prices.priceAfterDiscount }}$</td>
+      </tr>
+
+      <tr>
+        <td [colSpan]="7" class="fs-5 mx-3 text-end">
+          <button (click)="openCheckoutModal()" class="btn btn-outline-dark">
+            Checkout
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
+</div>
+
+<div
+  *ngIf="!this.products || this.products.length === 0"
+  class="d-flex justify-content-center align-items-center sm"
+>
+  <img
+    src="../../../assets/supermarket-sales-man-doing-purchases-holidays-pushing-shopping-cart_333239-390.jpg"
+    alt="empty cart"
+  />
+  <h2 class="text-left" style="min-width: 500px">
+    You have no products to be shipped
+    <a routerLink="/product/listing"> Go and add some</a>
+  </h2>
 </div>

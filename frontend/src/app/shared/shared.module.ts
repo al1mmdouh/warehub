@@ -1,21 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
-import { TicketModalComponent } from './ticket-modal/ticket-modal.component';
+
+import { ProductModalComponent } from './product-modal/product-modal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    TicketModalComponent
+    
+    ProductModalComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
   ,exports: [
     NavbarComponent,
-    TicketModalComponent
+    ProductModalComponent
   ]
 })
 export class SharedModule { }

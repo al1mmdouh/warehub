@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ProductService } from 'src/app/services/product/product.service';
+import { ProductModalComponent } from 'src/app/shared/product-modal/product-modal.component';
 
 @Component({
   selector: 'app-listing',
@@ -8,9 +11,22 @@ import { Component } from '@angular/core';
 export class ListingComponent {
 
   modal: boolean = false;
+  products: any = [1]
+  constructor(private modalService: NgbModal, private productService: ProductService) {}
 
-
-  showModal() {
-    this.modal = true;
+  openProductModal(product: any) {
+    const modalRef = this.modalService.open(ProductModalComponent);
+    modalRef.componentInstance.product = product;
   }
+
+
+  ngOnInit () {
+    this.productService.fetchAllProducts().subscribe(res => {
+      console.log(res.data);
+      this.products = res.data;
+      
+    })
+
+  }
+  
 }

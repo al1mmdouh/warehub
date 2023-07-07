@@ -1,5 +1,4 @@
 <app-header></app-header>
-<app-ticket-modal *ngIf="modal"></app-ticket-modal>
 
 <div class="card card-flush px-4">
   <table class="table table-row-dashed align-middle cutter">
@@ -19,18 +18,25 @@
 
     <tbody class="fw-semibold p-3 text-gray-600">
       <!--begin::Table row-->
-      <tr>
+      <tr *ngFor="let product of products">
         <!-- start product -->
         <td class="text-center">
           <div class="d-flex align-items-center text-center">
             <!--begin::Thumbnail-->
             <a href="/" class="image-container">
-              <img src="/assets/crepe.jpeg" alt="" width="50px" height="50px" />
+              <img
+                src="{{ product.image }}"
+                alt=""
+                width="50px"
+                height="50px"
+              />
             </a>
             <!--end::Thumbnail-->
             <div class="m-3">
               <!--begin::Title-->
-              <a href="/" class="fs-5 fw-bold product-name">Crepe</a>
+              <a href="/" class="fs-5 fw-bold product-name">{{
+                product.name
+              }}</a>
               <!--end::Title-->
             </div>
           </div>
@@ -39,182 +45,25 @@
 
         <!--begin::SKU=-->
         <td class="text-center">
-          <span class="fw-bold">02246001</span>
-        </td>
-        <!--end::SKU=-->
-        <!-- Quantity -->
-
-        <td class="text-center">
-          <span class="fw-bold">50</span>
-        </td>
-        <!-- End quantity -->
-        <!--begin::Price=-->
-        <td class="text-center">38$</td>
-        <!--end::Price=-->
-
-        <!--begin::Status=-->
-        <td class="text-center">
-          <!--begin::Badges-->
-          <div class="badge text-bg-info text-light badge-pill">Shipping</div>
-          <!--end::Badges-->
-        </td>
-        <!--end::Status=-->
-
-        <!-- start: ticket action -->
-        <td class="text-center">
-          <button class="btn btn-primary" (click)="showModal()">
-            Request order
-          </button>
-        </td>
-
-        <!-- end: ticket action -->
-      </tr>
-      <!--begin::Table row-->
-      <tr>
-        <!-- start product -->
-        <td class="text-center">
-          <div class="d-flex align-items-center text-center">
-            <!--begin::Thumbnail-->
-            <a href="/" class="image-container">
-              <img src="/assets/crepe.jpeg" alt="" width="50px" height="50px" />
-            </a>
-            <!--end::Thumbnail-->
-            <div class="m-3">
-              <!--begin::Title-->
-              <a href="/" class="fs-5 fw-bold product-name">Crepe</a>
-              <!--end::Title-->
-            </div>
-          </div>
-        </td>
-        <!-- end product -->
-
-        <!--begin::SKU=-->
-        <td class="text-center">
-          <span class="fw-bold">02246001</span>
+          <span class="fw-bold">{{ product.sku }}</span>
         </td>
         <!--end::SKU=-->
 
         <!-- Quantity -->
 
         <td class="text-center">
-          <span class="fw-bold">50</span>
-        </td>
-        <!-- End quantity -->
-
-        <!--begin::Price=-->
-        <td class="text-center">38$</td>
-        <!--end::Price=-->
-
-        <!--begin::Status=-->
-        <td class="text-center">
-          <!--begin::Badges-->
-          <div class="badge text-bg-danger text-light badge-pill">
-            Out of stock
-          </div>
-          <!--end::Badges-->
-        </td>
-        <!--end::Status=-->
-
-        <!-- start: ticket action -->
-        <td class="text-center">
-          <div class="btn btn-primary">Request order</div>
-        </td>
-
-        <!-- end: ticket action -->
-      </tr>
-      <!--begin::Table row-->
-      <tr>
-        <!-- start product -->
-        <td class="text-center">
-          <div class="d-flex align-items-center text-center">
-            <!--begin::Thumbnail-->
-            <a href="/" class="image-container">
-              <img src="/assets/crepe.jpeg" alt="" width="50px" height="50px" />
-            </a>
-            <!--end::Thumbnail-->
-            <div class="m-3">
-              <!--begin::Title-->
-              <a href="/" class="fs-5 fw-bold product-name">Crepe</a>
-              <!--end::Title-->
-            </div>
-          </div>
-        </td>
-        <!-- end product -->
-
-        <!--begin::SKU=-->
-        <td class="text-center">
-          <span class="fw-bold">02246001</span>
-        </td>
-        <!--end::SKU=-->
-
-        <!-- Quantity -->
-
-        <td class="text-center">
-          <span class="fw-bold">50</span>
-        </td>
-        <!-- End quantity -->
-
-        <!--begin::Price=-->
-        <td class="text-center">38$</td>
-        <!--end::Price=-->
-
-        <!--begin::Status=-->
-        <td class="text-center">
-          <!--begin::Badges-->
-          <div class="badge text-bg-warning text-light badge-pill">
-            In store
-          </div>
-          <!--end::Badges-->
-        </td>
-        <!--end::Status=-->
-
-        <!-- start: ticket action -->
-        <td class="text-center">
-          <div class="btn btn-primary">Request order</div>
-        </td>
-
-        <!-- end: ticket action -->
-      </tr>
-      <!--begin::Table row-->
-      <tr>
-        <!-- start product -->
-        <td class="text-center">
-          <div class="d-flex align-items-center text-center">
-            <!--begin::Thumbnail-->
-            <a href="/" class="image-container">
-              <img src="/assets/crepe.jpeg" alt="" width="50px" height="50px" />
-            </a>
-            <!--end::Thumbnail-->
-            <div class="m-3">
-              <!--begin::Title-->
-              <a href="/" class="fs-5 fw-bold product-name">Crepe</a>
-              <!--end::Title-->
-            </div>
-          </div>
-        </td>
-        <!-- end product -->
-
-        <!--begin::SKU=-->
-        <td class="text-center">
-          <span class="fw-bold">02246001</span>
-        </td>
-        <!--end::SKU=-->
-
-        <!-- Quantity -->
-
-        <td class="text-center">
-          <span class="fw-bold">50</span>
+          <span class="fw-bold">{{ product.quantity }}</span>
         </td>
         <!-- End quantity -->
         <!--begin::Price=-->
-        <td class="text-center">38$</td>
+        <td class="text-center">{{ product.price }}$</td>
         <!--end::Price=-->
 
         <!--begin::Status=-->
         <td class="text-center">
           <!--begin::Badges-->
           <div class="badge text-bg-success text-light badge-pill">
-            Delivered
+            In Stock
           </div>
           <!--end::Badges-->
         </td>
@@ -223,24 +72,13 @@
         <!-- start: ticket action -->
         <td class="text-center">
           <!--begin::Menu-->
-          <div class="dropdown">
-            <button
-              class="btn btn-outline-primary"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Request order
-            </button>
-            <ul class="dropdown-menu fw-semibold fs-7 my-1">
-              <li>
-                <a class="dropdown-item p-3" href="#">add to item</a>
-              </li>
-              <li>
-                <a class="dropdown-item p-3" href="#"> remove item </a>
-              </li>
-            </ul>
-          </div>
+          <button
+            class="btn btn-outline-primary px-3"
+            (click)="openProductModal(product)"
+          >
+            Request Ticket
+          </button>
+
           <!--end::Menu-->
         </td>
 

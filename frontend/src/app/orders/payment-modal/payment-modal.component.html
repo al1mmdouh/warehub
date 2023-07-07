@@ -1,0 +1,236 @@
+<div
+  class="modal fade show"
+  id="kt_modal_new_card"
+  tabindex="-1"
+  aria-modal="true"
+  role="dialog"
+  style="display: block"
+>
+  <!--begin::Modal dialog-->
+  <div class="modal-dialog modal-dialog-centered mw-650px">
+    <!--begin::Modal content-->
+    <div class="modal-content">
+      <!--begin::Modal header-->
+      <div class="modal-header">
+        <!--begin::Modal title-->
+        <h2 class="text-center mt-1 w-100">Checkout details</h2>
+        <!--end::Modal title-->
+
+        <!--begin::Close-->
+        <button
+          type="button"
+          class="btn-close"
+          (click)="activeModal.dismiss()"
+        ></button>
+        <!--end::Close-->
+      </div>
+      <!--end::Modal header-->
+
+      <!--begin::Modal body-->
+      <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+        <!--begin::Form-->
+        <form [formGroup]="checkoutForm" (ngSubmit)="onCheckout()" class="my-3">
+          <!--begin::Input group-->
+          <div class="d-flex flex-column">
+            <!--begin::Label-->
+            <label
+              class="d-flex align-items-center fs-6 fw-semibold form-label mb-2"
+            >
+              <span class="required">Name On Card</span>
+            </label>
+            <!--end::Label-->
+
+            <input
+              type="text"
+              class="form-control mb-3"
+              placeholder=""
+              name="card_name"
+              value="Mostafa Saeed"
+            />
+          </div>
+          <!--end::Input group-->
+
+          <!--begin::Input group-->
+          <div class="d-flex flex-column">
+            <!--begin::Label-->
+            <label class="fs-6 fw-semibold form-label mb-2">Card Number</label>
+            <!--end::Label-->
+
+            <!--begin::Input wrapper-->
+            <div class="position-relative">
+              <!--begin::Input-->
+              <input
+                type="text"
+                class="form-control mb-3"
+                placeholder="Enter card number"
+                name="card_number"
+                value=""
+              />
+              <!--end::Input-->
+
+              <!--end::Card logos-->
+            </div>
+            <!--end::Input wrapper-->
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+          </div>
+          <!--end::Input group-->
+
+          <!--begin::Input group-->
+          <div class="row mb-3">
+            <!--begin::Col-->
+            <div class="col-md-8">
+              <!--begin::Label-->
+              <label class="fs-6 fw-semibold form-label mb-2"
+                >Expiration Date:</label
+              >
+              <!--end::Label-->
+
+              <!--begin::Row-->
+              <div class="row">
+                <!--begin::Col-->
+                <div class="col-6">
+                  <label for="month">Month:</label>
+                  <select
+                    name="card_expiry_month"
+                    class="form-select my-1 p-1"
+                    data-control="select2"
+                    data-hide-search="true"
+                    data-placeholder="Month"
+                    tabindex="-1"
+                    aria-hidden="true"
+                    name="month"
+                  >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>
+                </div>
+                <!--end::Col-->
+
+                <!--begin::Col-->
+                <div class="col-6">
+                  <label for="year">Year:</label>
+
+                  <select name="year" class="form-select my-1 p-1">
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                    <option value="2028">2028</option>
+                    <option value="2029">2029</option>
+                    <option value="2030">2030</option>
+                    <option value="2031">2031</option>
+                    <option value="2032">2032</option>
+                    <option value="2033">2033</option>
+                  </select>
+                </div>
+                <!--end::Col-->
+              </div>
+              <!--end::Row-->
+            </div>
+            <!--end::Col-->
+
+            <!--begin::Col-->
+            <div class="col-md-4 mt-4">
+              <!--begin::Label-->
+              <label for="cvv" class="fs-6 fw-semibold form-label"> CVV </label>
+              <!--end::Label-->
+
+              <!--begin::Input wrapper-->
+              <div>
+                <!--begin::Input-->
+                <input
+                  type="text"
+                  class="form-control my-1 py-1"
+                  minlength="3"
+                  maxlength="4"
+                  placeholder="CVV"
+                  name="cvv"
+                />
+                <!--end::Input-->
+              </div>
+              <!--end::Input wrapper-->
+              <div class="fv-plugins-message-container invalid-feedback"></div>
+            </div>
+            <!--end::Col-->
+          </div>
+          <!--end::Input group-->
+
+          <!-- Address to be sent to -->
+          <div class="form-group my-2">
+            <label for="amount" class="my-1 py-1">Total Order Price:</label>
+            <input
+              type="number"
+              class="form-control"
+              id="amount"
+              name="amount"
+              placeholder="Order Price"
+              [formControl]="numberControl"
+              formControlName="amount"
+              [value]="100"
+            />
+          </div>
+          <!-- End Amount -->
+
+          <!-- Destination -->
+
+          <!-- Start description -->
+          <div class="form-group my-2">
+            <label for="destination" class="my-1 py-1">Destination:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="destination"
+              name="destination"
+              rows="3"
+              placeholder="Enter a destination"
+              formControlName="destination"
+            />
+          </div>
+
+          <!-- End Destination -->
+          <!-- Start description -->
+          <div class="form-group my-2">
+            <label for="description" class="my-1 py-1">Description:</label>
+            <textarea
+              class="form-control"
+              id="description"
+              name="description"
+              rows="3"
+              placeholder="Enter a description"
+              formControlName="description"
+            ></textarea>
+          </div>
+
+          <!-- End description -->
+
+          <!--begin::Actions-->
+          <div class="text-center pt-2">
+            <button class="btn btn-outline-danger me-3" (click)="closeModal()">
+              Discard
+            </button>
+
+            <button type="submit" class="btn btn-outline-primary">
+              Submit
+            </button>
+          </div>
+          <!--end::Actions-->
+        </form>
+        <!--end::Form-->
+      </div>
+      <!--end::Modal body-->
+    </div>
+    <!--end::Modal content-->
+  </div>
+  <!--end::Modal dialog-->
+</div>
