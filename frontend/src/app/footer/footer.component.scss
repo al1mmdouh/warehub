@@ -1,0 +1,31 @@
+@import url(https://fonts.googleapis.com/css?family=Dancing+Script);
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+footer {
+    background-color: #f2f2f2;
+    padding: 30px 0;
+  }
+  
+  footer h4 {
+    margin-top: 0;
+  }
+  
+  .footer-logo {
+    margin-bottom: 20px;
+  }
+  
+  .footer-logo img {
+    max-width: 100%;
+  }
+  .icons a i{
+    padding-left: 20px;
+    color: #f2f2f2;
+  }
+  .icons a i:hover {
+    transform: scale(1.1);
+  }
+  .Company a{
+    text-decoration: none;
+    color: #f2f2f2;
+  }
+ 

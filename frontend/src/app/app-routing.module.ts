@@ -4,6 +4,8 @@ import { HomePageComponent} from './home-page/home-page.component';
 import {LoginComponent}from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import {ContactUsComponent} from './contact-us/contact-us.component';
 const routes: Routes = [
   {
     path:"",
@@ -20,6 +22,14 @@ const routes: Routes = [
   {
     path:"profile",
     component:ProfileComponent
+  },
+  {
+    path:"about-us",
+    component:AboutUsComponent
+  },
+  {
+    path:"contact-us",
+    component:ContactUsComponent
   }
 ];
 

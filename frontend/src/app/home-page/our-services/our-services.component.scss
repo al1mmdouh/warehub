@@ -1,0 +1,47 @@
+body{
+  background-color: #777;
+}
+
+.Our-services h2{
+    text-align: center;
+    padding-bottom: 10px;
+}
+.card {
+    position: relative;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-out;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .card-img-top {
+    transition: transform 0.3s ease-out;
+  }
+  
+  .card:hover .card-img-top {
+    transform: scale(1.1);
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-text {
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+  }
+  
+  @media (max-width: 767px) {
+    .card {
+      margin-bottom: 1.5rem;
+    }
+  }

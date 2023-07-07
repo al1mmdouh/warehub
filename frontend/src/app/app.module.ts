@@ -10,6 +10,12 @@ import { RegistrationComponent } from './registration/registration.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
+import { CaruselComponent } from './home-page/carusel/carusel.component';
+import { WhyWarehubComponent } from './home-page/why-warehub/why-warehub.component';
+import { AboutUsComponent } from './home-page/about-us/about-us.component';
+import { OurServicesComponent } from './home-page/our-services/our-services.component';
+import { FooterComponent } from './footer/footer.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,13 +23,21 @@ import { ProfileComponent } from './profile/profile.component';
     NavBarComponent,
     HomePageComponent,
     RegistrationComponent,
-    ProfileComponent
+    ProfileComponent,
+    CaruselComponent,
+    WhyWarehubComponent,
+    AboutUsComponent,
+    OurServicesComponent,
+    FooterComponent,
+    ContactUsComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    
     
   ],
   providers: [],
