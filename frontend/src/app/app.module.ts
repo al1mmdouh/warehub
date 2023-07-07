@@ -16,6 +16,7 @@ import { AboutUsComponent } from './home-page/about-us/about-us.component';
 import { OurServicesComponent } from './home-page/our-services/our-services.component';
 import { FooterComponent } from './footer/footer.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { CounterComponent } from './home-page/counter/counter.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     OurServicesComponent,
     FooterComponent,
     ContactUsComponent,
+    CounterComponent,
     
   ],
   imports: [
