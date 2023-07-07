@@ -4,24 +4,38 @@ namespace App\Services;
 
 use App\Models\User;
 use Illuminate\Validation\ValidationException;
+use Tymon\JWTAuth\JWTAuth;
 
 class AuthService
 {
+    protected $jwtAuth;
+
+    public function __construct(JWTAuth $jwtAuth)
+    {
+        $this->jwtAuth = $jwtAuth;
+    }
+
     public function register(array $validated): User
     {
         return User::create($validated);
     }
 
-    public function authenticate(array $credentials): bool
+    public function authenticate(array $credentials): array
     {
-        if(!auth()->attempt($credentials)) {
+        if (!auth()->attempt($credentials)) {
             throw ValidationException::withMessages([
-                'email'=>'Not verified'
+                'email' => 'Not verified'
             ]);
         }
-        session()->regenerate(); // prevent session fixation
+        // session()->regenerate(); // prevent session fixation
 
-        return true;
+        $user  = auth()->user();
+        $token = $this->jwtAuth->fromUser($user, $user->getJWTCustomClaims());
+
+
+        return [
+            'token' => $token,
+        ];
     }
 
 

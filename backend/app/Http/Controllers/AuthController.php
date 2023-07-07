@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Services\AuthService;
+use Auth;
 use Illuminate\Validation\ValidationException;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class AuthController extends Controller
 {
@@ -36,12 +38,14 @@ class AuthController extends Controller
         try {
             $credentials = $request->validated();
 
-            $this->authService->authenticate($credentials);
+            $data = $this->authService->authenticate($credentials);
 
-            return response()->json("Success, Welcome Back!", 200);
+            return response()->json($data, 200);
 
         } catch (ValidationException $e) {
             return response()->json(['error' => $e->errors()], 400);
+        } catch (JWTException $e) {
+            return response()->json(['error' => 'Failed to create token'], 500);
         }
 
     }
