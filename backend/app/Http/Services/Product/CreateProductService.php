@@ -15,6 +15,7 @@ class CreateProductService
                 'name'=>$request->name,
                 'description'=>$request->description,
                 'sku'=>$request->sku,
+                'quantity'=>$request->quantity,
                 'price'=>$request->price,
                 'weight'=>$request->weight,
                 'image'=>$request->file('image'),
