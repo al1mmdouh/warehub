@@ -8,7 +8,6 @@ class DeleteProductService
 {
     public function handle(Product $product)
     {
-
         return $product->delete();
     }
 }

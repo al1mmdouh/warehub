@@ -14,15 +14,13 @@ class AuthService
 
     public function authenticate(array $credentials): bool
     {
-        if(!auth()->attempt($credentials)) {
+        if (! auth()->attempt($credentials)) {
             throw ValidationException::withMessages([
-                'email'=>'Not verified'
+                'email' => 'Not verified',
             ]);
         }
         session()->regenerate(); // prevent session fixation
 
         return true;
     }
-
-
 }

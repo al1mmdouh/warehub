@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\Product\IndexProductService;
-use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 class IndexProductController extends Controller
@@ -18,10 +17,9 @@ class IndexProductController extends Controller
 
     public function __invoke()
     {
-        try{
-             return  $this->service->handle();
-        }
-        catch (ValidationException $e) {
+        try {
+            return  $this->service->handle();
+        } catch (ValidationException $e) {
             return response()->json(['massage' => $e->getMessage()]);
         }
     }

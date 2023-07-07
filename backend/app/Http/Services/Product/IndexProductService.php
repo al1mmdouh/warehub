@@ -7,9 +7,8 @@ use App\Models\Product;
 
 class IndexProductService
 {
-
     public function handle()
     {
-       return ProductResource::collection(Product::all());
+        return ProductResource::collection(Product::all());
     }
-}   
+}
