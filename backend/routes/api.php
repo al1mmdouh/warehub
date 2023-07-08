@@ -1,9 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-<<<<<<< HEAD
 use App\Http\Controllers\WarehouseController;
-=======
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\Order\BusinessOrderController;
 use App\Http\Controllers\Order\CreateOrderController;
@@ -16,12 +14,10 @@ use App\Http\Controllers\Product\DeleteProductController;
 use App\Http\Controllers\Product\IndexProductController;
 use App\Http\Controllers\Product\ShowProductController;
 use App\Http\Controllers\Product\UpdateProductController;
-<<<<<<< HEAD
->>>>>>> origin/backend-orders-management
-=======
+
 use App\Http\Controllers\StripePaymentController;
 use App\Http\Services\Order\UpdateOrderService;
->>>>>>> origin/backend-stripe-payment-gateway
+use App\Http\Controllers\TicketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\TextUI\XmlConfiguration\Group;
@@ -58,9 +54,25 @@ Route::prefix('orders')->group(function () {
 
 }); 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 Route::post('business',[BusinessController::class,'store']);//->middleware('auth')
+
+Route::get('business/{business}', [BusinessController::class, 'show'])->name('business.show');
+
+
+
+
+Route::get('/{business}',BusinessOrderController::class)->name('business.show');
+
+ Route::post('/stripe', [StripePaymentController::class,'stripePost']);
+
+Route::post('register', [AuthController::class, 'register'])->middleware('guest');
+
+Route::post('login', [AuthController::class, 'login'])->middleware('guest');
+
+Route::post('logout', [AuthController::class, 'logout'])->middleware('auth');
+
+Route::post('business', [BusinessController::class, 'store']); //->middleware('auth')
 
 Route::get('business/{business}', [BusinessController::class, 'show'])->name('business.show');
 
@@ -73,12 +85,8 @@ Route::prefix('warehouse')->group(function () {
     Route::delete('/{id}', [WarehouseController::class, 'destroy']);
 });
 
-
-=======
 Route::get('/{business}',BusinessOrderController::class)->name('business.show');
-=======
  Route::post('/stripe', [StripePaymentController::class,'stripePost']);
->>>>>>> origin/backend-stripe-payment-gateway
 
 Route::post('register', [AuthController::class, 'register'])->middleware('guest');
 
@@ -87,4 +95,11 @@ Route::post('login', [AuthController::class, 'login'])->middleware('guest');
 Route::post('logout', [AuthController::class, 'logout'])->middleware('auth');
 
 Route::post('business', [BusinessController::class, 'store']); //->middleware('auth')
->>>>>>> origin/backend-orders-management
+
+Route::prefix('tickets')->group(function () {
+    Route::get('/', [TicketController::class, 'index']);
+    Route::post('/', [TicketController::class, 'store']);
+    Route::get('/{id}', [TicketController::class, 'show']);
+    Route::put('/{id}', [TicketController::class, 'update']);
+    Route::delete('/{id}', [TicketController::class, 'destroy']);
+});
