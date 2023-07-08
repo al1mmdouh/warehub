@@ -16,7 +16,12 @@ use App\Http\Controllers\Product\DeleteProductController;
 use App\Http\Controllers\Product\IndexProductController;
 use App\Http\Controllers\Product\ShowProductController;
 use App\Http\Controllers\Product\UpdateProductController;
+<<<<<<< HEAD
 >>>>>>> origin/backend-orders-management
+=======
+use App\Http\Controllers\StripePaymentController;
+use App\Http\Services\Order\UpdateOrderService;
+>>>>>>> origin/backend-stripe-payment-gateway
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\TextUI\XmlConfiguration\Group;
@@ -54,6 +59,7 @@ Route::prefix('orders')->group(function () {
 }); 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Route::post('business',[BusinessController::class,'store']);//->middleware('auth')
 
 Route::get('business/{business}', [BusinessController::class, 'show'])->name('business.show');
@@ -70,6 +76,9 @@ Route::prefix('warehouse')->group(function () {
 
 =======
 Route::get('/{business}',BusinessOrderController::class)->name('business.show');
+=======
+ Route::post('/stripe', [StripePaymentController::class,'stripePost']);
+>>>>>>> origin/backend-stripe-payment-gateway
 
 Route::post('register', [AuthController::class, 'register'])->middleware('guest');
 
