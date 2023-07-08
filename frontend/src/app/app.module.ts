@@ -17,6 +17,7 @@ import { OurServicesComponent } from './home-page/our-services/our-services.comp
 import { FooterComponent } from './footer/footer.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { WarehouseModule } from './warehouse/warehouse.module';
+import { BusinessFormComponent } from './business-form/business-form.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { WarehouseModule } from './warehouse/warehouse.module';
     OurServicesComponent,
     FooterComponent,
     ContactUsComponent,
+    BusinessFormComponent,
 
   ],
   imports: [
@@ -40,7 +42,7 @@ import { WarehouseModule } from './warehouse/warehouse.module';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    WarehouseModule
+    WarehouseModule,
     
     
   ],

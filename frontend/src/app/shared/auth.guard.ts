@@ -7,17 +7,20 @@ import { AuthService } from '../services/auth.service';
   providedIn: 'root'
 })
 export class AuthGuard{
-  constructor(private authService: AuthService, private router: Router){}
+  constructor(private authService: AuthService, private router: Router){console.log("gyard");}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       const requiredAccessLevel = route.data['accessLevel'];
       const userAccessLevel = this.authService.getAccessLevel();
-      
     if (requiredAccessLevel === userAccessLevel) {
+
       return true;
     } else {
-      this.router.navigate(['/login']);
+
+
+      this.router.navigate(['/']);
+      
       return false;
     }
   

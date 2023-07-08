@@ -36,16 +36,32 @@ export class LoginComponent  {
         const user_id = payload.user_id;
         this.authenticate.getBuisness(user_id).subscribe(
           (data: any)=>{
-            let dataObj =  {
-              business_id: data.data[0].business_id,
-              business_name: data.data[0].business_name,
-              business_type: data.data[0].business_type,
-              user_name: data.data[0].user.name,
-              user_email: data.data[0].user.email
+            console.log(data);
+            console.log(data.data.length);
+            if(data.data.length){
+
+              let dataObj =  {
+                business_id: data.data[0].business_id?data.data[0].business_id:0,
+                business_name: data.data[0].business_name?data.data[0].business_id:0,
+                business_type: data.data[0].business_type?data.data[0].business_id:0,
+                user_name: data.data[0].user.name,
+                user_email: data.data[0].user.email
+              }
+              //console.log(dataObj);
+              this.authenticate.changeUserBuisnessData(dataObj);
+              this.router.navigate(['/'])
             }
-            console.log(dataObj);
-            this.authenticate.changeUserBuisnessData(dataObj);
-            this.router.navigate(['/'])
+            else{
+              let dataObj =  {
+                business_id: 'no business',
+                business_name: 'no business',
+                business_type: 'no business',
+                user_name:'no business',
+                user_email: 'no business'
+              }
+              this.authenticate.changeUserBuisnessData(dataObj);
+              this.router.navigate(['/'])
+            }
           }
         )
       }
