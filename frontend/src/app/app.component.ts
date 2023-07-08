@@ -23,15 +23,29 @@ export class AppComponent {
           // localStorage.setItem('business_name', data.data[0].business_name)
           // localStorage.setItem('user_name', data.data[0].user.name)
           // localStorage.setItem('user_email', data.data[0].user.email)
-          let dataObj =  {
-            business_id: data.data[0].business_id,
-            business_name: data.data[0].business_name,
-            business_type: data.data[0].business_type,
-            user_name: data.data[0].user.name,
-            user_email: data.data[0].user.email
+          if(data.data.length){
+            let dataObj =  {
+              business_id: data.data[0].business_id,
+              business_name: data.data[0].business_name,
+              business_type: data.data[0].business_type,
+              user_name: data.data[0].user.name,
+              user_email: data.data[0].user.email
+            }
+            console.log(dataObj);
+            this.authService.changeUserBuisnessData(dataObj);
+
           }
-          console.log(dataObj);
-          this.authService.changeUserBuisnessData(dataObj);
+          else{
+            let dataObj =  {
+              business_id: 'no business',
+              business_name: 'no business',
+              business_type: 'no business',
+              user_name:'no business',
+              user_email: 'no business'
+            }
+            this.authService.changeUserBuisnessData(dataObj);
+            
+          }
         }
       )
     }

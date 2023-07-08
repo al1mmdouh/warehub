@@ -14,6 +14,7 @@ export class NavBarComponent implements DoCheck {
   }
   ngDoCheck(): void {
     this.accessLevel = this.authService.getAccessLevel();
+    console.log(this.accessLevel);
     this.userName = this.authService.userBuisnessData.user_name;
 
   }

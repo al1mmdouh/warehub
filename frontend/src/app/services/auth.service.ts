@@ -24,6 +24,7 @@ export class AuthService {
       return this.userBuisnessData.business_type
     }
     else{
+
       return 'guest'
     }
   }

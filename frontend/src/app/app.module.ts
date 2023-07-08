@@ -17,6 +17,7 @@ import { OurServicesComponent } from './home-page/our-services/our-services.comp
 import { FooterComponent } from './footer/footer.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BusinessFormComponent } from './business-form/business-form.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
     OurServicesComponent,
     FooterComponent,
     ContactUsComponent,
+    BusinessFormComponent,
 
   ],
   imports: [

@@ -7,6 +7,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import {ContactUsComponent} from './contact-us/contact-us.component';
 import { AuthGuard } from './shared/auth.guard';
+import { BusinessFormComponent } from './business-form/business-form.component';
 const routes: Routes = [
   {
     path:"",
@@ -32,6 +33,10 @@ const routes: Routes = [
   //   canActivate: [AuthGuard], data: { accessLevel: 'warehouse' }
 
   // },
+  {
+    path:"business",
+    component:BusinessFormComponent
+  },
    {
     path:"about-us",
     component:AboutUsComponent
