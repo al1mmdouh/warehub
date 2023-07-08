@@ -13,6 +13,8 @@ use App\Http\Controllers\Product\DeleteProductController;
 use App\Http\Controllers\Product\IndexProductController;
 use App\Http\Controllers\Product\ShowProductController;
 use App\Http\Controllers\Product\UpdateProductController;
+use App\Http\Controllers\StripePaymentController;
+use App\Http\Services\Order\UpdateOrderService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\TextUI\XmlConfiguration\Group;
@@ -43,13 +45,14 @@ Route::prefix('products')->group(function () {
 Route::prefix('orders')->group(function () {
     Route::get('/', IndexOrderController::class);
     Route::post('/', CreateOrderController::class);
-    Route::get('/{order}',ShowOrderController::class);
-    Route::post('/{order}',UpdateOrderController::class);
-    Route::delete('/{order}',DeleteOrderController::class);
+    Route::get('/{order}', ShowOrderController::class);
+    Route::post('/{order}', UpdateOrderController::class);
+    Route::delete('/{order}', DeleteOrderController::class);
+});
 
-}); 
+Route::get('/{business}', BusinessOrderController::class)->name('business.show');
 
-Route::get('/{business}',BusinessOrderController::class)->name('business.show');
+Route::post('/stripe', [StripePaymentController::class, 'stripePost']);
 
 Route::post('register', [AuthController::class, 'register'])->middleware('guest');
 

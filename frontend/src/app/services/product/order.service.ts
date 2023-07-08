@@ -34,21 +34,24 @@ export class OrderService {
   createOrder(destination: any) {
     console.log(destination);
 
-    const filteredProducts = this.products.map(({ id, quantity }) => {
-      return { id, quantity };
+    const filteredProducts = this.products.map(({ id, orderedQuantity }) => {
+      return { id, quantity: orderedQuantity };
     });
 
+    console.log(filteredProducts);
+
     return this.http
-      .post('http://127.0.0.1:8000/api/order', {
+      .post('http://127.0.0.1:8000/api/orders', {
         payment_token: 'Cash on delivery',
         tax: 14,
         discount: 20,
         business_id: 1,
+        distanation: destination,
 
-        filteredProducts,
+        products: filteredProducts,
       })
       .subscribe((res) => {
-        console.log(res);
+        localStorage.removeItem('OrderItems');
       });
   }
 
@@ -63,7 +66,7 @@ export class OrderService {
 
     const priceAfterVAT = subTotalPrice + (subTotalPrice * 14) / 100;
 
-    const priceAfterShipping = priceAfterVAT + (subTotalPrice * 10) / 100;
+    const priceAfterShipping = priceAfterVAT + 10;
 
     const priceAfterDiscount = priceAfterShipping - (subTotalPrice * 20) / 100;
 
@@ -80,7 +83,7 @@ export class OrderService {
   createPayment(data: any) {
     return this.http.post('http://127.0.0.1:8000/api/stripe', data).subscribe(
       (res) => {
-        console.log(res);
+        localStorage.removeItem('OrderItems');
       },
       (err) => console.log(err)
     );

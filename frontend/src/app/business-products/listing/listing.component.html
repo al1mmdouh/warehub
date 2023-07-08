@@ -52,7 +52,9 @@
         <!-- Quantity -->
 
         <td class="text-center">
-          <span class="fw-bold">{{ product.quantity }}</span>
+          <span class="fw-bold">{{
+            product.quantity > 0 ? product.quantity : 0
+          }}</span>
         </td>
         <!-- End quantity -->
         <!--begin::Price=-->

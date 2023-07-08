@@ -38,14 +38,15 @@ export class PaymentModalComponent {
           Validators.maxLength(250),
         ],
       ],
-      amount: ['', [Validators.required]],
-
       destination: [
         '',
-        [Validators.required],
-        Validators.minLength(10),
-        Validators.maxLength(100),
+        [
+          Validators.required,
+          Validators.minLength(40),
+          Validators.maxLength(150),
+        ],
       ],
+      amount: ['', [Validators.required]],
     });
   }
 
@@ -57,26 +58,20 @@ export class PaymentModalComponent {
   // submit checkout
 
   onCheckout() {
-    // create payment data
-    const PaymentData = new FormData();
+    // prepare payment data
+    const amount = this.numberControl.value;
+    console.log(amount);
 
-    PaymentData.append('amount', this.checkoutForm.get('amount')?.value);
-    PaymentData.append(
-      'description',
-      this.checkoutForm.get('description')?.value
-    );
+    const description = this.checkoutForm.get('description')?.value;
+
+    const destination = this.checkoutForm.get('destination')?.value;
 
     // post payment data to stripe api
-    this.orderService.createPayment(PaymentData);
+    this.orderService.createPayment({ amount, description });
 
-    // prepare order data
-    const destinationData = new FormData();
+    this.orderService.createOrder(destination);
 
-    destinationData.append(
-      'destination',
-      this.checkoutForm.get('destination')?.value
-    );
-
-    this.orderService.createOrder(destinationData);
+    localStorage.removeItem('OrderItems');
+    location.replace('/orders');
   }
 }
