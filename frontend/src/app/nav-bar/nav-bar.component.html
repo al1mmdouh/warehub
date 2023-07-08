@@ -25,8 +25,11 @@
             <a class="nav-link" routerLink="#">x</a>
           </li>
         </ul>
+        <button class="btn btn-outline-success profile-btn" *ngIf="accessLevel !=='guest'"> <a class="nav-link" routerLink="profile">{{userName}}</a></button>
         <button class="btn btn-outline-success profile-btn" > <a class="nav-link" routerLink="profile">Profile</a></button>
-        <button class="btn btn-outline-success" > <a class="nav-link" routerLink="login-Page">Login/register</a></button>
+        <button class="btn btn-outline-success profile-btn" > <a class="nav-link" routerLink="profile">Profile</a></button>
+        <button class="btn btn-outline-success" *ngIf="accessLevel === 'guest'"> <a class="nav-link" routerLink="login-Page">Login/register</a></button>
+        <button class="btn btn-outline-success" *ngIf="accessLevel !=='guest'" (click)="logOut()"> logout</button>
         
       </div>
     </div>

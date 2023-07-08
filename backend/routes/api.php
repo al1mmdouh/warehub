@@ -27,3 +27,5 @@ Route::post('login',[AuthController::class, 'login'])->middleware('guest');
 Route::post('logout',[AuthController::class, 'logout'])->middleware('auth');
 
 Route::post('business',[BusinessController::class,'store']);//->middleware('auth')
+
+Route::get('business/{business}', [BusinessController::class, 'show'])->name('business.show');

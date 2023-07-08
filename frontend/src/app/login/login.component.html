@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" >
     <div class="row justify-content-center">
       <div class="col-lg-6 col-md-8">
         <div class="card mt-5">
@@ -6,7 +6,7 @@
             <h4>Login</h4>
           </div>
           <div class="card-body">
-            <form id="login-form" [formGroup]="login" (ngSubmit)="submitregisteration()" >
+            <form id="login-form" [formGroup]="login" (ngSubmit)="submitLogin()" >
               <div class="form-group">
                 <label for="username">Email</label>
                 <input type="text" id="username" name="username" class="form-control" required formControlName="email">

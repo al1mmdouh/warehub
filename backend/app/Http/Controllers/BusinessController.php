@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Business;
 use App\Models\User;
 use Illuminate\Validation\ValidationException;
+use App\Http\Resources\BusinessResource;
 
 class BusinessController extends Controller
 {
@@ -30,5 +31,12 @@ class BusinessController extends Controller
 
 
 
+    }
+    public function show($id)
+    {
+        $business = Business::with('user')->get();
+        $business  = $business->where('user_id', $id);
+        return BusinessResource::collection($business);
+      
     }
 }

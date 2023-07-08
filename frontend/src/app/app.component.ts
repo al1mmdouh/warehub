@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services/auth.service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,35 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend';
+  constructor(private authService: AuthService){}
+  ngOnInit(){
+    const token  = localStorage.getItem('token')?localStorage.getItem('token'):0
+    if(token){
+      const payload: any = jwt_decode(token?token:"");
+      const user_id = payload.user_id;
+      this.authService.getBuisness(user_id).subscribe(
+        (data: any)=>{
+          
+          // console.log(data.data[0]);
+          // localStorage.setItem('business_id', data.data[0].business_id)
+          // localStorage.setItem('business_name', data.data[0].business_name)
+          // localStorage.setItem('user_name', data.data[0].user.name)
+          // localStorage.setItem('user_email', data.data[0].user.email)
+          let dataObj =  {
+            business_id: data.data[0].business_id,
+            business_name: data.data[0].business_name,
+            business_type: data.data[0].business_type,
+            user_name: data.data[0].user.name,
+            user_email: data.data[0].user.email
+          }
+          console.log(dataObj);
+          this.authService.changeUserBuisnessData(dataObj);
+        }
+      )
+    }
+
+  }
+
 }
+
+
