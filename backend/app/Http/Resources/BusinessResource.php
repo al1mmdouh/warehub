@@ -14,16 +14,11 @@ class BusinessResource extends JsonResource
      */
     public function toArray($request)
     {
-        // return parent::toArray($request);
         return [
-            'id' => $this->id,
-            'user_id'=>$this->user_id,
+            'business_id' => $this->id,
             'business_name' => $this->business_name,
-            'business_address' => $this->business_address,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'business_type'=>$this->business_type,
-
+            'business_type' => $this->business_type,
+            'user' =>new UserResource($this->user)
         ];
     }
 }

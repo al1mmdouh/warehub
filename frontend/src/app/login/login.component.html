@@ -1,0 +1,48 @@
+<div class="container" >
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8">
+        <div class="card mt-5">
+          <div class="card-header text-center">
+            <h4>Login</h4>
+          </div>
+          <div class="card-body">
+            <form id="login-form" [formGroup]="login" (ngSubmit)="submitLogin()" >
+              <div class="form-group">
+                <label for="username">Email</label>
+                <input type="text" id="username" name="username" class="form-control" required formControlName="email">
+                <div class="invalid-feedback">Please enter a valid username.</div>
+              </div>
+              <div 
+        class="form-text text-danger"
+        *ngIf="login.controls['email'].touched &&
+         login.controls['email'].invalid">
+         <span *ngIf= "login.controls['email'].errors?.['required']" >this fild is required</span>
+         <span *ngIf= "login.controls['email'].errors?.['minlength']" >This Feild has a Min Liegth</span>
+
+      </div>
+
+
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control" required formControlName="password">
+                <div class="invalid-feedback">Please enter a valid password.</div>
+
+                <div 
+      class="form-text text-danger"
+      *ngIf="login.controls['password'].touched &&
+       login.controls['password'].invalid">
+       <span *ngIf= "login.controls['password'].errors?.['required']" >this fild is required</span>
+       <span *ngIf= "login.controls['password'].errors?.['minlength']" >This Fild has a Min Liegth</span>
+
+    </div>
+    <a class="reglink" routerLink="../registeration">I Don't Have Account..</a>
+
+            </div>
+            
+            <button  type="submit" class="btn btn-primary" [disabled]="login.invalid">Log In</button>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

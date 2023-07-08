@@ -4,7 +4,7 @@ import { WarehouseHomeComponent } from './warehouse-home/warehouse-home.componen
 import { CircleProgressComponent } from './warehouse-home/circle-progress/circle-progress.component';
 import { WarehouseRegisterComponent } from './warehouse-register/warehouse-register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgCircleProgressModule } from 'ng-circle-progress';
+import { NgCircleProgressModule } from "ng-circle-progress";
 import { WarehouseRoutingModule } from './warehouse-routing.module';
 import { LoadingSpinnerComponent } from '../shared/loading-spinner/loading-spinner.component';
 
