@@ -18,7 +18,6 @@ class Business extends Model
         'business_type',
     ];
 
-
     // public function setUserIdAttribute($user_id)
     // {
     //     $this->attributes['user_id'] = Auth::id();
@@ -29,8 +28,25 @@ class Business extends Model
         return $this->belongsTo(User::class);
     }
 
+<<<<<<< HEAD
     public function warehouse():HasMany
     {
         return $this->hasMany(Warehouse::class);
     }
 }
+=======
+    public function getNameAttribute()
+    {
+        return $this->business_name;
+    }
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
+}
+>>>>>>> origin/backend-orders-management

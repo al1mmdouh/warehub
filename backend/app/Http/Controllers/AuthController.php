@@ -21,13 +21,11 @@ class AuthController extends Controller
     public function register(RegisterRequest $request)
     {
         try {
-
             $validated = $request->validated();
 
             $user = $this->authService->register($validated);
 
             return response()->json($user, 201);
-
         } catch (ValidationException $e) {
             return response()->json(['error' => $e->errors()], 400);
         }
@@ -40,19 +38,23 @@ class AuthController extends Controller
 
             $data = $this->authService->authenticate($credentials);
 
+<<<<<<< HEAD
             return response()->json($data, 200);
 
+=======
+            return response()->json('Success, Welcome Back!', 200);
+>>>>>>> origin/backend-orders-management
         } catch (ValidationException $e) {
             return response()->json(['error' => $e->errors()], 400);
         } catch (JWTException $e) {
             return response()->json(['error' => 'Failed to create token'], 500);
         }
-
     }
 
     public function logout()
     {
         auth()->logout();
-        return response()->json("Success, Goodbye", 200);
+
+        return response()->json('Success, Goodbye', 200);
     }
 }

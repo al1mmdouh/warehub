@@ -19,13 +19,20 @@ class DatabaseSeeder extends Seeder
         $adminCredentials = require __DIR__.'/../../admin_credentials.php';
 
         User::factory()->create([
+<<<<<<< HEAD
             'name' => $adminCredentials['name'],
             'email' => $adminCredentials['email'],
             'role' => $adminCredentials['role'],
             'password' => $adminCredentials['password']
+=======
+            'name' => 'Warehub Admin',
+            'email' => 'admin@warehub.com',
+            'role' => '1',
+            'password' => 'password',
+>>>>>>> origin/backend-orders-management
         ]);
         User::factory(10)->create([
-            'role' => '0'
+            'role' => '0',
         ]);
         Business::factory()
             ->count(5)

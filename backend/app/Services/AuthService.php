@@ -22,9 +22,15 @@ class AuthService
 
     public function authenticate(array $credentials): array
     {
+<<<<<<< HEAD
         if (!auth()->attempt($credentials)) {
             throw ValidationException::withMessages([
                 'email' => 'Not verified'
+=======
+        if (! auth()->attempt($credentials)) {
+            throw ValidationException::withMessages([
+                'email' => 'Not verified',
+>>>>>>> origin/backend-orders-management
             ]);
         }
         // session()->regenerate(); // prevent session fixation
@@ -37,6 +43,10 @@ class AuthService
             'token' => $token,
         ];
     }
+<<<<<<< HEAD
 
 
 }
+=======
+}
+>>>>>>> origin/backend-orders-management

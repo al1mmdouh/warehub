@@ -23,7 +23,7 @@ class User extends Authenticatable implements JWTSubject
         'email',
         'password',
         'phone_number',
-        'address'
+        'address',
     ];
 
     /**
@@ -54,6 +54,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Business::class);
     }
+<<<<<<< HEAD
 
     public function getJWTIdentifier()
     {
@@ -68,3 +69,6 @@ class User extends Authenticatable implements JWTSubject
     }
 
 }
+=======
+}
+>>>>>>> origin/backend-orders-management

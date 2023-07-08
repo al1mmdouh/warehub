@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Business;
-use App\Models\User;
 use Illuminate\Validation\ValidationException;
 use App\Http\Resources\BusinessResource;
 
@@ -22,16 +21,11 @@ class BusinessController extends Controller
             $business = Business::create($attributes);
 
             return response()->json($business, 201);
-
         } catch (ValidationException $e) {
             return response()->json(['error' => $e->errors()], 400);
         }
-
-
-
-
-
     }
+<<<<<<< HEAD
     public function show($id)
     {
         $business = Business::with('user')->get();
@@ -40,3 +34,6 @@ class BusinessController extends Controller
       
     }
 }
+=======
+}
+>>>>>>> origin/backend-orders-management
