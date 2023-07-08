@@ -9,14 +9,6 @@ export class AuthService {
   constructor(private http: HttpClient) { 
     
   }
-  //observable approach
-  // private userBuisnessData = new BehaviorSubject(null);
-  // userBuisnessDataVal = this.userBuisnessData.asObservable();
-  // changeUserBuisnessData(data:any){
-  //   this.userBuisnessData.next(data);
-  //  // this.userBuisnessData;
-
-  // }
 
 
   //variables approach
