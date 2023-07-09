@@ -8,16 +8,16 @@ import { SharedModule } from '../shared/shared.module';
 import { AddProductComponent } from './add-product/add-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductRoutingModule } from './business-products-routing.module';
-import {HttpClientModule} from '@angular/common/http';
-
-
+import { HttpClientModule } from '@angular/common/http';
+import { StockStatusPipe } from '../pipes/stock-status.pipe';
+import { StatusBadgePipe } from '../pipes/status-badge.pipe';
 
 @NgModule({
   declarations: [
     ListingComponent,
     HeaderComponent,
     AddProductComponent,
-    
+    StockStatusPipe,
   ],
   imports: [
     CommonModule,
@@ -26,9 +26,8 @@ import {HttpClientModule} from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     ProductRoutingModule,
-    HttpClientModule
-    
-   
-  ]
+    HttpClientModule,
+  ],
+  exports: [StockStatusPipe, AddProductComponent],
 })
-export class BusinessProductsModule { }
+export class BusinessProductsModule {}

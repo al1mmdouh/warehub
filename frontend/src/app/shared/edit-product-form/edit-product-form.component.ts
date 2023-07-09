@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
-  selector: 'app-add-product',
-  templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.scss'],
+  selector: 'app-edit-product-form',
+  templateUrl: './edit-product-form.component.html',
+  styleUrls: ['./edit-product-form.component.scss'],
 })
-export class AddProductComponent {
-  addProductForm!: FormGroup;
+export class EditProductFormComponent {
+  editProductForm!: FormGroup;
   imageFile!: File;
+
+  @Input() product: any;
 
   alertSubject = new Subject<boolean>();
   constructor(
@@ -19,6 +21,8 @@ export class AddProductComponent {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.product);
+
     this.alertSubject.subscribe((showAlert: boolean) => {
       if (showAlert) {
         setTimeout(() => {
@@ -27,7 +31,7 @@ export class AddProductComponent {
       }
     });
 
-    this.addProductForm = this.fb.group({
+    this.editProductForm = this.fb.group({
       weight: ['', [Validators.required]],
       description: [
         '',
@@ -39,7 +43,7 @@ export class AddProductComponent {
       ],
       sku: ['', [Validators.required]],
       price: ['', [Validators.required]],
-      business_id: ['', [Validators.required]],
+
       name: ['', [Validators.required]],
       image: ['', [Validators.required]],
       quantity: ['', [Validators.required]],
@@ -50,24 +54,21 @@ export class AddProductComponent {
   onSubmit() {
     //  create form data to be sent to api
     const formdata = new FormData();
-    formdata.append('weight', this.addProductForm.get('weight')?.value);
-    formdata.append('price', this.addProductForm.get('price')?.value);
-    formdata.append('sku', this.addProductForm.get('sku')?.value);
+    formdata.append('weight', this.editProductForm.get('weight')?.value);
+    formdata.append('price', this.editProductForm.get('price')?.value);
+    formdata.append('sku', this.editProductForm.get('sku')?.value);
     formdata.append(
       'description',
-      this.addProductForm.get('description')?.value
+      this.editProductForm.get('description')?.value
     );
-    formdata.append(
-      'business_id',
-      this.addProductForm.get('business_id')?.value
-    );
-    formdata.append('name', this.addProductForm.get('name')?.value);
+
+    formdata.append('name', this.editProductForm.get('name')?.value);
     formdata.append('image', this.imageFile);
-    formdata.append('quantity', this.addProductForm.get('quantity')?.value);
+    formdata.append('quantity', this.editProductForm.get('quantity')?.value);
 
     console.log(formdata);
 
-    this.ProductService.AddProduct(formdata).subscribe(
+    this.ProductService.UpdateProduct(this.product.id, formdata).subscribe(
       (res) => {
         this.alertSubject.next(true);
         console.log(res);
@@ -87,11 +88,11 @@ export class AddProductComponent {
       this.imageFile = event.target.files[0];
       //  console.log(this.imageFile);
 
-      this.addProductForm.patchValue({
+      this.editProductForm.patchValue({
         image: this.imageFile,
       });
 
-      console.log(this.addProductForm);
+      console.log(this.editProductForm);
     }
   }
 }

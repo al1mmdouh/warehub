@@ -21,7 +21,20 @@ export class ProductService {
     return this.http.post('http://127.0.0.1:8000/api/products', data);
   }
 
+  UpdateProduct(id: number, data: any): Observable<any> {
+    return this.http.post(`http://127.0.0.1:8000/api/products/${id}`, data);
+  }
   fetchAllProducts(): Observable<any> {
     return this.http.get('http://127.0.0.1:8000/api/products');
+  }
+
+  deleteProduct(id: number) {
+    this.http
+      .delete(`http://127.0.0.1:8000/api/products/${id}`)
+      .subscribe((res) => {
+        console.log(res);
+
+        location.replace('products');
+      });
   }
 }

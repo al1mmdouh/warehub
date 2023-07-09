@@ -10,7 +10,7 @@ import { ProductModalComponent } from 'src/app/shared/product-modal/product-moda
 })
 export class ListingComponent {
   modal: boolean = false;
-  products: any = [1];
+  products!: any[];
   constructor(
     private modalService: NgbModal,
     private productService: ProductService

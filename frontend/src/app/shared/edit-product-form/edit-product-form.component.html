@@ -1,0 +1,197 @@
+<div class="alert alert-success" role="alert" *ngIf="alertSubject | async">
+  Product Updated Successfully!
+</div>
+
+<form [formGroup]="editProductForm" (ngSubmit)="onSubmit()" class="my-3">
+  <div class="container">
+    <div class="row">
+      <div class="form-group col-6 my-4">
+        <!-- Name -->
+        <label class="py-1" for="name">Name:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="Enter product name"
+          formControlName="name"
+          [(ngModel)]="product.name"
+          required
+        />
+
+        <div
+          *ngIf="
+            editProductForm.controls['name'].errors &&
+            editProductForm.controls['name'].touched
+          "
+        >
+          <span
+            *ngIf="editProductForm.controls['name'].errors?.['required']!==undefined"
+            class="text-danger"
+            >Name is required</span
+          >
+        </div>
+      </div>
+
+      <!-- Sku -->
+      <div class="form-group col-6 my-4">
+        <label class="py-1" for="sku">SKU:</label>
+        <input
+          type="number"
+          class="form-control"
+          id="sku"
+          placeholder="Enter product sku"
+          formControlName="sku"
+          [(ngModel)]="product.sku"
+          required
+        />
+        <div
+          *ngIf="
+            editProductForm.controls['sku'].errors &&
+            editProductForm.controls['sku'].touched
+          "
+        >
+          <span
+            *ngIf="editProductForm.controls['sku'].errors?.['required']!==undefined"
+            class="text-danger"
+            >SKU is required</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <!-- Description -->
+      <label class="" for="description" class="py-1">Description:</label>
+      <textarea
+        class="form-control py-2"
+        id="description"
+        placeholder="Enter product description"
+        formControlName="description"
+        required
+        [(ngModel)]="product.description"
+      ></textarea>
+      <div
+        *ngIf="
+          editProductForm.controls['description'].errors &&
+          editProductForm.controls['description'].touched
+        "
+      >
+        <span
+          *ngIf="editProductForm.controls['description'].errors?.['required']!==undefined"
+          class="text-danger"
+          >Description is required</span
+        >
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Quantity -->
+      <div class="form-group mb-3 col-6">
+        <label class="py-1" for="price">Quantity:</label>
+        <input
+          type="number"
+          class="form-control"
+          id="quantity"
+          formControlName="quantity"
+          placeholder="Enter product quantity"
+          [(ngModel)]="product.quantity"
+          required
+        />
+
+        <div
+          *ngIf="
+            editProductForm.controls['quantity'].errors &&
+            editProductForm.controls['quantity'].touched
+          "
+        >
+          <span
+            *ngIf="editProductForm.controls['quantity'].errors?.['required']!==undefined"
+            class="text-danger"
+            >Quantity is required</span
+          >
+        </div>
+      </div>
+      <!-- Weight -->
+      <div class="form-group col-6 mb-3">
+        <label class="py-1" for="weight">Weight:</label>
+        <input
+          type="number"
+          class="form-control"
+          id="weight"
+          formControlName="weight"
+          placeholder="please put your weight in kg"
+          [(ngModel)]="product.weight"
+          required
+        />
+        <div
+          *ngIf="
+            editProductForm.controls['weight'].errors &&
+            editProductForm.controls['weight'].touched
+          "
+        >
+          <span
+            *ngIf="editProductForm.controls['weight'].errors?.['required']!==undefined"
+            class="text-danger"
+            >Weight is required</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- price -->
+      <div class="form-group mb-3 col-6">
+        <label class="py-1" for="price">Price:</label>
+        <input
+          type="number"
+          class="form-control"
+          id="price"
+          formControlName="price"
+          placeholder="Enter product price"
+          [(ngModel)]="product.price"
+          required
+        />
+
+        <div
+          *ngIf="
+            editProductForm.controls['price'].errors &&
+            editProductForm.controls['price'].touched
+          "
+        >
+          <span
+            *ngIf="editProductForm.controls['price'].errors?.['required']!==undefined"
+            class="text-danger"
+            >Price is required</span
+          >
+        </div>
+      </div>
+      <!-- Image -->
+      <div class="form-group mb-3 col-6">
+        <label class="py-1" for="image">Image:</label>
+        <input
+          type="file"
+          class="form-control"
+          (change)="addPhoto($event)"
+          placeholder="Enter product Image"
+        />
+
+        <div
+          *ngIf="
+            editProductForm.controls['image'].errors &&
+            editProductForm.controls['image'].touched
+          "
+        >
+          <span
+            *ngIf="editProductForm.controls['image'].errors?.['required']!==undefined"
+            class="text-danger"
+            >Image is required</span
+          >
+        </div>
+      </div>
+    </div>
+    <!-- price -->
+    <div class="form-group mb-3 col-6"></div>
+
+    <button type="submit" class="btn btn-primary mx-auto">Submit</button>
+  </div>
+</form>

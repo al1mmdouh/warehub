@@ -10,6 +10,13 @@
   <div class="modal-dialog modal-dialog-centered mw-650px">
     <!--begin::Modal content-->
     <div class="modal-content">
+      <div
+        class="alert alert-success"
+        role="alert"
+        *ngIf="alertSubject | async"
+      >
+        Order created Successfully!
+      </div>
       <!--begin::Modal header-->
       <div class="modal-header">
         <!--begin::Modal title-->

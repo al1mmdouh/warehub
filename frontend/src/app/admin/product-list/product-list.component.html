@@ -1,12 +1,14 @@
-<app-header></app-header>
-
-<div class="card card-flush px-4">
-  <table class="table table-row-dashed align-middle cutter">
+<div class="d-flex align-items-end justify-content-end cutter">
+  <button class="btn btn-primary" (click)="openAddModal()">add products</button>
+</div>
+<div class="card card-flush d-flex h-100">
+  <table class="table table-row-dashed align-middle">
     <thead class="p-3">
       <!--begin::Table row-->
       <tr class="header-row">
         <th [colSpan]="1" class="text-start px-4">Product</th>
         <th class="text-center">SKU</th>
+        <th class="text-center">Owner</th>
         <th class="text-center">Quantity</th>
         <th class="text-center">Price</th>
 
@@ -48,6 +50,11 @@
           <span class="fw-bold">{{ product.sku }}</span>
         </td>
         <!--end::SKU=-->
+        <!--begin::SKU=-->
+        <td class="text-center">
+          <span class="fw-bold">{{ product.business_name }}</span>
+        </td>
+        <!--end::SKU=-->
 
         <!-- Quantity -->
 
@@ -80,13 +87,35 @@
         <!-- start: ticket action -->
         <td class="text-center">
           <!--begin::Menu-->
-          <button
-            class="btn btn-outline-primary px-3"
-            (click)="openProductModal(product)"
-          >
-            Request Ticket
-          </button>
-
+          <div class="dropdown">
+            <button
+              class="btn btn-outline-primary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Actions
+            </button>
+            <ul class="dropdown-menu px-0" aria-labelledby="dropdownMenuButton">
+              <li class="text-center py-2">
+                <button
+                  class="btn btn-outline-secondary"
+                  (click)="openEditModal(product)"
+                >
+                  Update
+                </button>
+              </li>
+              <li class="text-center py-2">
+                <button
+                  class="btn btn-outline-danger"
+                  (click)="deleteProduct(product.id)"
+                >
+                  Delete
+                </button>
+              </li>
+            </ul>
+          </div>
           <!--end::Menu-->
         </td>
 

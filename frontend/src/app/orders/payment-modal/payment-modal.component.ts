@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
 import { OrderService } from 'src/app/services/product/order.service';
 
 @Component({
@@ -16,6 +17,7 @@ import { OrderService } from 'src/app/services/product/order.service';
 export class PaymentModalComponent {
   checkoutForm!: FormGroup;
   numberControl!: FormControl;
+  alertSubject = new Subject<boolean>();
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -24,6 +26,16 @@ export class PaymentModalComponent {
   ) {}
 
   ngOnInit() {
+    // Success alert
+
+    this.alertSubject.subscribe((showAlert: boolean) => {
+      if (showAlert) {
+        setTimeout(() => {
+          this.alertSubject.next(false);
+        }, 5000);
+      }
+    });
+
     this.numberControl = new FormControl({
       value: this.orderService.getTotalPrice().priceAfterDiscount,
       disabled: true,
@@ -72,6 +84,11 @@ export class PaymentModalComponent {
     this.orderService.createOrder(destination);
 
     localStorage.removeItem('OrderItems');
-    location.replace('/orders');
+
+    this.alertSubject.next(true);
+
+    setTimeout(() => {
+      location.replace('orders');
+    }, 2500);
   }
 }

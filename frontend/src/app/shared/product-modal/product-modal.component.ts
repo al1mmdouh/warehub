@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { OrderService } from 'src/app/services/product/order.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-modal',
@@ -16,7 +17,8 @@ export class ProductModalComponent {
   constructor(
     public activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private router: Router
   ) {
     this.productForm = this.formBuilder.group({
       step1: this.formBuilder.group({
@@ -71,7 +73,7 @@ export class ProductModalComponent {
       });
       this.activeModal.close();
 
-      alert('Shipping ticket submitted successfully.');
+      this.router.navigate(['orders']);
     }
   }
 }

@@ -4,7 +4,7 @@ a {
 }
 .card-flush {
     border: 0;
-    box-shadow: 0px 0px 20px 0px rgba(76, 87, 125, 0.02);
+   
     background-color: #FFFFFF;
 }
 
@@ -31,7 +31,9 @@ a {
 }
 
 .cutter {
-    margin-block: 80px;
+    margin-top: 200px;
+     margin-bottom: 20px; 
+     margin-right: 55px;
 }
 
 .image-container{
@@ -48,7 +50,5 @@ a {
     background-size: cover;
     border-radius: 0.475rem;
 }
-
-
 
 // text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0

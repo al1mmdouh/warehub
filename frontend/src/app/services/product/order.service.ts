@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService {
   products: any[] = [];
+  alertSubject = new Subject<boolean>();
+  UpdatealertSubject = new Subject<boolean>();
 
   constructor(private http: HttpClient) {
     // Get Order items
@@ -87,5 +89,38 @@ export class OrderService {
       },
       (err) => console.log(err)
     );
+  }
+
+  getAllOrders() {
+    return this.http.get('http://127.0.0.1:8000/api/orders');
+  }
+
+  getOneOrders(id: number) {
+    return this.http.get(`http://127.0.0.1:8000/api/orders/${id}`);
+  }
+
+  updateOrderStatus(id: number, status: string) {
+    return this.http
+      .post(`http://127.0.0.1:8000/api/orders/${id}`, { status })
+      .subscribe((res) => {
+        this.UpdatealertSubject.next(true);
+        setTimeout(() => {
+          location.replace('admin/orders');
+        }, 2000);
+        console.log(res);
+      });
+  }
+
+  deleteOrder(id: number) {
+    return this.http
+      .delete(`http://127.0.0.1:8000/api/orders/${id}`)
+      .subscribe((res) => {
+        this.alertSubject.next(true);
+
+        setTimeout(() => {
+          location.replace('admin/orders');
+        }, 2000);
+        console.log(res);
+      });
   }
 }

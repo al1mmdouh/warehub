@@ -1,0 +1,125 @@
+<h2 class="my-4">Order Details:</h2>
+
+<div class="card card-flush py-4 flex-row-fluid overflow-hidden">
+  <!--begin::Card header-->
+  <div class="card-header">
+    <div class="card-title">
+      <h2>Order #{{ orderId }}</h2>
+    </div>
+  </div>
+  <!--end::Card header-->
+
+  <!--begin::Card body-->
+  <div class="card-body pt-0">
+    <div class="table-responsive">
+      <!--begin::Table-->
+      <table class="table table-row-dashed align-middle cutter">
+        <thead class="p-3">
+          <!--begin::Table row-->
+          <tr class="header-row">
+            <th [colSpan]="1" class="text-start px-4">Product</th>
+            <th class="text-center">SKU</th>
+            <th class="text-center">Quantity</th>
+            <th class="text-center">Weight</th>
+            <th class="text-center">Unit Price</th>
+            <th class="text-center">Total</th>
+          </tr>
+          <!--end::Table row-->
+        </thead>
+
+        <tbody class="fw-semibold p-3">
+          <!--begin::Table row-->
+          <tr *ngFor="let product of order.products">
+            <!-- start product -->
+            <td class="text-center">
+              <div class="d-flex align-items-center justify-center text-center">
+                <!--begin::Thumbnail-->
+                <a href="/" class="image-container">
+                  <img
+                    src="{{ product.image }}"
+                    alt=""
+                    width="50px"
+                    height="50px"
+                  />
+                </a>
+                <!--end::Thumbnail-->
+                <div class="m-3">
+                  <!--begin::Title-->
+                  <a href="/" class="fs-5 fw-bold product-name">{{
+                    product.name
+                  }}</a>
+                  <!--end::Title-->
+                </div>
+              </div>
+            </td>
+            <!-- end product -->
+
+            <!--begin::SKU=-->
+            <td class="text-center">
+              <span class="fw-bold">{{ product.sku }}</span>
+            </td>
+            <!--end::SKU=-->
+            <!-- Quantity -->
+
+            <td class="text-center">
+              <span class="px-2">{{ product.quantity }}</span>
+            </td>
+            <!-- End quantity -->
+
+            <!-- Start Weight -->
+
+            <td class="text-center">{{ product.weight }}</td>
+
+            <!-- End weight -->
+
+            <!--begin::Price=-->
+            <td class="text-center">{{ product.price }}</td>
+            <!--end::Price=-->
+
+            <!--begin::Total Price=-->
+            <td class="text-center">
+              {{ product.price * product.quantity }}
+            </td>
+            <!--end::total Price=-->
+
+            <!-- Remove icon -->
+
+            <!-- End remove icon -->
+          </tr>
+
+          <tr class="">
+            <td [colSpan]="6" class="text-end">Subtotal</td>
+            <td class="text-end mx-2">{{ order.price }}$</td>
+          </tr>
+          <tr>
+            <td [colSpan]="7" class="text-end">VAT (14%)</td>
+          </tr>
+
+          <tr>
+            <td [colSpan]="7" class="text-end">Discount (20%)</td>
+          </tr>
+          <tr>
+            <td [colSpan]="7" class="text-end">
+              Shipping fees ({{ order.shipping_fees }}$)
+            </td>
+          </tr>
+
+          <tr>
+            <td [colSpan]="6" class="fs-5 mx-3 text-dark text-end">
+              Order Total
+            </td>
+            <td class="text-end mx-2">{{ order.total }}$</td>
+          </tr>
+          <tr>
+            <td [colSpan]="6" class="fs-5 mx-3 text-dark text-end">
+              Destination
+            </td>
+            <td class="text-end mx-2">{{ order.distination }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <!--end::Table-->
+    </div>
+  </div>
+  <!--end::Card body-->
+</div>
