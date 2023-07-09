@@ -28,13 +28,7 @@ const routes: Routes = [
         path:"profile",
         component:ProfileComponent
       },
-      //// auth guard access level
-      // {
-      //   path:"about-us",
-      //   component:AboutUsComponent,
-      //   canActivate: [AuthGuard], data: { accessLevel: 'warehouse' }
-    
-      // },
+
   {
     path:"business",
     component:BusinessFormComponent,
