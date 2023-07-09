@@ -20,46 +20,46 @@
 
         
    
-        <form  [formGroup]="myForm" (ngSubmit)="onSubmitForm(i);"   class="form-group m-3">
+        <form  [formGroup]="formArr[i]" (ngSubmit)="onSubmitForm(i);"   class="form-group m-3">
             <div class="form-group">
                 <label  class="form-label">Name</label>
                 <input type="text" class="form-control mb-3" id="name" formControlName="name" placeholder="Name">
-                <div *ngIf="(myForm.get('name')?.errors)&&myForm.get('name')?.touched" class="text-danger">
+                <div *ngIf="(formArr[i].get('name')?.errors)&&formArr[i].get('name')?.touched" class="text-danger">
                     Warehouse name is required must be between 3 and 30 characters.
                 </div>
             </div>
             <div class="form-group">
                 <label  class="form-label">Warehouse type</label>
                 <input type="text" class="form-control mb-3" id="warehouse-type" formControlName="warehouseType" placeholder="Warehouse type">
-                <div *ngIf="(myForm.get('warehouseType')?.errors)&&myForm.get('warehouseType')?.touched" class="text-danger">
+                <div *ngIf="(formArr[i].get('warehouseType')?.errors)&&formArr[i].get('warehouseType')?.touched" class="text-danger">
                     Choose valid Warehouse type.
                 </div>
             </div>
             <div class="form-group">
                 <label  class="form-label">Warehouse Address</label>
                 <input type="text" class="form-control mb-3" formControlName="warehouseAddress" placeholder="warehouse address">
-                <div *ngIf="(myForm.get('warehouseAddress')?.errors)&&myForm.get('warehouseAddress')?.touched" class="text-danger">
+                <div *ngIf="(formArr[i].get('warehouseAddress')?.errors)&&formArr[i].get('warehouseAddress')?.touched" class="text-danger">
                     address is required and must be between 5 and 200 characters.
                 </div>
             </div>
             <div class="form-group">
                 <label  class="form-label">Capacity</label>
                 <input type="text" class="form-control mb-3" id="name" formControlName="capacity" placeholder="capacity">
-                <div *ngIf="(myForm.get('capacity')?.errors)&&myForm.get('capacity')?.touched" class="text-danger">
+                <div *ngIf="(formArr[i].get('capacity')?.errors)&&formArr[i].get('capacity')?.touched" class="text-danger">
                     Capacity is required and must be between 10 and 50000.
                 </div>
             </div>
             <div class="form-group">
                 <label  class="form-label">Available capacity</label>
                 <input type="text" class="form-control mb-3" id="name" formControlName="availableCapacity" placeholder="Available Capacity">
-                <div *ngIf="(myForm.get('availableCapacity')?.errors)&&myForm.get('availableCapacity')?.touched" class="text-danger">
+                <div *ngIf="(formArr[i].get('availableCapacity')?.errors)&&formArr[i].get('availableCapacity')?.touched" class="text-danger">
                     Available Capacity is required 
                 </div>
             </div>
             <div class="form-group">
                 <label  class="form-label">Fee</label>
                 <input type="text" class="form-control mb-3" id="name" formControlName="serviceFeePerVolume" placeholder="service fee per volume">
-                <div *ngIf="(myForm.get('serviceFeePerVolume')?.errors)&&myForm.get('serviceFeePerVolume')?.touched" class="text-danger">
+                <div *ngIf="(formArr[i].get('serviceFeePerVolume')?.errors)&&formArr[i].get('serviceFeePerVolume')?.touched" class="text-danger">
                     Fee is required and must be between 1 and 50000.
                 </div>
             </div>
