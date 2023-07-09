@@ -49,9 +49,9 @@ export class WarehouseRegisterComponent {
   onSubmitForm(index: number){
     if(this.myForm.valid){
       
+      console.log(this.myForm.value);
       this.warehouseService.createWarehouse(this.myForm.value).subscribe()
       this.countFormArr.splice(index, 1)
-      console.log(this.myForm.value);
     }
   }
 }

@@ -1,35 +1,39 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg " style="background-color: #333232;">
     <div class="container-fluid container">
-      <a class="navbar-brand" href="/">WareHub</a>
+      <a class="navbar-brand" href="/"><img src=".././../assets/Footer logo.png" alt="" style="width: 80px;"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+      <div class="collapse navbar-collapse links" id="navbarSupportedContent" >
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
+          <li class="nav-item" >
+            <a class="nav-link active text-warning" aria-current="page" routerLink="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="about-us">About-Us</a>
+            <a class="nav-link active text-warning" aria-current="page" routerLink="about-us">About-Us</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="contact-us">Contact-Us</a>
+            <a class="nav-link active text-warning" aria-current="page" routerLink="contact-us">Contact-Us</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active text-warning " aria-current="page" routerLink="warehouse" *ngIf="accessLevel === 'warehouse'">warehouse</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="#">x</a>
+            <a class="nav-link active text-warning " aria-current="page" routerLink="warehouse/register" *ngIf="accessLevel === 'warehouse'">create warehouse</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="#">x</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="#">x</a>
-          </li>
+
         </ul>
-        <button class="btn btn-outline-success profile-btn" *ngIf="accessLevel !=='guest'"> <a class="nav-link" routerLink="profile">{{userName}}</a></button>
-        <button class="btn btn-outline-success profile-btn" > <a class="nav-link" routerLink="profile">Profile</a></button>
-        <button class="btn btn-outline-success profile-btn" > <a class="nav-link" routerLink="profile">Profile</a></button>
-        <button class="btn btn-outline-success" *ngIf="accessLevel === 'guest'"> <a class="nav-link" routerLink="login-Page">Login/register</a></button>
-        <button class="btn btn-outline-success" *ngIf="accessLevel !=='guest'" (click)="logOut()"> logout</button>
+
+        <a class="btn btn-outline-warning profile-btn ml-3 " *ngIf="accessLevel !=='guest'" routerLink="profile">{{userName}}</a>
+        <a class=" btn btn-outline-warning profile-btn " *ngIf="userName ==='no business'" routerLink="business">Create Business</a>
+
+        
+        
+        <a class="btn btn-outline-danger" *ngIf="accessLevel !=='guest'" (click)="logOut()"> logout</a>
+         <a class=" btn btn-outline-info" *ngIf="accessLevel === 'guest'" routerLink="login-Page">Login</a>
+
+
         
       </div>
     </div>

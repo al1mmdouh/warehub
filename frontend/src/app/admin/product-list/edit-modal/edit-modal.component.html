@@ -1,0 +1,45 @@
+<div
+  class="modal fade show"
+  id="kt_modal_new_card"
+  tabindex="-1"
+  aria-modal="true"
+  role="dialog"
+  style="display: block"
+>
+  <!--begin::Modal dialog-->
+  <div class="modal-dialog modal-dialog-centered mw-650px">
+    <!--begin::Modal content-->
+    <div class="modal-content">
+      <div
+        class="alert alert-success"
+        role="alert"
+        *ngIf="alertSubject | async"
+      >
+        Product updated Successfully!
+      </div>
+      <!--begin::Modal header-->
+      <div class="modal-header">
+        <!--begin::Modal title-->
+        <h2 class="text-center mt-1 w-100">Update Product</h2>
+        <!--end::Modal title-->
+
+        <!--begin::Close-->
+        <button
+          type="button"
+          class="btn-close"
+          (click)="activeModal.dismiss()"
+        ></button>
+        <!--end::Close-->
+      </div>
+      <!--end::Modal header-->
+
+      <!--begin::Modal body-->
+      <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+        <app-edit-product-form [product]="product"></app-edit-product-form>
+      </div>
+      <!--end::Modal body-->
+    </div>
+    <!--end::Modal content-->
+  </div>
+  <!--end::Modal dialog-->
+</div>

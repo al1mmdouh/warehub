@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\WarehouseController;
-use App\Http\Controllers\BusinessController;
+
 use App\Http\Controllers\Order\BusinessOrderController;
 use App\Http\Controllers\Order\CreateOrderController;
 use App\Http\Controllers\Order\DeleteOrderController;
@@ -15,12 +14,12 @@ use App\Http\Controllers\Product\IndexProductController;
 use App\Http\Controllers\Product\ShowProductController;
 use App\Http\Controllers\Product\UpdateProductController;
 
-use App\Http\Controllers\StripePaymentController;
-use App\Http\Services\Order\UpdateOrderService;
-use App\Http\Controllers\TicketController;
+use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Product\BusinessProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use PHPUnit\TextUI\XmlConfiguration\Group;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,20 +36,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-Route::post('register', [AuthController::class, 'register'])->middleware('guest');
-
-Route::post('login', [AuthController::class, 'login'])->middleware('guest');
-
-Route::post('logout', [AuthController::class, 'logout'])->middleware('auth');
-
-
 Route::prefix('products')->group(function () {
     Route::get('/', IndexProductController::class)->name('product.index');
     Route::post('/', CreateProductController::class)->name('product.store');
     Route::get('/{product}', ShowProductController::class)->name('product.show');
     Route::delete('/{product}', DeleteProductController::class)->name('product.destroy');
     Route::post('/{product}', UpdateProductController::class)->name('product.update');
+    Route::get('/business/{business}', BusinessProductController::class);
 });
 
 Route::prefix('orders')->group(function () {
@@ -59,13 +51,21 @@ Route::prefix('orders')->group(function () {
     Route::get('/{order}', ShowOrderController::class);
     Route::post('/{order}', UpdateOrderController::class);
     Route::delete('/{order}', DeleteOrderController::class);
-
 });
 
+Route::get('/{business}', BusinessOrderController::class)->name('business.show');
+
+Route::post('/stripe', [StripePaymentController::class, 'stripePost']);
+
+Route::post('register', [AuthController::class, 'register'])->middleware('guest');
+
+Route::post('login', [AuthController::class, 'login'])->middleware('guest');
+
+Route::post('logout', [AuthController::class, 'logout'])->middleware('auth');
 
 Route::post('business', [BusinessController::class, 'store']); //->middleware('auth')
 
-Route::get('business/{business}', [BusinessController::class, 'show'])->name('business.show');
+Route::get('business/{business}', [BusinessController::class, 'show']);
 Route::get('/{business}', BusinessOrderController::class)->name('business.show');
 
 

@@ -9,6 +9,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import {ContactUsComponent} from './contact-us/contact-us.component';
 import { AuthGuard } from './shared/auth.guard';
 
+import { BusinessFormComponent } from './business-form/business-form.component';
 const routes: Routes = [
     {
         path:"",
@@ -26,17 +27,18 @@ const routes: Routes = [
       {
         path:"profile",
         component:ProfileComponent
+        ,canActivate: [AuthGuard], data: { accessLevel: 'warehouse'||'product' }
       },
-      //// auth guard access level
-      // {
-      //   path:"about-us",
-      //   component:AboutUsComponent,
-      //   canActivate: [AuthGuard], data: { accessLevel: 'warehouse' }
-    
-      // },
+
+  {
+    path:"business",
+    component:BusinessFormComponent,
+    canActivate: [AuthGuard], data: { accessLevel: 'no business' }
+  },
        {
         path:"about-us",
-        component:AboutUsComponent
+        component:AboutUsComponent,
+        canActivate: [AuthGuard], data: { accessLevel: 'guest' }
     
       },
       {
@@ -46,7 +48,8 @@ const routes: Routes = [
       {
       path: 'warehouse',
       loadChildren: () => import('./warehouse/warehouse.module')
-      .then(module => module.WarehouseModule)
+      .then(module => module.WarehouseModule),
+      canActivate: [AuthGuard], data: { accessLevel: 'warehouse' }
     },
     {path: 'loading', component:LoadingSpinnerComponent}
   ];

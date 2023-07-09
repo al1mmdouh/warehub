@@ -28,13 +28,11 @@ class Business extends Model
         return $this->belongsTo(User::class);
     }
 
-<<<<<<< HEAD
     public function warehouse():HasMany
     {
         return $this->hasMany(Warehouse::class);
     }
-}
-=======
+
     public function getNameAttribute()
     {
         return $this->business_name;
@@ -49,4 +47,3 @@ class Business extends Model
         return $this->hasMany(Order::class);
     }
 }
->>>>>>> origin/backend-orders-management

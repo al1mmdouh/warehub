@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +9,6 @@ export class AuthService {
   constructor(private http: HttpClient) { 
     
   }
-  //observable approach
-  // private userBuisnessData = new BehaviorSubject(null);
-  // userBuisnessDataVal = this.userBuisnessData.asObservable();
-  // changeUserBuisnessData(data:any){
-  //   this.userBuisnessData.next(data);
-  //  // this.userBuisnessData;
-
-  // }
 
 
   //variables approach
@@ -29,10 +20,16 @@ export class AuthService {
   }
 
   getAccessLevel(){
+    const token  = localStorage.getItem('token')?localStorage.getItem('token'):0
     if(this.userBuisnessData){
       return this.userBuisnessData.business_type
     }
+    else if(token){
+
+      return 'wait'
+    }
     else{
+
       return 'guest'
     }
   }

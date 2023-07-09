@@ -1,5 +1,11 @@
-<h4 style="text-align: center;">Registration</h4>
-<br>
+<div class="container general mb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="card mt-5">
+        <div class="card-header text-center">
+          <h4>Register</h4>
+        </div>
+        <div class="card-body">
 <form  [formGroup]="registeration" (ngSubmit)="submitregisteration()">
   <!------------------------------------------------------------------------------------------------------------------------------>
     <div class="input-group">
@@ -68,23 +74,12 @@
        <span *ngIf= "registeration.controls['address'].errors?.['required']" >this fild is required</span>
        <span *ngIf= "registeration.controls['address'].errors?.['minlength']" >This Fild has a Min Liegth</span>
     </div>
-    <!-- ----------------------------------------------------------------------------------- -->
-      <br>
-      <span class="px-4 fw-bold">Choose Your Role :</span>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-        <label class="form-check-label" for="inlineRadio1">User</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-        <label class="form-check-label" for="inlineRadio2">Warehouse Owner</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" >
-        <label class="form-check-label" for="inlineRadio3">Product Owner</label>
-      </div>
-      <br>
-      <br>
+    <br>
       <button  type="submit" class="btn btn-primary" [disabled]="registeration.invalid">Submit</button>
 
 </form>
+</div>
+</div>
+</div>
+</div>
+</div>
