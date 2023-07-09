@@ -3,6 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { OrderService } from 'src/app/services/product/order.service';
 import { Router } from '@angular/router';
+import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
   selector: 'app-product-modal',
@@ -18,6 +19,7 @@ export class ProductModalComponent {
     public activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
     private orderService: OrderService,
+    private productService: ProductService,
     private router: Router
   ) {
     this.productForm = this.formBuilder.group({
@@ -38,6 +40,9 @@ export class ProductModalComponent {
     } else if (this.productForm.get('step1.option')!.value === 'ship now') {
       // Move to step 2 if quantity is entered
       this.step = 2;
+    } else if (this.productForm.get('step1.option')!.value === 'update') {
+      // Move to step 2 if quantity is entered
+      this.step = 2;
     }
   }
 
@@ -55,8 +60,8 @@ export class ProductModalComponent {
 
       console.log(ticket);
 
+      this.productService.deleteProduct(this.product.id);
       this.activeModal.close();
-      alert('Delete ticket submitted successfully.');
 
       // submit shipping ticket
     } else if (type === 'shipping') {

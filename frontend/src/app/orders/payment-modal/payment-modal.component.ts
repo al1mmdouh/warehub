@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 import { OrderService } from 'src/app/services/product/order.service';
 
 @Component({
@@ -19,14 +20,18 @@ export class PaymentModalComponent {
   numberControl!: FormControl;
   alertSubject = new Subject<boolean>();
 
+  userName: string = '';
   constructor(
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private auth: AuthService
   ) {}
 
   ngOnInit() {
     // Success alert
+
+    this.userName = this.auth.userBuisnessData.user_name;
 
     this.alertSubject.subscribe((showAlert: boolean) => {
       if (showAlert) {

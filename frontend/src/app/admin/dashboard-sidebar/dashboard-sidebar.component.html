@@ -15,7 +15,7 @@
           id="menu"
         >
           <li class="nav-item py-2">
-            <a href="#" class="nav-link align-middle px-0">
+            <a routerLink="admin/home" class="nav-link align-middle px-0">
               <fa-icon [icon]="faHome" class="me-2"></fa-icon>
               <span class="ms-1 d-none d-sm-inline">Home</span>
             </a>
@@ -55,7 +55,7 @@
         <hr />
         <div class="dropdown pb-4">
           <a
-            href="#"
+            routerLink="admin/home"
             class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
             id="dropdownUser1"
             data-bs-toggle="dropdown"
@@ -70,9 +70,7 @@
             />
             <span class="d-none d-sm-inline mx-1"></span>
           </a>
-          <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
-          </ul>
+          <button (click)="signOut()">Logout</button>
         </div>
       </div>
     </div>

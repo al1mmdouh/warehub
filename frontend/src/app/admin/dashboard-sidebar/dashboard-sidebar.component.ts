@@ -22,6 +22,8 @@ export class DashboardSidebarComponent {
   toggle() {
     this.status = !this.status;
   }
-
- 
+  signOut() {
+    localStorage.clear();
+    location.replace('/');
+  }
 }

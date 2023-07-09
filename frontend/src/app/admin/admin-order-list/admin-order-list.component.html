@@ -1,7 +1,3 @@
-<div class="d-flex align-items-end justify-content-end cutter">
-  <button class="btn btn-primary">add orders</button>
-</div>
-
 <div
   class="alert alert-danger my-3"
   role="alert"
@@ -18,7 +14,7 @@
   Status updated Successfully!
 </div>
 
-<div class="card card-flush d-flex h-100">
+<div class="card card-flush d-flex cutter">
   <table class="table table-row-dashed align-middle">
     <thead class="p-3">
       <!--begin::Table row-->
@@ -55,9 +51,7 @@
         </td>
 
         <td class="text-center">
-          <span class="fw-bold">{{
-            order.shipping_data.created_at.slice(0, -8)
-          }}</span>
+          <span class="fw-bold">{{ order.shipping_data.created_at }}</span>
         </td>
 
         <td class="text-center">

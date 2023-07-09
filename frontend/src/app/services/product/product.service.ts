@@ -21,7 +21,6 @@ export class ProductService {
   AddProduct(data: any): Observable<any> {
     console.log(data);
 
-    const business_id = this.auth.userBuisnessData.business_id;
     return this.http.post('http://127.0.0.1:8000/api/products', data);
   }
 
@@ -32,13 +31,15 @@ export class ProductService {
     return this.http.get('http://127.0.0.1:8000/api/products');
   }
 
+  fetchUseProduct(id: number): Observable<any> {
+    return this.http.get(`http://127.0.0.1:8000/api/products/business/${id}`);
+  }
+
   deleteProduct(id: number) {
     this.http
       .delete(`http://127.0.0.1:8000/api/products/${id}`)
       .subscribe((res) => {
         console.log(res);
-
-        location.replace('products');
       });
   }
 }
