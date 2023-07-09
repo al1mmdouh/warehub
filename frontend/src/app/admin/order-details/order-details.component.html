@@ -29,7 +29,7 @@
 
         <tbody class="fw-semibold p-3">
           <!--begin::Table row-->
-          <tr *ngFor="let product of order.products">
+          <tr *ngFor="let product of order.products; let i = index">
             <!-- start product -->
             <td class="text-center">
               <div class="d-flex align-items-center justify-center text-center">
@@ -62,7 +62,9 @@
             <!-- Quantity -->
 
             <td class="text-center">
-              <span class="px-2">{{ product.quantity }}</span>
+              <span class="px-2">{{
+                order.order_product_quantity[i].quantity
+              }}</span>
             </td>
             <!-- End quantity -->
 
@@ -78,7 +80,7 @@
 
             <!--begin::Total Price=-->
             <td class="text-center">
-              {{ product.price * product.quantity }}
+              {{ product.price * order.order_product_quantity[i].quantity }}
             </td>
             <!--end::total Price=-->
 
