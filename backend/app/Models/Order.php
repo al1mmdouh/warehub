@@ -71,7 +71,16 @@ class Order extends Model
           return $total_products_weight/1000;
     }
    
-
+    public function getQuantityAttribute()
+    {
+        $order_product_quantity = [];
+        foreach($this->products as $product){
+           $quantity = $product->pivot;
+           array_push($order_product_quantity,$quantity);
+        }
+         return $order_product_quantity;
+    }
+   
 }
 
 

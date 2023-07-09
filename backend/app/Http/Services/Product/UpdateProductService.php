@@ -10,7 +10,7 @@ class UpdateProductService
 {
     public function handle(UpdateProductRequest $request, Product $product)
     {
-        
+
         if ($request->file('image')) {
             if ($product->image) {
                 $product->clearMediaCollection('image');
@@ -22,7 +22,9 @@ class UpdateProductService
             'name' => $request->name,
             'description' => $request->description,
             'sku' => $request->sku,
+
             'price' => $request->price,
+            'quantity' => $request->quantity,
             'weight' => $request->weight,
 
         ]);
