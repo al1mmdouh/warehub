@@ -37,11 +37,13 @@ const routes: Routes = [
       // },
   {
     path:"business",
-    component:BusinessFormComponent
+    component:BusinessFormComponent,
+    canActivate: [AuthGuard], data: { accessLevel: 'no business' }
   },
        {
         path:"about-us",
-        component:AboutUsComponent
+        component:AboutUsComponent,
+        canActivate: [AuthGuard], data: { accessLevel: 'guest' }
     
       },
       {
@@ -51,7 +53,8 @@ const routes: Routes = [
       {
       path: 'warehouse',
       loadChildren: () => import('./warehouse/warehouse.module')
-      .then(module => module.WarehouseModule)
+      .then(module => module.WarehouseModule),
+      canActivate: [AuthGuard], data: { accessLevel: 'warehouse' }
     },
     {path: 'loading', component:LoadingSpinnerComponent}
   ];

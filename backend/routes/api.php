@@ -65,7 +65,7 @@ Route::prefix('orders')->group(function () {
 
 Route::post('business', [BusinessController::class, 'store']); //->middleware('auth')
 
-Route::get('business/{business}', [BusinessController::class, 'show'])->name('business.show');
+Route::get('business/{business}', [BusinessController::class, 'show']);
 Route::get('/{business}', BusinessOrderController::class)->name('business.show');
 
 

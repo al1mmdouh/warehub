@@ -15,11 +15,12 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" routerLink="contact-us">Contact-Us</a>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="#">x</a>
+            <a class="nav-link active" aria-current="page" routerLink="warehouse" *ngIf="accessLevel === 'warehouse'">warehouse</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="#">x</a>
+            <a class="nav-link active" aria-current="page" routerLink="warehouse/register" *ngIf="accessLevel === 'warehouse'">create warehouse</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="#">x</a>

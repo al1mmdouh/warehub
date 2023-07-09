@@ -1,4 +1,5 @@
 import { Component, DoCheck } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -9,14 +10,13 @@ import { AuthService } from '../services/auth.service';
 export class NavBarComponent implements DoCheck {
   accessLevel!:string;
   userName:any = ''
-  constructor(private authService: AuthService){
+  constructor(private authService: AuthService, private router: Router ){
   
   }
   ngDoCheck(): void {
     this.accessLevel = this.authService.getAccessLevel();
-    console.log(this.accessLevel);
     this.userName = this.authService.userBuisnessData.user_name;
-
+    //console.log(this.accessLevel);
   }
   ngOnInit(){
     this.accessLevel = this.authService.getAccessLevel();
@@ -24,5 +24,7 @@ export class NavBarComponent implements DoCheck {
   logOut(){
     localStorage.clear();
     this.authService.changeUserBuisnessData(0);
+    this.router.navigate(['/'])
+
   }
 }

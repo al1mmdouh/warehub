@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Warehouse } from 'src/app/interfaces/warehouse';
+import { AuthService } from 'src/app/services/auth.service';
 import { WarehouseService } from 'src/app/services/warehouse.service';
 
 @Component({
@@ -34,7 +35,7 @@ export class WarehouseHomeComponent {
       serviceFee: 0
     }
   ]
-  constructor(private fb: FormBuilder, private warehouseService: WarehouseService){}
+  constructor(private fb: FormBuilder, private warehouseService: WarehouseService, private auth: AuthService){}
   ngOnInit(){
     this.ticketForm = this.fb.group({
       warehouseAddress : this.warehouses[this.selectedWarehouseId].address,
@@ -47,18 +48,34 @@ export class WarehouseHomeComponent {
 
       
     })
-    this.warehouseService.getWarehouses().subscribe(
-    {
-        next:  (data)=>{
-        this.warehouses = data;
-        this.isLoading = false;
-      },
-        error: (error)=>{
-        this.apiError = error.statusText;
-        this.isLoading = false;
+    // this.warehouseService.getWarehouses().subscribe(
+    // {
+    //     next:  (data)=>{
+    //     this.warehouses = data;
+    //     this.isLoading = false;
+    //   },
+    //     error: (error)=>{
+    //     this.apiError = error.statusText;
+    //     this.isLoading = false;
 
-      }}
-    )
+    //   }}
+    // )
+    let userId = this.auth.userBuisnessData.user_id
+    console.log(userId);
+    this.warehouseService.getWarehouseByUser(userId).subscribe(
+      {
+          next:  (data)=>{
+          this.warehouses = data;
+          this.isLoading = false;
+          console.log(data);
+        },
+          error: (error)=>{
+          this.apiError = error.statusText;
+          this.isLoading = false;
+          console.log(error);
+  
+        }}
+      )
   }
   createTicket(){
     this.ticketForm = this.fb.group({

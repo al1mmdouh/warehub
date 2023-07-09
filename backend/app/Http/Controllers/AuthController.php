@@ -38,12 +38,8 @@ class AuthController extends Controller
 
             $data = $this->authService->authenticate($credentials);
 
-<<<<<<< HEAD
             return response()->json($data, 200);
 
-=======
-            return response()->json('Success, Welcome Back!', 200);
->>>>>>> origin/backend-orders-management
         } catch (ValidationException $e) {
             return response()->json(['error' => $e->errors()], 400);
         } catch (JWTException $e) {

@@ -42,10 +42,11 @@ export class LoginComponent  {
 
               let dataObj =  {
                 business_id: data.data[0].business_id?data.data[0].business_id:0,
-                business_name: data.data[0].business_name?data.data[0].business_id:0,
-                business_type: data.data[0].business_type?data.data[0].business_id:0,
+                business_name: data.data[0].business_name?data.data[0].business_name:0,
+                business_type: data.data[0].business_type?data.data[0].business_type:0,
                 user_name: data.data[0].user.name,
-                user_email: data.data[0].user.email
+                user_email: data.data[0].user.email,
+                user_id: user_id
               }
               //console.log(dataObj);
               this.authenticate.changeUserBuisnessData(dataObj);

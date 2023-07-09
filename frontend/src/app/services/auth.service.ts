@@ -20,8 +20,13 @@ export class AuthService {
   }
 
   getAccessLevel(){
+    const token  = localStorage.getItem('token')?localStorage.getItem('token'):0
     if(this.userBuisnessData){
       return this.userBuisnessData.business_type
+    }
+    else if(token){
+
+      return 'wait'
     }
     else{
 

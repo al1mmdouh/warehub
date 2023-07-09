@@ -25,7 +25,6 @@ class BusinessController extends Controller
             return response()->json(['error' => $e->errors()], 400);
         }
     }
-<<<<<<< HEAD
     public function show($id)
     {
         $business = Business::with('user')->get();
@@ -34,6 +33,3 @@ class BusinessController extends Controller
       
     }
 }
-=======
-}
->>>>>>> origin/backend-orders-management

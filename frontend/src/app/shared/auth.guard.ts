@@ -14,6 +14,8 @@ export class AuthGuard{
       const requiredAccessLevel = route.data['accessLevel'];
       const userAccessLevel = this.authService.getAccessLevel();
     if (requiredAccessLevel === userAccessLevel) {
+      console.log(requiredAccessLevel);
+      console.log(userAccessLevel);
 
       return true;
     } else {

@@ -9,9 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  onButtonClick() {
-    this.router.navigate(['/warehouse']);
-  }
+
   title = 'frontend';
   constructor(private authService: AuthService,private router: Router){}
   ngOnInit(){
@@ -33,7 +31,9 @@ export class AppComponent {
               business_name: data.data[0].business_name,
               business_type: data.data[0].business_type,
               user_name: data.data[0].user.name,
-              user_email: data.data[0].user.email
+              user_email: data.data[0].user.email,
+              user_id: user_id
+
             }
             console.log(dataObj);
             this.authService.changeUserBuisnessData(dataObj);

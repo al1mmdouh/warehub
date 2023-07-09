@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { AuthService } from '../services/auth.service';
 export class RegistrationComponent {
   registeration!: FormGroup ;
 
-  constructor(private fb :FormBuilder, private authenticate: AuthService){
+  constructor(private fb :FormBuilder, private authenticate: AuthService, private router: Router){
  
 }
 ngOnInit(){
@@ -31,7 +32,7 @@ ngOnInit(){
        (data)=>{
         console.log(data);
       }
-      
-    )
+      )
+      this.router.navigate(['/login-page'])
   }
 }  
