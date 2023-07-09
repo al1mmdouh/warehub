@@ -22,11 +22,12 @@ class OrderResource extends JsonResource
             'price'=>$this->price,
             'tax'=>$this->tax,
             'discount'=>$this->discount,
-            'shipping_fees '=>$this->fees,
+            'shipping_fees'=>$this->fees,
             'total'=>$this->total,
             'status'=>$this->status,
             'shipping_data'=>$this->shipping_data,
             'products' => ProductResource::collection($this->products),
+            'order_product_quantity'=>$this->quantity
            
         ];
     }
