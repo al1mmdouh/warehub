@@ -27,6 +27,7 @@ const routes: Routes = [
       {
         path:"profile",
         component:ProfileComponent
+        ,canActivate: [AuthGuard], data: { accessLevel: 'warehouse'||'product' }
       },
 
   {

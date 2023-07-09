@@ -33,6 +33,7 @@ ngOnInit(){
         console.log(data);
       }
       )
-      this.router.navigate(['/login-page'])
+      console.log(this.authenticate.getAccessLevel());
+      this.router.navigate(['/login-Page'])
   }
 }  

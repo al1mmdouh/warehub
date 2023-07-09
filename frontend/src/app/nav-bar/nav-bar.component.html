@@ -24,12 +24,11 @@
           </li>
 
         </ul>
-        <button class="btn btn-outline-light profile-btn" *ngIf="accessLevel !=='guest'"> <a class="nav-link" routerLink="profile">{{userName}}</a></button>
+        <button class="btn btn-outline-light profile-btn" *ngIf="accessLevel !=='guest' && userName ==='no business'"> <a class="nav-link" routerLink="profile">{{userName}}</a></button>
         <button class="btn btn-outline-success profile-btn" *ngIf="userName ==='no business'"> <a class="nav-link" routerLink="business">Create Business</a></button>
 
 
         <button class="btn btn-outline-light" *ngIf="accessLevel !=='guest'" (click)="logOut()"> logout</button>
-        <button class="btn btn-outline-light profile-btn" > <a class="nav-link" routerLink="profile">Profile</a></button>
         <button class="btn btn-outline-light" *ngIf="accessLevel === 'guest'"> <a class="nav-link" routerLink="login-Page">Login/register</a></button>
         
       </div>
