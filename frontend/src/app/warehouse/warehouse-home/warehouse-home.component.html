@@ -10,19 +10,39 @@
     <div class="alert alert-danger" *ngIf="apiError">
       <p>{{apiError}}</p>
     </div>
+
+    <!-- <div class="col-md-6">
      <div class="row" *ngIf="!isLoading">
-       <div class="col-md-3">
         
          <div class="list-group" style="width: 100px;">
    
-           <button *ngFor="let warehouse of warehouses; let i = index;" (click)="selectWarehouse(i)"
+           <button style="width: 100px;" *ngFor="let warehouse of warehouses; let i = index;" (click)="selectWarehouse(i)"
             type="button" class="list-group-item list-group-item-action">{{warehouse.warehouseName}}</button>
          
          </div>
        </div>
+      </div> -->
+      <div class="col-md-3">
+        <div class="row" *ngIf="!isLoading">
+          <div class="col">
+            <div class="list-group">
+              <button
+            
+                *ngFor="let warehouse of warehouses; let i = index;"
+                (click)="selectWarehouse(i)"
+                type="button"
+                class="list-group-item list-group-item-action"
+              >
+                {{warehouse.warehouseName}}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
 
-       ************************************
-       <div class="row">
+       
+       <!-- <div class="row">
        <div class="col-md-3">
        
            <div class="col-lg" style="text-align: center; ">
@@ -43,7 +63,29 @@
            </div>
        </div>
       </div>
+      </div> -->
+
+      <div class="row">
+        <div class="col-md-3">
+          <div class="col-lg text-center">
+            <h1>{{warehouses[selectedWarehouseId].warehouseName}}</h1>
+          </div>
+        </div>
+      
+        <div class="col-md-9">
+          <div class="m-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">My Info</h5>
+                <p class="card-text"><b>Name:</b> {{warehouses[selectedWarehouseId].ownerName}}</p>
+                <p class="card-text"><b>Email:</b> {{warehouses[selectedWarehouseId].ownerEmail}}</p>
+                <p class="card-text"><b>Warehouse Address:</b> {{warehouses[selectedWarehouseId].address}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      
        <div class="row m-3">
            <div class="col">
                <div class="card" style="width: 18rem;">
@@ -91,7 +133,7 @@
 </button>
        </div>
       
-     </div>
+    
       
   
     
