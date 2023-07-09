@@ -1,0 +1,119 @@
+<div class="d-flex align-items-end justify-content-end cutter">
+  <button class="btn btn-primary">add orders</button>
+</div>
+
+<div
+  class="alert alert-danger my-3"
+  role="alert"
+  *ngIf="this.orderService.alertSubject | async"
+>
+  Order deleted Successfully!
+</div>
+
+<div
+  class="alert alert-success my-3"
+  role="alert"
+  *ngIf="this.orderService.UpdatealertSubject | async"
+>
+  Status updated Successfully!
+</div>
+
+<div class="card card-flush d-flex h-100">
+  <table class="table table-row-dashed align-middle">
+    <thead class="p-3">
+      <!--begin::Table row-->
+      <tr class="header-row">
+        <th [colSpan]="1" class="text-center px-4">Order ID</th>
+        <th class="text-center">Owner</th>
+        <th class="text-center">Total Price</th>
+
+        <th class="text-center">Status</th>
+
+        <th class="text-center">Created At</th>
+        <th class="text-center">Actions</th>
+      </tr>
+      <!--end::Table row-->
+    </thead>
+
+    <tbody class="fw-semibold p-3 text-gray-600">
+      <!--begin::Table row-->
+      <tr *ngFor="let order of orders">
+        <td class="text-center">
+          <span class="fw-bold">{{ order.order_id }}</span>
+        </td>
+
+        <td class="text-center">
+          <span class="fw-bold">{{ order.products[0].business_name }}</span>
+        </td>
+
+        <td class="text-center">
+          <span class="fw-bold">{{ order.total }}</span>
+        </td>
+
+        <td class="text-center">
+          <span [innerHTML]="order.status | statusBadge"></span>
+        </td>
+
+        <td class="text-center">
+          <span class="fw-bold">{{
+            order.shipping_data.created_at.slice(0, -8)
+          }}</span>
+        </td>
+
+        <td class="text-center">
+          <!--begin::Menu-->
+          <div class="dropdown">
+            <button
+              class="btn btn-outline-primary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Actions
+            </button>
+            <ul class="dropdown-menu px-0" aria-labelledby="dropdownMenuButton">
+              <li class="text-center py-2">
+                <button
+                  class="btn btn-outline-primary"
+                  (click)="updateOrder(order.order_id, 'delivered')"
+                >
+                  Delivered
+                </button>
+              </li>
+              <li class="text-center py-2">
+                <button
+                  class="btn btn-outline-success"
+                  (click)="updateOrder(order.order_id, 'done')"
+                >
+                  Done
+                </button>
+              </li>
+              <li class="text-center py-2">
+                <button
+                  class="btn btn-outline-danger"
+                  (click)="deleteOrder(order.order_id)"
+                >
+                  Delete
+                </button>
+              </li>
+            </ul>
+          </div>
+          <!--end::Menu-->
+        </td>
+        <!-- start: ticket action -->
+        <td class="text-center">
+          <!--begin::Menu-->
+
+          <a
+            [routerLink]="['/admin/orders', order.order_id]"
+            class="btn btn-outline-primary"
+            >View Details</a
+          >
+
+          <!--end::Menu-->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

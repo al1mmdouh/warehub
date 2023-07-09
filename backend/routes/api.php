@@ -59,9 +59,17 @@ Route::prefix('orders')->group(function () {
     Route::get('/{order}', ShowOrderController::class);
     Route::post('/{order}', UpdateOrderController::class);
     Route::delete('/{order}', DeleteOrderController::class);
-
 });
 
+Route::get('/{business}', BusinessOrderController::class)->name('business.show');
+
+Route::post('/stripe', [StripePaymentController::class, 'stripePost']);
+
+Route::post('register', [AuthController::class, 'register'])->middleware('guest');
+
+Route::post('login', [AuthController::class, 'login'])->middleware('guest');
+
+Route::post('logout', [AuthController::class, 'logout'])->middleware('auth');
 
 Route::post('business', [BusinessController::class, 'store']); //->middleware('auth')
 

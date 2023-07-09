@@ -1,37 +1,117 @@
-<nav class="navbar navbar-expand-lg " style="background-color: #2898C6;">
-    <div class="container-fluid container">
-      <a class="navbar-brand" href="/"><img src=".././../assets/Footer logo.png" alt="" style="width: 80px;"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-expand-lg" style="background-color: #2898c6">
+  <div class="container-fluid container">
+    <a class="navbar-brand" href="/"
+      ><img src=".././../assets/Footer logo.png" alt="" style="width: 80px"
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse links" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            routerLink="product/create"
+            *ngIf="accessLevel === 'product'"
+            >Add Product</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            routerLink="orders"
+            *ngIf="accessLevel === 'product'"
+            >My Order</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            routerLink="product/listing"
+            *ngIf="accessLevel === 'product'"
+            >Products</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="about-us"
+            >About-Us</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="contact-us"
+            >Contact-Us</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            routerLink="warehouse"
+            *ngIf="accessLevel === 'warehouse'"
+            >warehouse</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            routerLink="warehouse/register"
+            *ngIf="accessLevel === 'warehouse'"
+            >create warehouse</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            routerLink="warehouse/register"
+            *ngIf="accessLevel === 'warehouse'"
+            >create warehouse</a
+          >
+        </li>
+      </ul>
+      <button
+        class="btn btn-outline-light profile-btn"
+        *ngIf="accessLevel !== 'guest'"
+      >
+        <a class="nav-link" routerLink="profile">{{ userName }}</a>
       </button>
-      <div class="collapse navbar-collapse links" id="navbarSupportedContent" >
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
-          <li class="nav-item" >
-            <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="about-us">About-Us</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="contact-us">Contact-Us</a>
-          </li>
+      <button
+        class="btn btn-outline-success profile-btn"
+        *ngIf="userName === 'no business'"
+      >
+        <a class="nav-link" routerLink="business">Create Business</a>
+      </button>
 
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="warehouse" *ngIf="accessLevel === 'warehouse'">warehouse</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="warehouse/register" *ngIf="accessLevel === 'warehouse'">create warehouse</a>
-          </li>
-
-        </ul>
-        <button class="btn btn-outline-light profile-btn" *ngIf="accessLevel !=='guest'"> <a class="nav-link" routerLink="profile">{{userName}}</a></button>
-        <button class="btn btn-outline-success profile-btn" *ngIf="userName ==='no business'"> <a class="nav-link" routerLink="business">Create Business</a></button>
-
-
-        <button class="btn btn-outline-light" *ngIf="accessLevel !=='guest'" (click)="logOut()"> logout</button>
-        <button class="btn btn-outline-light profile-btn" > <a class="nav-link" routerLink="profile">Profile</a></button>
-        <button class="btn btn-outline-light" *ngIf="accessLevel === 'guest'"> <a class="nav-link" routerLink="login-Page">Login/register</a></button>
-        
-      </div>
+      <button
+        class="btn btn-outline-light"
+        *ngIf="accessLevel !== 'guest'"
+        (click)="logOut()"
+      >
+        logout
+      </button>
+      <button class="btn btn-outline-light profile-btn">
+        <a class="nav-link" routerLink="profile">Profile</a>
+      </button>
+      <button class="btn btn-outline-light" *ngIf="accessLevel === 'guest'">
+        <a class="nav-link" routerLink="login-Page">Login/register</a>
+      </button>
     </div>
-  </nav>
+  </div>
+</nav>
