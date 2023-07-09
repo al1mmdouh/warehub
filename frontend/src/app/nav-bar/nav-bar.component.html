@@ -24,6 +24,7 @@
           </li>
 
         </ul>
+
         <a class="btn btn-outline-warning profile-btn ml-3 " *ngIf="accessLevel !=='guest'" routerLink="profile">{{userName}}</a>
         <a class=" btn btn-outline-warning profile-btn " *ngIf="userName ==='no business'" routerLink="business">Create Business</a>
 
@@ -31,6 +32,8 @@
         
         <a class="btn btn-outline-danger" *ngIf="accessLevel !=='guest'" (click)="logOut()"> logout</a>
          <a class=" btn btn-outline-info" *ngIf="accessLevel === 'guest'" routerLink="login-Page">Login</a>
+
+
         
       </div>
     </div>
