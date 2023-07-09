@@ -1,3 +1,4 @@
+<div class="container">
 <form  [formGroup]="myForm" (ngSubmit)="onSubmitForm();"   class="form-group m-3">
     <div class="form-group">
         <label  class="form-label">Business name</label>
@@ -13,13 +14,29 @@
             Choose valid Warehouse type.
         </div>
     </div>
-    <div class="form-group">
+    
+    <!-- <div class="form-group">
         <label  class="form-label">Business type</label>
         <input type="text" class="form-control mb-3" formControlName="business_type" placeholder="business type">
         <div *ngIf="(myForm.get('business_type')?.errors)&&myForm.get('business_type')?.touched" class="text-danger">
             address is required and must be between 5 and 200 characters.
         </div>
+    </div> -->
+
+   
+    <div class="form-group">
+        <label class="form-label">Business type</label>
+        <select class="form-control mb-3" formControlName="business_type">
+            <option value="">Select Business type</option>
+            <option value="warehouse">Warehouse</option>
+            <option value="product">Product</option>
+        </select>
+        <div *ngIf="myForm.get('business_type')?.errors && myForm.get('business_type')?.touched" class="text-danger">
+            Business type is required.
+        </div>
     </div>
+    
    
 <button class="btn btn-dark">Submit</button>
 </form>
+</div>

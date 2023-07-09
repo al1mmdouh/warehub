@@ -1,4 +1,4 @@
-<p>warehouse-register works!</p>
+
 <div class="container">
     <div class="card my-3">
         <h3 class="m-2" style="text-align: center;">Add warhouses</h3>
@@ -28,13 +28,28 @@
                     Warehouse name is required must be between 3 and 30 characters.
                 </div>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label  class="form-label">Warehouse type</label>
                 <input type="text" class="form-control mb-3" id="warehouse-type" formControlName="warehouseType" placeholder="Warehouse type">
                 <div *ngIf="(formArr[i].get('warehouseType')?.errors)&&formArr[i].get('warehouseType')?.touched" class="text-danger">
                     Choose valid Warehouse type.
                 </div>
+            </div> -->
+         
+            <div class="form-group">
+                <label class="form-label">Warehouse type</label>
+                <select class="form-control mb-3" id="warehouse-type" formControlName="warehouseType">
+                    <option value="">Select Warehouse type</option>
+                    <option value="refrigerator">Refrigerator</option>
+                    <option value="nonrefrigerator">Non-Refrigerator</option>
+                </select>
+                <div *ngIf="myForm.get('warehouseType')?.errors && myForm.get('warehouseType')?.touched" class="text-danger">
+                    Choose a valid Warehouse type.
+                </div>
             </div>
+            
+
+
             <div class="form-group">
                 <label  class="form-label">Warehouse Address</label>
                 <input type="text" class="form-control mb-3" formControlName="warehouseAddress" placeholder="warehouse address">
