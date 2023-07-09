@@ -23,6 +23,7 @@ class UpdateProductService
             'description' => $request->name,
             'sku' => $request->sku,
             'price' => $request ->price,
+            'quantity'=> $request->quantity,
             'weight' => $request->weight,
             
         ]);

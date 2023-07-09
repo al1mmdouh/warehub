@@ -29,6 +29,7 @@ class UpdateProductRequest extends FormRequest
                 'sku'=>['required','unique:products,sku,'.request()->route('product')->id],
                 'price'=>['required','numeric'],
                 'weight'=>['numeric'],
+                'quantity'=>['numeric'],
                 'image' => ['required','file','max:15360', 'mimes:png,jpg,jpeg,gif'],
         ];
     }
