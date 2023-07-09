@@ -33,6 +33,6 @@ ngOnInit(){
         console.log(data);
       }
       )
-      this.router.navigate(['/login-page'])
+      this.router.navigate(['/login-Page'])
   }
 }  

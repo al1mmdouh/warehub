@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import jwt_decode from 'jwt-decode';
@@ -11,7 +12,7 @@ import { BusinessService } from '../services/business.service';
 export class BusinessFormComponent {
   myForm!: FormGroup;
   userId!:string;
-  constructor(private fb: FormBuilder, private businessService: BusinessService){}
+  constructor ( private router:Router, private fb: FormBuilder, private businessService: BusinessService){}
   ngOnInit(){
     const token  = localStorage.getItem('token')?localStorage.getItem('token'):0
     
@@ -39,5 +40,6 @@ export class BusinessFormComponent {
       )
 
     }
+    this.router.navigate(['/'])
   }
 }
