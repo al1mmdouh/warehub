@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 
@@ -12,7 +13,7 @@ export class EditModalComponent {
 
   alertSubject = new Subject<boolean>();
 
-  constructor(public activeModal: NgbActiveModal) {}
+  constructor(public activeModal: NgbActiveModal, private router: Router) {}
   ngOnInit() {
     // Success alert
 
@@ -24,11 +25,11 @@ export class EditModalComponent {
       }
 
       if (!showAlert) {
-        location.replace('/products');
       }
     });
   }
   closeModal() {
     this.activeModal.close();
+    this.router.navigate(['admin/products']);
   }
 }

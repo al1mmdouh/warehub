@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product/product.service';
@@ -17,7 +18,8 @@ export class AddProductComponent {
   constructor(
     private fb: FormBuilder,
     private ProductService: ProductService,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -77,9 +79,6 @@ export class AddProductComponent {
       (res) => {
         this.alertSubject.next(true);
         console.log(res);
-        setTimeout(() => {
-          location.replace('products');
-        }, 2000);
       },
       (err) => {
         console.log(err);

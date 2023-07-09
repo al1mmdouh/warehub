@@ -62,6 +62,7 @@ export class ProductModalComponent {
 
       this.productService.deleteProduct(this.product.id);
       this.activeModal.close();
+      this.router.navigate(['/product/listing']);
 
       // submit shipping ticket
     } else if (type === 'shipping') {

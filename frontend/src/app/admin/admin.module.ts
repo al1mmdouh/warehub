@@ -13,6 +13,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AdminOrderListComponent } from './admin-order-list/admin-order-list.component';
 import { StatusBadgePipe } from '../pipes/status-badge.pipe';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -38,6 +39,7 @@ const routes: Routes = [
     FormsModule,
     SharedModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
 
     RouterModule.forChild(routes),
   ],

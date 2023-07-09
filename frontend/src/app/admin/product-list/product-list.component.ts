@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductService } from 'src/app/services/product/product.service';
 import { AddModalComponent } from './add-modal/add-modal.component';
 import { EditModalComponent } from './edit-modal/edit-modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -12,9 +13,12 @@ import { EditModalComponent } from './edit-modal/edit-modal.component';
 export class ProductListComponent {
   modal: boolean = false;
   products: any = [];
+  currentPage = 1; // start with the first page
+  itemsPerPage = 5; // show 5 items per page
   constructor(
     private modalService: NgbModal,
-    private productService: ProductService
+    private productService: ProductService,
+    private router: Router
   ) {}
 
   openAddModal() {
@@ -35,5 +39,9 @@ export class ProductListComponent {
 
   deleteProduct(id: number) {
     this.productService.deleteProduct(id);
+
+    setTimeout(() => {
+      location.replace('admin/products');
+    }, 1000);
   }
 }

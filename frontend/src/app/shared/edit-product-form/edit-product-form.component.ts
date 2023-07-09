@@ -72,9 +72,6 @@ export class EditProductFormComponent {
       (res) => {
         this.alertSubject.next(true);
         console.log(res);
-        setTimeout(() => {
-          location.replace('products');
-        }, 2000);
       },
       (err) => {
         console.log(err);
