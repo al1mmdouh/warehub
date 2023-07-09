@@ -1,0 +1,100 @@
+<div class="container">
+  <app-header></app-header>
+
+  <div class="card card-flush px-4">
+    <table class="table table-row-dashed align-middle cutter">
+      <thead class="p-3">
+        <!--begin::Table row-->
+        <tr class="header-row">
+          <th [colSpan]="1" class="text-start px-4">Product</th>
+          <th class="text-center">SKU</th>
+          <th class="text-center">Quantity</th>
+          <th class="text-center">Price</th>
+
+          <th class="text-center">Status</th>
+          <th class="text-center">Actions</th>
+        </tr>
+        <!--end::Table row-->
+      </thead>
+
+      <tbody class="fw-semibold p-3 text-gray-600">
+        <!--begin::Table row-->
+        <tr *ngFor="let product of products">
+          <!-- start product -->
+          <td class="text-center">
+            <div class="d-flex align-items-center text-center">
+              <!--begin::Thumbnail-->
+              <a href="/" class="image-container">
+                <img
+                  src="{{ product.image }}"
+                  alt=""
+                  width="50px"
+                  height="50px"
+                />
+              </a>
+              <!--end::Thumbnail-->
+              <div class="m-3">
+                <!--begin::Title-->
+                <a href="/" class="fs-5 fw-bold product-name">{{
+                  product.name
+                }}</a>
+                <!--end::Title-->
+              </div>
+            </div>
+          </td>
+          <!-- end product -->
+
+          <!--begin::SKU=-->
+          <td class="text-center">
+            <span class="fw-bold">{{ product.sku }}</span>
+          </td>
+          <!--end::SKU=-->
+
+          <!-- Quantity -->
+
+          <td class="text-center">
+            <span class="fw-bold">{{
+              product.quantity > 0 ? product.quantity : 0
+            }}</span>
+          </td>
+          <!-- End quantity -->
+          <!--begin::Price=-->
+          <td class="text-center">{{ product.price }}$</td>
+          <!--end::Price=-->
+
+          <!--begin::Status=-->
+          <td class="text-center">
+            <!--begin::Badges-->
+            <div
+              [ngStyle]="{
+                'background-color':
+                  product.quantity > 0 ? '#28a745' : '#dc3545',
+                color: '#fff'
+              }"
+              class="badge badge-pill"
+            >
+              {{ product.quantity | stockStatus }}
+            </div>
+            <!--end::Badges-->
+          </td>
+          <!--end::Status=-->
+
+          <!-- start: ticket action -->
+          <td class="text-center">
+            <!--begin::Menu-->
+            <button
+              class="btn btn-outline-primary px-3"
+              (click)="openProductModal(product)"
+            >
+              Action
+            </button>
+
+            <!--end::Menu-->
+          </td>
+
+          <!-- end: ticket action -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
