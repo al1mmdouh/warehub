@@ -6,6 +6,8 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Services\AuthService;
 use Illuminate\Validation\ValidationException;
+use App\Notifications\RegisterNotification;
+
 
 class AuthController extends Controller
 {
@@ -23,6 +25,9 @@ class AuthController extends Controller
             $validated = $request->validated();
 
             $user = $this->authService->register($validated);
+
+            $user->notify(new RegisterNotification());
+            // $user->notify(new RegisterNotification());
 
             return response()->json($user, 201);
 

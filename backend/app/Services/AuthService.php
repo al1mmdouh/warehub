@@ -5,11 +5,18 @@ namespace App\Services;
 use App\Models\User;
 use Illuminate\Validation\ValidationException;
 
+
 class AuthService
 {
     public function register(array $validated): User
     {
-        return User::create($validated);
+         return User::create($validated);
+        // $user = User::create($$validated);
+        // $user->notify(new RegisterNotification());
+        // return $user;
+            // $user = User::create($validated);
+            
+            // return $user;   
     }
 
     public function authenticate(array $credentials): bool
