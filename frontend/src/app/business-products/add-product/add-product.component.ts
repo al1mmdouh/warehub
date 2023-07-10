@@ -55,7 +55,7 @@ export class AddProductComponent {
 
     this.warehouseService.getWarehouses().subscribe(
       (data)=>{
-        this.warehouses = data
+        this.warehouses = data.data
         console.log(this.warehouses);
       }
     )
@@ -64,9 +64,10 @@ export class AddProductComponent {
   // submit add form
   onSubmit() {
     //  create form data to be sent to api
+    this.addProductForm.value.warehouse_id = Number(this.addProductForm.value.warehouse_id)
     console.log(this.addProductForm.value);
     const business_id = this.auth.userBuisnessData.business_id;
-
+    console.log(this.auth.userBuisnessData.business_id      );
     const formdata = new FormData();
     formdata.append('weight', this.addProductForm.get('weight')?.value);
     formdata.append('price', this.addProductForm.get('price')?.value);
@@ -84,8 +85,9 @@ export class AddProductComponent {
     formdata.append('quantity', this.addProductForm.get('quantity')?.value);
     formdata.append('business_id', business_id);
     formdata.append('warehouse_id', this.addProductForm.get('warehouse_id')?.value);
-
-    if (this.addProductForm.valid) {
+      console.log(this.addProductForm.valid);
+   
+      console.log("hello");
       // Submit the form
       this.ProductService.AddProduct(formdata).subscribe(
         (res) => {
@@ -96,7 +98,7 @@ export class AddProductComponent {
           console.log(err);
         }
       );
-    }
+    
   }
 
   // add photo path to form
