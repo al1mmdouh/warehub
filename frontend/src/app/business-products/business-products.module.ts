@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductRoutingModule } from './business-products-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { StockStatusPipe } from '../pipes/stock-status.pipe';
-import { StatusBadgePipe } from '../pipes/status-badge.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -27,6 +27,7 @@ import { StatusBadgePipe } from '../pipes/status-badge.pipe';
     ReactiveFormsModule,
     ProductRoutingModule,
     HttpClientModule,
+    NgxPaginationModule,
   ],
   exports: [StockStatusPipe, AddProductComponent],
 })

@@ -18,7 +18,7 @@ class BusinessResource extends JsonResource
             'business_id' => $this->id,
             'business_name' => $this->business_name,
             'business_type' => $this->business_type,
-            'user' =>new UserResource($this->user)
+            'user' => new UserResource($this->user),
         ];
     }
 }

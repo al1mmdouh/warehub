@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
@@ -25,7 +26,9 @@ export class PaymentModalComponent {
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
     private orderService: OrderService,
-    private auth: AuthService
+    private auth: AuthService,
+
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -70,6 +73,8 @@ export class PaymentModalComponent {
   // closing modal
   closeModal() {
     this.activeModal.close();
+
+    this.router.navigate(['products/listing']);
   }
 
   // submit checkout
@@ -91,9 +96,5 @@ export class PaymentModalComponent {
     localStorage.removeItem('OrderItems');
 
     this.alertSubject.next(true);
-
-    setTimeout(() => {
-      location.replace('orders');
-    }, 2500);
   }
 }

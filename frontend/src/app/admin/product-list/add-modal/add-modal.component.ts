@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 import { ProductService } from 'src/app/services/product/product.service';
@@ -12,7 +13,7 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class AddModalComponent {
   alertSubject = new Subject<boolean>();
 
-  constructor(public activeModal: NgbActiveModal) {}
+  constructor(public activeModal: NgbActiveModal, private router: Router) {}
   ngOnInit() {
     // Success alert
 
@@ -22,13 +23,10 @@ export class AddModalComponent {
           this.alertSubject.next(false);
         }, 5000);
       }
-
-      if (!showAlert) {
-        location.replace('/products');
-      }
     });
   }
   closeModal() {
     this.activeModal.close();
+    this.router.navigate(['admin/products']);
   }
 }

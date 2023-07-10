@@ -14,7 +14,7 @@ export class AppComponent {
   constructor(private authService: AuthService, private router: Router) {}
   ngOnInit() {
     // Get role
-
+    console.log(this.authService.getAccessLevel());
     const token = localStorage.getItem('token')
       ? localStorage.getItem('token')
       : 0;

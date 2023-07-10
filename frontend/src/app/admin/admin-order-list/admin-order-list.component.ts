@@ -10,6 +10,8 @@ import { OrderService } from 'src/app/services/product/order.service';
 export class AdminOrderListComponent {
   data!: any;
   orders: any[] = [];
+  currentPage = 1; // start with the first page
+  itemsPerPage = 4; // show 5 items per page
 
   constructor(public orderService: OrderService) {}
 

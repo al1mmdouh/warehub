@@ -14,12 +14,12 @@
           class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
           id="menu"
         >
-          <li class="nav-item py-2">
+          <!-- <li class="nav-item py-2">
             <a routerLink="admin/home" class="nav-link align-middle px-0">
               <fa-icon [icon]="faHome" class="me-2"></fa-icon>
               <span class="ms-1 d-none d-sm-inline">Home</span>
             </a>
-          </li>
+          </li> -->
 
           <li class="nav-item py-2">
             <a [routerLink]="'admin/orders'" class="nav-link px-0 align-middle">
@@ -38,12 +38,12 @@
             >
           </li>
 
-          <li class="nav-item py-2">
+          <!-- <li class="nav-item py-2">
             <a href="#" class="nav-link px-0 align-middle">
               <fa-icon [icon]="faTickets" class="me-2"></fa-icon>
               <span class="ms-1 d-none d-sm-inline">Tickets</span>
             </a>
-          </li>
+          </li> -->
 
           <li class="nav-item py-2">
             <a href="#" class="nav-link px-0 align-middle">
@@ -54,8 +54,7 @@
         </ul>
         <hr />
         <div class="dropdown pb-4">
-          <a
-            routerLink="admin/home"
+          <div
             class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
             id="dropdownUser1"
             data-bs-toggle="dropdown"
@@ -69,8 +68,14 @@
               class="rounded-circle"
             />
             <span class="d-none d-sm-inline mx-1"></span>
-          </a>
-          <button (click)="signOut()">Logout</button>
+          </div>
+          <ul class="dropdown-menu px-0" aria-labelledby="dropdownMenuButton">
+            <li class="text-center py-2">
+              <button class="btn btn-outline-secondary" (click)="signOut()">
+                Sign out
+              </button>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

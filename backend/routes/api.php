@@ -17,6 +17,7 @@ use App\Http\Controllers\Product\UpdateProductController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Product\BusinessProductController;
+use App\Http\Controllers\StripePaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
