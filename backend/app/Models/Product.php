@@ -38,6 +38,11 @@ class Product extends Model implements HasMedia
     {
         return $this->belongsTo(Business::class);
     }
+    public function warehouse(): BelongsTo
+    {
+        return $this->belongsTo(Warehouse::class);
+    }
+
 
     public function orders(): BelongsToMany
     {
