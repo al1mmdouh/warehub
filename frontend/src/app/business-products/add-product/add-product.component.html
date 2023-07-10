@@ -36,7 +36,9 @@
       <label class="py-1" for="warehouseId">Choose warehouse:</label>
 
       <select name="cars" class="form-select" formControlName="warehouse_id">
-        <option value={{warehouse.id}} *ngFor="let warehouse of warehouses">{{warehouse.name}}</option>
+        <option value="{{ warehouse.id }}" *ngFor="let warehouse of warehouses">
+          {{ warehouse.name }}
+        </option>
       </select>
       <!-- Sku -->
       <div class="form-group col-6 my-4">
@@ -49,7 +51,7 @@
           formControlName="sku"
           required
         />
-        
+
         <div
           *ngIf="
             addProductForm.get('sku')?.invalid &&
