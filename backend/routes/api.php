@@ -54,7 +54,6 @@ Route::prefix('orders')->group(function () {
     Route::delete('/{order}', DeleteOrderController::class);
 });
 
-Route::get('/{business}', BusinessOrderController::class)->name('business.show');
 
 Route::post('/stripe', [StripePaymentController::class, 'stripePost']);
 
@@ -67,7 +66,7 @@ Route::post('logout', [AuthController::class, 'logout'])->middleware('auth');
 Route::post('business', [BusinessController::class, 'store']); //->middleware('auth')
 
 Route::get('business/{business}', [BusinessController::class, 'show']);
-Route::get('/{business}', BusinessOrderController::class)->name('business.show');
+Route::get('/businessorder/{business}', BusinessOrderController::class)->name('business.show');
 
 
 Route::prefix('warehouse')->group(function () {
