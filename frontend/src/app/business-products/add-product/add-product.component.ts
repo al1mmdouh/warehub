@@ -35,7 +35,7 @@ export class AddProductComponent {
     });
 
     this.addProductForm = this.fb.group({
-      weight: ['', [Validators.required, Validators.min(10)]],
+      weight: ['', [Validators.required]],
       description: [
         '',
         [
@@ -49,12 +49,8 @@ export class AddProductComponent {
       business_id: ['', [Validators.required]],
       name: ['', [Validators.required, Validators.minLength(3)]],
       image: ['', [Validators.required]],
-<<<<<<< HEAD
-      quantity: ['', [Validators.required]],
-      warehouse_id: ['', [Validators.required]]
-=======
       quantity: ['', [Validators.required, Validators.min(10)]],
->>>>>>> f328e131439028797442a1199646ca84eb17233c
+      warehouse_id: ['', [Validators.required]]
     });
 
     this.warehouseService.getWarehouses().subscribe(
