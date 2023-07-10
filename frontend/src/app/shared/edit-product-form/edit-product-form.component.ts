@@ -32,7 +32,7 @@ export class EditProductFormComponent {
     });
 
     this.editProductForm = this.fb.group({
-      weight: ['', [Validators.required]],
+      weight: ['', [Validators.required, Validators.min(10)]],
       description: [
         '',
         [
@@ -41,12 +41,12 @@ export class EditProductFormComponent {
           Validators.maxLength(250),
         ],
       ],
-      sku: ['', [Validators.required]],
-      price: ['', [Validators.required]],
-
-      name: ['', [Validators.required]],
+      sku: ['', [Validators.required, Validators.minLength(3)]],
+      price: ['', [Validators.required, Validators.min(10)]],
+      business_id: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
       image: ['', [Validators.required]],
-      quantity: ['', [Validators.required]],
+      quantity: ['', [Validators.required, Validators.min(10)]],
     });
   }
 
@@ -66,20 +66,17 @@ export class EditProductFormComponent {
     formdata.append('image', this.imageFile);
     formdata.append('quantity', this.editProductForm.get('quantity')?.value);
 
-    console.log(formdata);
-
-    this.ProductService.UpdateProduct(this.product.id, formdata).subscribe(
-      (res) => {
-        this.alertSubject.next(true);
-        console.log(res);
-        setTimeout(() => {
-          location.replace('products');
-        }, 2000);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    if (this.editProductForm.valid) {
+      this.ProductService.UpdateProduct(this.product.id, formdata).subscribe(
+        (res) => {
+          this.alertSubject.next(true);
+          console.log(res);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    }
   }
 
   // add photo path to form

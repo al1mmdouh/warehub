@@ -1,48 +1,98 @@
 <div class="container general">
-    <div class="row justify-content-center">
-      <div class="col-lg-6 col-md-8">
-        <div class="card mt-5">
-          <div class="card-header text-center">
-            <h4>Login</h4>
-          </div>
-          <div class="card-body">
-            <form id="login-form" [formGroup]="login" (ngSubmit)="submitLogin()" >
-              <div class="form-group">
-                <label for="username">Email</label>
-                <input type="text" id="username" name="username" class="form-control" required formControlName="email">
-                <div class="invalid-feedback">Please enter a valid username.</div>
-              </div>
-              <div 
-        class="form-text text-danger"
-        *ngIf="login.controls['email'].touched &&
-         login.controls['email'].invalid">
-         <span *ngIf= "login.controls['email'].errors?.['required']" >this fild is required</span>
-         <span *ngIf= "login.controls['email'].errors?.['minlength']" >This Feild has a Min Liegth</span>
-
-      </div>
-
-
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" class="form-control" required formControlName="password">
-                <div class="invalid-feedback">Please enter a valid password.</div>
-
-                <div 
-      class="form-text text-danger"
-      *ngIf="login.controls['password'].touched &&
-       login.controls['password'].invalid">
-       <span *ngIf= "login.controls['password'].errors?.['required']" >this fild is required</span>
-       <span *ngIf= "login.controls['password'].errors?.['minlength']" >This Fild has a Min Liegth</span>
-
-    </div>
-    <a class="reglink" routerLink="../registeration">I Don't Have Account..</a>
-
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="card mt-5">
+        <div class="card-header text-center">
+          <h4>Login</h4>
+        </div>
+        <div class="card-body">
+          <form id="login-form" [formGroup]="login" (ngSubmit)="submitLogin()">
+            <div class="form-group">
+              <label for="username">Email</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                class="form-control"
+                required
+                formControlName="email"
+              />
+              <div class="invalid-feedback">Please enter a valid username.</div>
             </div>
-            
-            <button  type="submit" class="btn btn-primary" [disabled]="login.invalid">Log In</button>
+            <div
+              *ngIf="
+                login.get('email')?.invalid &&
+                (login.get('email')?.dirty || login.get('email')?.touched)
+              "
+              class="text-danger"
+            >
+              <div
+                class="py-1"
+                *ngIf="login.get('email')?.errors?.['required']"
+              >
+                email is required
+              </div>
+              <div
+                class="py-1"
+                *ngIf="login.get('email')?.errors?.['minlength']"
+              >
+                Invalid must be more than 3 chars
+              </div>
+              <div class="py-1" *ngIf="login.get('email')?.errors?.['email']">
+                Invalid Email Format
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="form-control"
+                required
+                formControlName="password"
+              />
+              <div
+                *ngIf="
+                  login.get('password')?.invalid &&
+                  (login.get('password')?.dirty ||
+                    login.get('password')?.touched)
+                "
+                class="text-danger"
+              >
+                <div *ngIf="login.get('password')?.errors?.['required']">
+                  password is required
+                </div>
+                <div
+                  class="py-1"
+                  *ngIf="login.get('password')?.errors?.['minlength']"
+                >
+                  Invalid must be more than 7 chars
+                </div>
+                <div
+                  class="py-1"
+                  *ngIf="login.get('password')?.errors?.['pattern']"
+                >
+                  Password must contain at least one uppercase letter, one
+                  lowercase letter, one digit, and one special character
+                </div>
+              </div>
+              <a class="reglink py-1" routerLink="../registeration"
+                >I Don't Have Account..</a
+              >
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="login.invalid"
+            >
+              Log In
+            </button>
           </form>
-          </div>
         </div>
       </div>
     </div>
   </div>
+</div>

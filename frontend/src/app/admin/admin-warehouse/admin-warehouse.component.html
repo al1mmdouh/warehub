@@ -1,0 +1,80 @@
+<div class="card card-flush d-flex cutter">
+  <div class="d-flex align-items-end justify-content-end me-4 my-4">
+    <a routerLink="admin/warehouse/create" class="btn btn-primary">
+      add warehouse
+    </a>
+  </div>
+
+  <div class="card card-flush d-flex cutter">
+    <table class="table table-row-dashed align-middle">
+      <thead class="p-3">
+        <!--begin::Table row-->
+        <tr class="header-row">
+          <th [colSpan]="1" class="text-center px-4">Warehouse ID</th>
+          <th class="text-center">Name</th>
+          <th class="text-center">Total Capacity</th>
+
+          <th class="text-center">Available Capacity</th>
+
+          <th class="text-center">Shipping</th>
+          <th class="text-center">Owned by</th>
+          <th class="text-center">Address</th>
+        </tr>
+        <!--end::Table row-->
+      </thead>
+
+      <tbody class="fw-semibold p-3 text-gray-600">
+        <!--begin::Table row-->
+        <tr
+          class="p-4"
+          *ngFor="
+            let warehouse of warehouses
+              | paginate
+                : { itemsPerPage: itemsPerPage, currentPage: currentPage }
+          "
+        >
+          <td class="text-center">
+            <div class="fw-bold">{{ warehouse.id }}</div>
+          </td>
+
+          <td class="text-center">
+            <span class="fw-bold">{{ warehouse.name }}</span>
+          </td>
+
+          <td class="text-center">
+            <span class="fw-bold">{{ warehouse.capacity }}</span>
+          </td>
+
+          <td class="text-center">
+            <span class="fw-bold"> {{ warehouse.available_capacity }}</span>
+          </td>
+
+          <td class="text-center">
+            <span *ngIf="warehouse.shipping_available === 1" class="fw-bold">
+              Shipping Available</span
+            >
+            <span *ngIf="warehouse.shipping_available !== 1" class="fw-bold">
+              No Shipping</span
+            >
+          </td>
+
+          <!-- start: ticket action -->
+          <td class="text-center">
+            <span class="fw-bold"> {{ warehouse.business.user.name }}</span>
+          </td>
+          <td class="text-center">
+            <span class="fw-bold"> {{ warehouse.address }}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div
+      class="d-flex align-items-center justify-content-center mt-2"
+      *ngIf="warehouses.length > 0"
+    >
+      <pagination-controls
+        (pageChange)="currentPage = $event"
+      ></pagination-controls>
+    </div>
+  </div>
+</div>

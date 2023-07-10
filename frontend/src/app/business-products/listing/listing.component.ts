@@ -12,6 +12,9 @@ import { ProductModalComponent } from 'src/app/shared/product-modal/product-moda
 export class ListingComponent {
   modal: boolean = false;
   products!: any[];
+
+  currentPage = 1; // start with the first page
+  itemsPerPage = 5; // show 5 items per page
   constructor(
     private modalService: NgbModal,
     private productService: ProductService,

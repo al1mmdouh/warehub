@@ -22,74 +22,85 @@ export class LoginComponent {
     private router: Router
   ) {
     this.login = this.fb.group({
-      email: ['', [Validators.required, Validators.minLength(8)]],
-      password: ['', [Validators.required, Validators.minLength(7)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(
+            '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$'
+          ),
+        ],
+      ],
     });
   }
 
   submitLogin() {
-    this.authenticate
-      .login(this.login)
-      .pipe(
-        //updating user data after login
-        finalize(() => {
-          const token = localStorage.getItem('token')
-            ? localStorage.getItem('token')
-            : 0;
+    if (this.login.valid) {
+      this.authenticate
+        .login(this.login)
+        .pipe(
+          //updating user data after login
+          finalize(() => {
+            const token = localStorage.getItem('token')
+              ? localStorage.getItem('token')
+              : 0;
 
-          if (token) {
-            const payload: any = jwt_decode(token ? token : '');
-            const user_id = payload.user_id;
-            this.authenticate.getBuisness(user_id).subscribe((data: any) => {
-              console.log(data);
-              console.log(data.data.length);
+            if (token) {
+              const payload: any = jwt_decode(token ? token : '');
+              const user_id = payload.user_id;
+              this.authenticate.getBuisness(user_id).subscribe((data: any) => {
+                console.log(data);
+                console.log(data.data.length);
 
-              if (data.data[0].user.role == 1) {
-                console.log('accessed');
+                if (data.data[0].user.role == 1) {
+                  console.log('accessed');
 
-                location.replace('admin/home');
-                return;
-              }
+                  location.replace('admin/home');
+                  return;
+                }
 
-              if (data.data.length) {
-                let dataObj = {
-                  business_id: data.data[0].business_id
-                    ? data.data[0].business_id
-                    : 0,
-                  business_name: data.data[0].business_name
-                    ? data.data[0].business_name
-                    : 0,
-                  business_type: data.data[0].business_type
-                    ? data.data[0].business_type
-                    : 0,
-                  user_name: data.data[0].user.name,
-                  user_email: data.data[0].user.email,
-                  user_id: user_id,
-                };
-                //console.log(dataObj);
-                this.authenticate.changeUserBuisnessData(dataObj);
-                this.router.navigate(['/']);
-              } else {
-                let dataObj = {
-                  business_id: 'no business',
-                  business_name: 'no business',
-                  business_type: 'no business',
-                  user_name: 'no business',
-                  user_email: 'no business',
-                };
-                this.authenticate.changeUserBuisnessData(dataObj);
-                this.router.navigate(['/']);
-              }
-            });
-          }
-        })
-      )
-      //adding token to localstorage and decoting the user id
-      .subscribe((data: any) => {
-        localStorage.setItem('token', data['token']);
-        const token = localStorage.getItem('token');
-        const payload: any = jwt_decode(token ? token : '');
-        this.userId = payload.user_id;
-      });
+                if (data.data.length) {
+                  let dataObj = {
+                    business_id: data.data[0].business_id
+                      ? data.data[0].business_id
+                      : 0,
+                    business_name: data.data[0].business_name
+                      ? data.data[0].business_name
+                      : 0,
+                    business_type: data.data[0].business_type
+                      ? data.data[0].business_type
+                      : 0,
+                    user_name: data.data[0].user.name,
+                    user_email: data.data[0].user.email,
+                    user_id: user_id,
+                  };
+                  //console.log(dataObj);
+                  this.authenticate.changeUserBuisnessData(dataObj);
+                  location.replace('/');
+                } else {
+                  let dataObj = {
+                    business_id: 'no business',
+                    business_name: 'no business',
+                    business_type: 'no business',
+                    user_name: 'no business',
+                    user_email: 'no business',
+                  };
+                  this.authenticate.changeUserBuisnessData(dataObj);
+                  location.replace('/');
+                }
+              });
+            }
+          })
+        )
+        //adding token to localstorage and decoting the user id
+        .subscribe((data: any) => {
+          localStorage.setItem('token', data['token']);
+          const token = localStorage.getItem('token');
+          const payload: any = jwt_decode(token ? token : '');
+          this.userId = payload.user_id;
+        });
+    }
   }
 }

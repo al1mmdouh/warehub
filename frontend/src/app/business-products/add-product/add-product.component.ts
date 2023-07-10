@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product/product.service';
+import { WarehouseService } from 'src/app/services/warehouse.service';
 
 @Component({
   selector: 'app-add-product',
@@ -12,12 +14,15 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class AddProductComponent {
   addProductForm!: FormGroup;
   imageFile!: File;
+  warehouses: any[] =[]
 
   alertSubject = new Subject<boolean>();
   constructor(
     private fb: FormBuilder,
     private ProductService: ProductService,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router,
+    private warehouseService: WarehouseService
   ) {}
 
   ngOnInit(): void {
@@ -39,21 +44,30 @@ export class AddProductComponent {
           Validators.maxLength(250),
         ],
       ],
-      sku: ['', [Validators.required]],
-      price: ['', [Validators.required]],
+      sku: ['', [Validators.required, Validators.minLength(3)]],
+      price: ['', [Validators.required, Validators.min(10)]],
       business_id: ['', [Validators.required]],
-      name: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
       image: ['', [Validators.required]],
-      quantity: ['', [Validators.required]],
+      quantity: ['', [Validators.required, Validators.min(10)]],
+      warehouse_id: ['', [Validators.required]]
     });
+
+    this.warehouseService.getWarehouses().subscribe(
+      (data)=>{
+        this.warehouses = data.data
+        console.log(this.warehouses);
+      }
+    )
   }
 
   // submit add form
   onSubmit() {
     //  create form data to be sent to api
-
+    this.addProductForm.value.warehouse_id = Number(this.addProductForm.value.warehouse_id)
+    console.log(this.addProductForm.value);
     const business_id = this.auth.userBuisnessData.business_id;
-
+    console.log(this.auth.userBuisnessData.business_id      );
     const formdata = new FormData();
     formdata.append('weight', this.addProductForm.get('weight')?.value);
     formdata.append('price', this.addProductForm.get('price')?.value);
@@ -70,21 +84,21 @@ export class AddProductComponent {
     formdata.append('image', this.imageFile);
     formdata.append('quantity', this.addProductForm.get('quantity')?.value);
     formdata.append('business_id', business_id);
-
-    console.log(formdata);
-
-    this.ProductService.AddProduct(formdata).subscribe(
-      (res) => {
-        this.alertSubject.next(true);
-        console.log(res);
-        setTimeout(() => {
-          location.replace('products');
-        }, 2000);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    formdata.append('warehouse_id', this.addProductForm.get('warehouse_id')?.value);
+      console.log(this.addProductForm.valid);
+   
+      console.log("hello");
+      // Submit the form
+      this.ProductService.AddProduct(formdata).subscribe(
+        (res) => {
+          this.alertSubject.next(true);
+          console.log(res);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    
   }
 
   // add photo path to form

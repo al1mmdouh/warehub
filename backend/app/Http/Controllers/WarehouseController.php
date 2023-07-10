@@ -18,13 +18,13 @@ class WarehouseController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function getUserWarehouses($userId)
+    public function getUserWarehouses($userId)
     {
         $user = User::findOrFail($userId);
         $warehouses = $user->Business()->with('warehouse')->get()->pluck('warehouse')->flatten();
         return WarehouseResource::collection($warehouses);
     }
-    
+
     public function index()
     {
         // $warehouse = Warehouse::all();
@@ -36,7 +36,8 @@ class WarehouseController extends Controller
 
         $warehouses = Warehouse::with('Business')->get();
         return WarehouseResource::collection($warehouses);
-        
+
+
     }
 
     /**
@@ -58,15 +59,15 @@ class WarehouseController extends Controller
     public function store(StoreWarehouseRequest $request)
     {
         $warehouse = new Warehouse();
-       $warehouse->name= $request->name;
-       $warehouse->address= $request->address;
-       $warehouse->capacity= $request->capacity;
-       $warehouse->available_capacity= $request->available_capacity;
-       $warehouse->shipping_available= $request->shipping_available;
-       $warehouse->service_fee= $request->service_fee;
-       $warehouse->earnings= $request->earnings;
-       $warehouse->warehouse_type= $request->warehouse_type;
-       $warehouse->business_id = $request->business_id;
+        $warehouse->name = $request->name;
+        $warehouse->address = $request->address;
+        $warehouse->capacity = $request->capacity;
+        $warehouse->available_capacity = $request->available_capacity;
+        $warehouse->shipping_available = $request->shipping_available;
+        $warehouse->service_fee = $request->service_fee;
+        $warehouse->earnings = $request->earnings;
+        $warehouse->warehouse_type = $request->warehouse_type;
+        $warehouse->business_id = $request->business_id;
         $warehouse->save();
         return response()->json($warehouse);
     }
@@ -106,16 +107,16 @@ class WarehouseController extends Controller
     public function update(UpdateWarehouseRequest $request, $id)
     {
         $warehouse = Warehouse::findorfail($id);
-        $warehouse->name= $request->name;
-        $warehouse->address= $request->address;
-        $warehouse->capacity= $request->capacity;
-        $warehouse->available_capacity= $request->available_capacity;
-        $warehouse->shipping_available= $request->shipping_available;
-        $warehouse->service_fee= $request->service_fee;
-        $warehouse->earnings= $request->earnings;
-        $warehouse->warehouse_type= $request->warehouse_type;
-         $warehouse->save();
-         return response()->json($warehouse);
+        $warehouse->name = $request->name;
+        $warehouse->address = $request->address;
+        $warehouse->capacity = $request->capacity;
+        $warehouse->available_capacity = $request->available_capacity;
+        $warehouse->shipping_available = $request->shipping_available;
+        $warehouse->service_fee = $request->service_fee;
+        $warehouse->earnings = $request->earnings;
+        $warehouse->warehouse_type = $request->warehouse_type;
+        $warehouse->save();
+        return response()->json($warehouse);
     }
 
     /**

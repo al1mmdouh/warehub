@@ -25,7 +25,7 @@
 
         <th class="text-center">Status</th>
 
-        <th class="text-center">Created At</th>
+        <th class="text-center">Shipping Company</th>
         <th class="text-center">Actions</th>
       </tr>
       <!--end::Table row-->
@@ -33,9 +33,17 @@
 
     <tbody class="fw-semibold p-3 text-gray-600">
       <!--begin::Table row-->
-      <tr *ngFor="let order of orders">
+      <tr
+        *ngFor="
+          let order of orders
+            | paginate
+              : { itemsPerPage: itemsPerPage, currentPage: currentPage }
+        "
+      >
         <td class="text-center">
-          <span class="fw-bold">{{ order.order_id }}</span>
+          <a [routerLink]="['/admin/orders', order.order_id]" class="fw-bold">{{
+            order.order_id
+          }}</a>
         </td>
 
         <td class="text-center">
@@ -51,7 +59,7 @@
         </td>
 
         <td class="text-center">
-          <span class="fw-bold">{{ order.shipping_data.created_at }}</span>
+          <span class="fw-bold">{{ order.shipping_data.name }}</span>
         </td>
 
         <td class="text-center">
@@ -110,4 +118,12 @@
       </tr>
     </tbody>
   </table>
+  <div
+    class="d-flex align-items-center justify-content-center mt-2"
+    *ngIf="orders.length > 0"
+  >
+    <pagination-controls
+      (pageChange)="currentPage = $event"
+    ></pagination-controls>
+  </div>
 </div>

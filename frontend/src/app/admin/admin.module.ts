@@ -13,13 +13,17 @@ import { SharedModule } from '../shared/shared.module';
 import { AdminOrderListComponent } from './admin-order-list/admin-order-list.component';
 import { StatusBadgePipe } from '../pipes/status-badge.pipe';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { AdminWarehouseComponent } from './admin-warehouse/admin-warehouse.component';
+import { WarehouseRegisterComponent } from '../warehouse/warehouse-register/warehouse-register.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: 'admin/products', component: ProductListComponent },
   { path: 'admin/orders', component: AdminOrderListComponent },
   { path: 'admin/orders/:id', component: OrderDetailsComponent },
-  { path: 'admin/home', component: ProductListComponent },
+  { path: 'admin/warehouse', component: AdminWarehouseComponent },
+  { path: 'admin/warehouse/create', component: WarehouseRegisterComponent },
 ];
 @NgModule({
   declarations: [
@@ -30,6 +34,7 @@ const routes: Routes = [
     StatusBadgePipe,
     AdminOrderListComponent,
     OrderDetailsComponent,
+    AdminWarehouseComponent,
   ],
   imports: [
     CommonModule,
@@ -38,6 +43,7 @@ const routes: Routes = [
     FormsModule,
     SharedModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
 
     RouterModule.forChild(routes),
   ],

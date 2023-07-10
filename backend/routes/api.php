@@ -17,6 +17,7 @@ use App\Http\Controllers\Product\UpdateProductController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Product\BusinessProductController;
+use App\Http\Controllers\StripePaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -53,7 +54,6 @@ Route::prefix('orders')->group(function () {
     Route::delete('/{order}', DeleteOrderController::class);
 });
 
-Route::get('/{business}', BusinessOrderController::class)->name('business.show');
 
 Route::post('/stripe', [StripePaymentController::class, 'stripePost']);
 
@@ -66,7 +66,7 @@ Route::post('logout', [AuthController::class, 'logout'])->middleware('auth');
 Route::post('business', [BusinessController::class, 'store']); //->middleware('auth')
 
 Route::get('business/{business}', [BusinessController::class, 'show']);
-Route::get('/{business}', BusinessOrderController::class)->name('business.show');
+Route::get('/businessorder/{business}', BusinessOrderController::class)->name('business.show');
 
 
 Route::prefix('warehouse')->group(function () {
