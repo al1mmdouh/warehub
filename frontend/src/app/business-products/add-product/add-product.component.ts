@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product/product.service';
+import { WarehouseService } from 'src/app/services/warehouse.service';
 
 @Component({
   selector: 'app-add-product',
@@ -13,13 +14,15 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class AddProductComponent {
   addProductForm!: FormGroup;
   imageFile!: File;
+  warehouses: any[] =[]
 
   alertSubject = new Subject<boolean>();
   constructor(
     private fb: FormBuilder,
     private ProductService: ProductService,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private warehouseService: WarehouseService
   ) {}
 
   ngOnInit(): void {
@@ -47,13 +50,21 @@ export class AddProductComponent {
       name: ['', [Validators.required]],
       image: ['', [Validators.required]],
       quantity: ['', [Validators.required]],
+      warehouseId: ['', [Validators.required]]
     });
+
+    this.warehouseService.getWarehouses().subscribe(
+      (data)=>{
+        this.warehouses = data
+        console.log(this.warehouses);
+      }
+    )
   }
 
   // submit add form
   onSubmit() {
     //  create form data to be sent to api
-
+    console.log(this.addProductForm.value);
     const business_id = this.auth.userBuisnessData.business_id;
 
     const formdata = new FormData();

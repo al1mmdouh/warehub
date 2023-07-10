@@ -18,10 +18,11 @@ export class WarehouseService {
     //owner name and email static must be changed
     .pipe(
       map(
-        (data)=> data.map(
-          raw =>{
-            let warehouse: Warehouse =
+        (data: any)=> data.data.map(
+          (          raw: { address: any; available_capacity: any; earnings: any; service_fee: any; warehouse_type: any; name: any; capacity: any; id:any }) =>{
+            let warehouse: any =
             {
+              id: raw.id,
               address: raw.address,
               availableCapacity: raw.available_capacity,
               earning: raw.earnings,
