@@ -19,18 +19,32 @@ export class RegistrationComponent {
   ) {}
   ngOnInit() {
     this.registeration = this.fb.group({
-      name: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      email: ['', [Validators.required, Validators.minLength(8)]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(
+            '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$'
+          ),
+        ],
+      ],
+      email: [
+        '',
+        [Validators.required, Validators.minLength(8), Validators.email],
+      ],
       number: ['', [Validators.required, Validators.minLength(10)]],
       address: ['', [Validators.required, Validators.minLength(10)]],
     });
   }
 
   submitregisteration() {
-    this.authenticate.register(this.registeration).subscribe((data) => {
-      console.log(data);
-      this.router.navigate(['/login-Page']);
-    });
+    if (this.registeration.valid) {
+      this.authenticate.register(this.registeration).subscribe((data) => {
+        console.log(data);
+        this.router.navigate(['/login-Page']);
+      });
+    }
   }
 }

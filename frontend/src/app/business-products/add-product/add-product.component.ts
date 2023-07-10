@@ -35,7 +35,7 @@ export class AddProductComponent {
     });
 
     this.addProductForm = this.fb.group({
-      weight: ['', [Validators.required]],
+      weight: ['', [Validators.required, Validators.min(10)]],
       description: [
         '',
         [
@@ -44,13 +44,17 @@ export class AddProductComponent {
           Validators.maxLength(250),
         ],
       ],
-      sku: ['', [Validators.required]],
-      price: ['', [Validators.required]],
+      sku: ['', [Validators.required, Validators.minLength(3)]],
+      price: ['', [Validators.required, Validators.min(10)]],
       business_id: ['', [Validators.required]],
-      name: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
       image: ['', [Validators.required]],
+<<<<<<< HEAD
       quantity: ['', [Validators.required]],
       warehouse_id: ['', [Validators.required]]
+=======
+      quantity: ['', [Validators.required, Validators.min(10)]],
+>>>>>>> f328e131439028797442a1199646ca84eb17233c
     });
 
     this.warehouseService.getWarehouses().subscribe(
@@ -85,17 +89,18 @@ export class AddProductComponent {
     formdata.append('business_id', business_id);
     formdata.append('warehouse_id', this.addProductForm.get('warehouse_id')?.value);
 
-    console.log(formdata);
-
-    this.ProductService.AddProduct(formdata).subscribe(
-      (res) => {
-        this.alertSubject.next(true);
-        console.log(res);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    if (this.addProductForm.valid) {
+      // Submit the form
+      this.ProductService.AddProduct(formdata).subscribe(
+        (res) => {
+          this.alertSubject.next(true);
+          console.log(res);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    }
   }
 
   // add photo path to form

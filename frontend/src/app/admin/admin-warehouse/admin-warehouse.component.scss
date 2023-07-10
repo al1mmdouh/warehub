@@ -1,0 +1,39 @@
+a {
+    transition: color .2s ease;
+    color: #009ef7;
+}
+.card-flush {
+    border: 0;
+   
+    background-color: #FFFFFF;
+}
+
+.header-row {
+   
+
+    --bs-table-color: #B5B5C3;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.table-custom {
+    
+    border: 0.5px solid  #B5B5C3  ;
+
+}
+.product-name {
+    color: #3F4254;
+    text-decoration: none;
+
+}
+.product-name:hover {
+    color: #009ef7;
+}
+
+.cutter {
+    margin-top: 200px;
+     margin-bottom: 20px; 
+     margin-right: 55px;
+
+     height: 75vh;
+}
