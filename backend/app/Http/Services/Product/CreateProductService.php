@@ -19,7 +19,8 @@ class CreateProductService
             'price' => $request->price,
             'weight' => $request->weight,
             'image' => $request->file('image'),
-            'business_id' => $request->business_id
+            'business_id' => $request->business_id,
+            'warehouse_id' => $request->warehouse_id
         ]);
         return ProductResource::make($product);
     }
