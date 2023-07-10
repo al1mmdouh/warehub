@@ -34,10 +34,10 @@ class WarehouseController extends Controller
         // $warehouse = Warehouse::with('Business')->get();
         // return new WarehouseResource($warehouse);
 
-        // $warehouses = Warehouse::with('Business')->get();
-        // return WarehouseResource::collection($warehouses);
+        $warehouses = Warehouse::with('Business')->get();
+        return WarehouseResource::collection($warehouses);
 
-        return 'hello';
+
     }
 
     /**
