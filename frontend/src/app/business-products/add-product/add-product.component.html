@@ -18,24 +18,12 @@
         />
         <label class="py-1" for="warehouseId">Choose warehouse:</label>
 
-        <select name="cars"  class="form-select" formControlName="warehouse_id">
-          <option value={{+warehouse.id}} *ngFor="let warehouse of warehouses">{{warehouse.warehouseName}}</option>
-          
+        <select name="cars" class="form-select" formControlName="warehouse_id">
+          <option value="{{+warehouse.id}}" *ngFor="let warehouse of warehouses">{{warehouse.warehouseName}}</option>
         </select>
-        <div
-          *ngIf="
-            addProductForm.get('name')?.invalid &&
-            (addProductForm.get('name')?.dirty ||
-              addProductForm.get('name')?.touched)
-          "
-          class="text-danger"
-        >
-          <div *ngIf="addProductForm.get('name')?.errors?.['required']">
-            name is required
-          </div>
-          <div *ngIf="addProductForm.get('name')?.errors?.['minlength']">
-            Invalid must be more than 3 chars
-          </div>
+        
+        <div *ngIf="addProductForm.controls['name'].errors && addProductForm.controls['name'].touched">
+          <span *ngIf="addProductForm.controls['name'].errors?.['required']!==undefined" class="text-danger">Name is required</span>
         </div>
       </div>
 
@@ -50,51 +38,18 @@
           formControlName="sku"
           required
         />
-        <div
-          *ngIf="
-            addProductForm.get('sku')?.invalid &&
-            (addProductForm.get('sku')?.dirty ||
-              addProductForm.get('sku')?.touched)
-          "
-          class="text-danger"
-        >
-          <div *ngIf="addProductForm.get('sku')?.errors?.['required']">
-            sku is required
-          </div>
-          <div *ngIf="addProductForm.get('sku')?.errors?.['minlength']">
-            Invalid must be more than 3 chars
-          </div>
+        <div *ngIf="addProductForm.controls['sku'].errors && addProductForm.controls['sku'].touched">
+          <span *ngIf="addProductForm.controls['sku'].errors?.['required']!==undefined" class="text-danger">SKU is required</span>
         </div>
       </div>
     </div>
 
     <div class="form-group mb-3">
       <!-- Description -->
-      <label class="" for="description" class="py-1">Description:</label>
-      <textarea
-        class="form-control py-2"
-        id="description"
-        placeholder="Enter product description"
-        formControlName="description"
-        required
-      ></textarea>
-      <div
-        *ngIf="
-          addProductForm.get('description')?.invalid &&
-          (addProductForm.get('description')?.dirty ||
-            addProductForm.get('description')?.touched)
-        "
-        class="text-danger"
-      >
-        <div *ngIf="addProductForm.get('description')?.errors?.['required']">
-          description is required
-        </div>
-        <div *ngIf="addProductForm.get('description')?.errors?.['minlength']">
-          Invalid must be more than 8 chars
-        </div>
-        <div *ngIf="addProductForm.get('description')?.errors?.['maxlength']">
-          Invalid must be less than 250 chars
-        </div>
+      <label class="py-1" for="description">Description:</label>
+      <textarea class="form-control py-2" id="description" placeholder="Enter product description" formControlName="description" required></textarea>
+      <div *ngIf="addProductForm.controls['description'].errors && addProductForm.controls['description'].touched">
+        <span *ngIf="addProductForm.controls['description'].errors?.['required']!==undefined" class="text-danger">Description is required</span>
       </div>
     </div>
 
@@ -107,29 +62,17 @@
           class="form-control"
           id="weight"
           formControlName="weight"
-          placeholder="please put your weight in gm"
+          placeholder="Please put your weight in kg"
           required
         />
-        <div
-          *ngIf="
-            addProductForm.get('weight')?.invalid &&
-            (addProductForm.get('weight')?.dirty ||
-              addProductForm.get('weight')?.touched)
-          "
-          class="text-danger"
-        >
-          <div *ngIf="addProductForm.get('weight')?.errors?.['required']">
-            weight is required
-          </div>
-          <div *ngIf="addProductForm.get('weight')?.errors?.['min']">
-            Invalid must be more than 10 gm
-          </div>
+        <div *ngIf="addProductForm.controls['weight'].errors && addProductForm.controls['weight'].touched">
+          <span *ngIf="addProductForm.controls['weight'].errors?.['required']!==undefined" class="text-danger">Weight is required</span>
         </div>
       </div>
     </div>
 
     <div class="row">
-      <!-- price -->
+      <!-- Price -->
       <div class="form-group mb-3 col-6">
         <label for="price">Price:</label>
         <input
@@ -141,20 +84,8 @@
           required
         />
 
-        <div
-          *ngIf="
-            addProductForm.get('price')?.invalid &&
-            (addProductForm.get('price')?.dirty ||
-              addProductForm.get('price')?.touched)
-          "
-          class="text-danger"
-        >
-          <div *ngIf="addProductForm.get('price')?.errors?.['required']">
-            Price is required
-          </div>
-          <div *ngIf="addProductForm.get('price')?.errors?.['min']">
-            Invalid must be more than 10 Dollars
-          </div>
+        <div *ngIf="addProductForm.controls['price'].errors && addProductForm.controls['price'].touched">
+          <span *ngIf="addProductForm.controls['price'].errors?.['required']!==undefined" class="text-danger">Price is required</span>
         </div>
       </div>
       <!-- Image -->
@@ -164,26 +95,18 @@
           type="file"
           class="form-control"
           (change)="addPhoto($event)"
-          placeholder="Enter product Image"
+          placeholder="Enter product image"
         />
 
-        <div
-          *ngIf="
-            addProductForm.controls['image'].errors &&
-            addProductForm.controls['image'].touched
-          "
-        >
-          <span
-            *ngIf="addProductForm.controls['image'].errors?.['required']!==undefined"
-            class="text-danger"
-            >Image is required</span
-          >
+        <div *ngIf="addProductForm.controls['image'].errors && addProductForm.controls['image'].touched">
+          <span *ngIf="addProductForm.controls['image'].errors?.['required']!==undefined" class="text-danger">Image is required</span>
         </div>
       </div>
     </div>
-    <!-- price -->
+
     <div class="form-group mb-3 col-6">
-      <label for="price">Quantity:</label>
+      <!-- Quantity -->
+      <label for="quantity">Quantity:</label>
       <input
         type="number"
         class="form-control"
@@ -193,20 +116,8 @@
         required
       />
 
-      <div
-        *ngIf="
-          addProductForm.get('quantity')?.invalid &&
-          (addProductForm.get('quantity')?.dirty ||
-            addProductForm.get('quantity')?.touched)
-        "
-        class="text-danger"
-      >
-        <div *ngIf="addProductForm.get('quantity')?.errors?.['required']">
-          Quantity is required
-        </div>
-        <div *ngIf="addProductForm.get('quantity')?.errors?.['min']">
-          Invalid must be more than 10 gm
-        </div>
+      <div *ngIf="addProductForm.controls['quantity'].errors && addProductForm.controls['quantity'].touched">
+        <span *ngIf="addProductForm.controls['quantity'].errors?.['required']!==undefined" class="text-danger">Quantity is required</span>
       </div>
     </div>
 
