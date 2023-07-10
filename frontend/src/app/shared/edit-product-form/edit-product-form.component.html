@@ -14,21 +14,22 @@
           id="name"
           placeholder="Enter product name"
           formControlName="name"
-          [(ngModel)]="product.name"
           required
         />
-
         <div
           *ngIf="
-            editProductForm.controls['name'].errors &&
-            editProductForm.controls['name'].touched
+            editProductForm.get('name')?.invalid &&
+            (editProductForm.get('name')?.dirty ||
+              editProductForm.get('name')?.touched)
           "
+          class="text-danger"
         >
-          <span
-            *ngIf="editProductForm.controls['name'].errors?.['required']!==undefined"
-            class="text-danger"
-            >Name is required</span
-          >
+          <div *ngIf="editProductForm.get('name')?.errors?.['required']">
+            Name is required
+          </div>
+          <div *ngIf="editProductForm.get('name')?.errors?.['minlength']">
+            Invalid must be more than 3 chars
+          </div>
         </div>
       </div>
 
@@ -36,25 +37,27 @@
       <div class="form-group col-6 my-4">
         <label class="py-1" for="sku">SKU:</label>
         <input
-          type="number"
+          type="text"
           class="form-control"
           id="sku"
           placeholder="Enter product sku"
           formControlName="sku"
-          [(ngModel)]="product.sku"
           required
         />
         <div
           *ngIf="
-            editProductForm.controls['sku'].errors &&
-            editProductForm.controls['sku'].touched
+            editProductForm.get('sku')?.invalid &&
+            (editProductForm.get('sku')?.dirty ||
+              editProductForm.get('sku')?.touched)
           "
+          class="text-danger"
         >
-          <span
-            *ngIf="editProductForm.controls['sku'].errors?.['required']!==undefined"
-            class="text-danger"
-            >SKU is required</span
-          >
+          <div *ngIf="editProductForm.get('sku')?.errors?.['required']">
+            sku is required
+          </div>
+          <div *ngIf="editProductForm.get('sku')?.errors?.['minlength']">
+            Invalid must be more than 3 chars
+          </div>
         </div>
       </div>
     </div>
@@ -68,49 +71,28 @@
         placeholder="Enter product description"
         formControlName="description"
         required
-        [(ngModel)]="product.description"
       ></textarea>
       <div
         *ngIf="
-          editProductForm.controls['description'].errors &&
-          editProductForm.controls['description'].touched
+          editProductForm.get('description')?.invalid &&
+          (editProductForm.get('description')?.dirty ||
+            editProductForm.get('description')?.touched)
         "
+        class="text-danger"
       >
-        <span
-          *ngIf="editProductForm.controls['description'].errors?.['required']!==undefined"
-          class="text-danger"
-          >Description is required</span
-        >
+        <div *ngIf="editProductForm.get('description')?.errors?.['required']">
+          description is required
+        </div>
+        <div *ngIf="editProductForm.get('description')?.errors?.['minlength']">
+          Invalid must be more than 8 chars
+        </div>
+        <div *ngIf="editProductForm.get('description')?.errors?.['maxlength']">
+          Invalid must be less than 250 chars
+        </div>
       </div>
     </div>
 
     <div class="row">
-      <!-- Quantity -->
-      <div class="form-group mb-3 col-6">
-        <label class="py-1" for="price">Quantity:</label>
-        <input
-          type="number"
-          class="form-control"
-          id="quantity"
-          formControlName="quantity"
-          placeholder="Enter product quantity"
-          [(ngModel)]="product.quantity"
-          required
-        />
-
-        <div
-          *ngIf="
-            editProductForm.controls['quantity'].errors &&
-            editProductForm.controls['quantity'].touched
-          "
-        >
-          <span
-            *ngIf="editProductForm.controls['quantity'].errors?.['required']!==undefined"
-            class="text-danger"
-            >Quantity is required</span
-          >
-        </div>
-      </div>
       <!-- Weight -->
       <div class="form-group col-6 mb-3">
         <label class="py-1" for="weight">Weight:</label>
@@ -119,21 +101,23 @@
           class="form-control"
           id="weight"
           formControlName="weight"
-          placeholder="please put your weight in kg"
-          [(ngModel)]="product.weight"
+          placeholder="please put your weight in gm"
           required
         />
         <div
           *ngIf="
-            editProductForm.controls['weight'].errors &&
-            editProductForm.controls['weight'].touched
+            editProductForm.get('weight')?.invalid &&
+            (editProductForm.get('weight')?.dirty ||
+              editProductForm.get('weight')?.touched)
           "
+          class="text-danger"
         >
-          <span
-            *ngIf="editProductForm.controls['weight'].errors?.['required']!==undefined"
-            class="text-danger"
-            >Weight is required</span
-          >
+          <div *ngIf="editProductForm.get('weight')?.errors?.['required']">
+            weight is required
+          </div>
+          <div *ngIf="editProductForm.get('weight')?.errors?.['min']">
+            Invalid must be more than 10 gm
+          </div>
         </div>
       </div>
     </div>
@@ -141,28 +125,30 @@
     <div class="row">
       <!-- price -->
       <div class="form-group mb-3 col-6">
-        <label class="py-1" for="price">Price:</label>
+        <label for="price">Price:</label>
         <input
           type="number"
           class="form-control"
           id="price"
           formControlName="price"
           placeholder="Enter product price"
-          [(ngModel)]="product.price"
           required
         />
 
         <div
           *ngIf="
-            editProductForm.controls['price'].errors &&
-            editProductForm.controls['price'].touched
+            editProductForm.get('price')?.invalid &&
+            (editProductForm.get('price')?.dirty ||
+              editProductForm.get('price')?.touched)
           "
+          class="text-danger"
         >
-          <span
-            *ngIf="editProductForm.controls['price'].errors?.['required']!==undefined"
-            class="text-danger"
-            >Price is required</span
-          >
+          <div *ngIf="editProductForm.get('price')?.errors?.['required']">
+            Price is required
+          </div>
+          <div *ngIf="editProductForm.get('price')?.errors?.['min']">
+            Invalid must be more than 10 Dollars
+          </div>
         </div>
       </div>
       <!-- Image -->
@@ -190,7 +176,33 @@
       </div>
     </div>
     <!-- price -->
-    <div class="form-group mb-3 col-6"></div>
+    <div class="form-group mb-3 col-6">
+      <label for="price">Quantity:</label>
+      <input
+        type="number"
+        class="form-control"
+        id="quantity"
+        formControlName="quantity"
+        placeholder="Enter product quantity"
+        required
+      />
+
+      <div
+        *ngIf="
+          editProductForm.get('quantity')?.invalid &&
+          (editProductForm.get('quantity')?.dirty ||
+            editProductForm.get('quantity')?.touched)
+        "
+        class="text-danger"
+      >
+        <div *ngIf="editProductForm.get('quantity')?.errors?.['required']">
+          Quantity is required
+        </div>
+        <div *ngIf="editProductForm.get('quantity')?.errors?.['min']">
+          Invalid must be more than 10 gm
+        </div>
+      </div>
+    </div>
 
     <button type="submit" class="btn btn-primary mx-auto">Submit</button>
   </div>

@@ -13,6 +13,23 @@ export class AdminOrderListComponent {
   currentPage = 1; // start with the first page
   itemsPerPage = 4; // show 5 items per page
 
+  selectedStatus: string = '';
+  filteredOrders: any[] = [];
+
+  filterOrders() {
+    console.log(this.selectedStatus);
+
+    if (!this.selectedStatus) {
+      this.filteredOrders = this.orders;
+    } else {
+      this.filteredOrders = this.orders.filter((order) => {
+        console.log(order, this.selectedStatus);
+
+        order.status === this.selectedStatus;
+      });
+    }
+  }
+
   constructor(public orderService: OrderService) {}
 
   ngOnInit() {

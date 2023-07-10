@@ -6,80 +6,162 @@
           <h4>Register</h4>
         </div>
         <div class="card-body">
-<form  [formGroup]="registeration" (ngSubmit)="submitregisteration()">
-  <!------------------------------------------------------------------------------------------------------------------------------>
-    <div class="input-group">
-        <label for="firstname" class="input-group-text" >Name</label>
-        <input type="text" aria-label="First name" class="form-control" formControlName="name">
-      </div>
-      <div 
-        class="form-text text-danger"
-        *ngIf="registeration.controls['name'].touched &&
-         registeration.controls['name'].invalid">
-         <span *ngIf= "registeration.controls['name'].errors?.['required']" >this fild is required</span>
+          <form [formGroup]="registeration" (ngSubmit)="submitregisteration()">
+            <!------------------------------------------------------------------------------------------------------------------------------>
+            <div class="input-group">
+              <label for="firstname" class="input-group-text">Name</label>
+              <input
+                type="text"
+                aria-label="First name"
+                class="form-control"
+                formControlName="name"
+              />
+            </div>
+            <div
+              *ngIf="
+                registeration.get('name')?.invalid &&
+                (registeration.get('name')?.dirty ||
+                  registeration.get('name')?.touched)
+              "
+              class="text-danger"
+            >
+              <div *ngIf="registeration.get('name')?.errors?.['required']">
+                Name is required
+              </div>
+              <div *ngIf="registeration.get('name')?.errors?.['minlength']">
+                Invalid must be more than 3 chars
+              </div>
+            </div>
+            <br />
+            <!-- ------------------------------------------------------------------------------------------------------ -->
+            <div class="input-group">
+              <label for="email" class="input-group-text">
+                Email Address
+              </label>
+              <input
+                type="email"
+                aria-label="Email"
+                class="form-control"
+                formControlName="email"
+              />
+            </div>
+
+            <div
+              *ngIf="
+                registeration.get('email')?.invalid &&
+                (registeration.get('email')?.dirty ||
+                  registeration.get('email')?.touched)
+              "
+              class="text-danger"
+            >
+              <div *ngIf="registeration.get('email')?.errors?.['required']">
+                email is required
+              </div>
+              <div *ngIf="registeration.get('email')?.errors?.['email']">
+                Invalid email format
+              </div>
+            </div>
+            <!-- ---------------------------------------------------------------------------------------------------------- -->
+            <br />
+            <div class="input-group">
+              <label for="number" class="input-group-text">
+                phone Number
+              </label>
+              <input
+                type="text"
+                aria-label="number"
+                class="form-control"
+                formControlName="number"
+              />
+            </div>
+            <div
+              *ngIf="
+                registeration.get('number')?.invalid &&
+                (registeration.get('number')?.dirty ||
+                  registeration.get('number')?.touched)
+              "
+              class="text-danger"
+            >
+              <div *ngIf="registeration.get('number')?.errors?.['required']">
+                number is required
+              </div>
+              <div *ngIf="registeration.get('number')?.errors?.['minlength']">
+                Number must be more than 10 characters
+              </div>
+            </div>
+            <!-- ------------------------------------------------------------------------------------- -->
+            <br />
+            <div class="input-group">
+              <label for="password" class="input-group-text"> password </label>
+              <input
+                type="password"
+                aria-label="password"
+                class="form-control"
+                formControlName="password"
+              />
+            </div>
+            <div
+              *ngIf="
+                registeration.get('password')?.invalid &&
+                (registeration.get('password')?.dirty ||
+                  registeration.get('password')?.touched)
+              "
+              class="text-danger"
+            >
+              <div *ngIf="registeration.get('password')?.errors?.['required']">
+                password is required
+              </div>
+              <div
+                class="py-1"
+                *ngIf="registeration.get('password')?.errors?.['minlength']"
+              >
+                Invalid must be more than 7 chars
+              </div>
+              <div
+                class="py-1"
+                *ngIf="registeration.get('password')?.errors?.['pattern']"
+              >
+                Password must contain at least one uppercase letter, one
+                lowercase letter, one digit, and one special character
+              </div>
+            </div>
+            <!-- ------------------------------------------------------------------------------------------ -->
+            <br />
+            <div class="input-group">
+              <label for="address" class="input-group-text"> Address </label>
+              <input
+                type="text"
+                aria-label="address"
+                class="form-control"
+                formControlName="address"
+              />
+            </div>
+            <div
+              *ngIf="
+                registeration.get('address')?.invalid &&
+                (registeration.get('address')?.dirty ||
+                  registeration.get('address')?.touched)
+              "
+              class="text-danger"
+            >
+              <div *ngIf="registeration.get('address')?.errors?.['required']">
+                address is required
+              </div>
+              <div *ngIf="registeration.get('address')?.errors?.['minlength']">
+                address must be more than 10 characters
+              </div>
+            </div>
+            <br />
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="registeration.invalid"
+            >
+              Submit
+            </button>
+          </form>
         </div>
-      <br>
-      <!-- ------------------------------------------------------------------------------------------------------ -->
-      <div class="input-group">
-        <label for="email" class="input-group-text"> Email Address </label>
-        <input  type="email" aria-label="Email" class="form-control" formControlName="email">
       </div>
-      
-      <div 
-        class="form-text text-danger"
-        *ngIf="registeration.controls['email'].touched &&
-         registeration.controls['email'].invalid">
-         <span *ngIf= "registeration.controls['email'].errors?.['required']" >this fild is required</span>
-         <span *ngIf= "registeration.controls['email'].errors?.['minlength']" >This Feild has a Min Liegth</span>
-
-      </div>
-      <!-- ---------------------------------------------------------------------------------------------------------- -->
-      <br>
-      <div class="input-group">
-        <label for="number" class="input-group-text"> phone Number </label>
-        <input type="text" aria-label="number" class="form-control" formControlName="number">
-      </div>
-      <div 
-      class="form-text text-danger"
-      *ngIf="registeration.controls['number'].touched &&
-       registeration.controls['number'].invalid">
-       <span *ngIf= "registeration.controls['number'].errors?.['required']" >this fild is required</span>
-       <span *ngIf= "registeration.controls['number'].errors?.['minlength']">This Fild has a Min Liegth</span>
-
     </div>
-    <!-- ------------------------------------------------------------------------------------- -->
-      <br>
-      <div class="input-group">
-        <label for="password" class="input-group-text"> password </label>
-        <input type="password" aria-label="password" class="form-control" formControlName="password">
-      </div>
-      <div 
-      class="form-text text-danger"
-      *ngIf="registeration.controls['password'].touched &&
-       registeration.controls['password'].invalid">
-       <span *ngIf= "registeration.controls['password'].errors?.['required']" >this fild is required</span>
-       <span *ngIf= "registeration.controls['password'].errors?.['minlength']" >This Fild has a Min Liegth</span>
-
-    </div>
-    <!-- ------------------------------------------------------------------------------------------ -->
-      <br>
-      <div class="input-group">
-        <label for="address" class="input-group-text"> Address </label>
-        <input type="text" aria-label="address" class="form-control" formControlName="address">
-      </div>
-      <div 
-       class="form-text text-danger"
-      *ngIf="registeration.controls['address'].touched &&
-       registeration.controls['address'].invalid">
-       <span *ngIf= "registeration.controls['address'].errors?.['required']" >this fild is required</span>
-       <span *ngIf= "registeration.controls['address'].errors?.['minlength']" >This Fild has a Min Liegth</span>
-    </div>
-    <br>
-      <button  type="submit" class="btn btn-primary" [disabled]="registeration.invalid">Submit</button>
-
-</form>
-</div>
-</div>
-</div>
-</div>
+  </div>
 </div>
