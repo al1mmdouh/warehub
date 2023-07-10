@@ -50,7 +50,7 @@ export class AddProductComponent {
       name: ['', [Validators.required]],
       image: ['', [Validators.required]],
       quantity: ['', [Validators.required]],
-      warehouseId: ['', [Validators.required]]
+      warehouse_id: ['', [Validators.required]]
     });
 
     this.warehouseService.getWarehouses().subscribe(
@@ -83,6 +83,7 @@ export class AddProductComponent {
     formdata.append('image', this.imageFile);
     formdata.append('quantity', this.addProductForm.get('quantity')?.value);
     formdata.append('business_id', business_id);
+    formdata.append('warehouse_id', this.addProductForm.get('warehouse_id')?.value);
 
     console.log(formdata);
 

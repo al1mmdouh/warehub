@@ -18,8 +18,8 @@
         />
         <label class="py-1" for="warehouseId">Choose warehouse:</label>
 
-        <select name="cars"  formControlName="warehouseId">
-          <option value="{{warehouse.id}}" *ngFor="let warehouse of warehouses">{{warehouse.warehouseName}}</option>
+        <select name="cars"  class="form-select" formControlName="warehouse_id">
+          <option value={{+warehouse.id}} *ngFor="let warehouse of warehouses">{{warehouse.warehouseName}}</option>
           
         </select>
         <div
